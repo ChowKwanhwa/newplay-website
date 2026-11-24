@@ -1,4 +1,5 @@
 ---
+import OfficialLinks from './OfficialLinks.astro';
 const groups = [
   {title:'产品与体验', links:[['小游戏','/games/'],['AI 工作室','/studio/'],['NewCoin','/newcoin/']]},
   {title:'一起创造', links:[['游戏开发者','/cooperation/?role=game'],['创作者与内容','/cooperation/?role=creator'],['技术与体验合作','/cooperation/?role=tech'],['NewPay 合作','/cooperation/?role=payment']]},
@@ -7,7 +8,7 @@ const groups = [
 ---
 <footer class="brand-footer">
   <div class="footer-grid">
-    <div class="intro"><a href="/"><img src="/assets/newplay-logo.svg" width="142" alt="NewPlay 首页" /></a><strong>NewPlay, Play New.</strong><p>面向东盟年轻人的数字娱乐新空间。<br/>从小游戏开始，发现更多好玩。</p><a class="explore" href="/games/">发现你的下一份好玩 ↗</a></div>
+    <div class="intro"><a href="/"><img src="/assets/newplay-logo.svg" width="142" alt="NewPlay 首页" /></a><strong>NewPlay, Play New.</strong><p>面向东盟年轻人的数字娱乐新空间。<br/>从小游戏开始，发现更多好玩。</p><a class="explore" href="/games/">发现你的下一份好玩 ↗</a><OfficialLinks/></div>
     {groups.map(group=><section><h2>{group.title}</h2>{group.links.map(([label,url])=><a href={url}>{label}</a>)}</section>)}
   </div>
   <div class="notes"><span>© 2026 NewPlay.　 Play New.</span><a href="/information/#terms">使用与权益提示</a><a href="/information/#privacy">数据与隐私说明</a></div>

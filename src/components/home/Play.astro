@@ -13,7 +13,6 @@ const games = [
   <nav class="quick-links" aria-label="休闲体验入口">{quick.map(([s,t,url])=><a href={url}><small>{s}</small><b>{t.slice(0,-2)} <i aria-hidden="true">{t.slice(-1)}</i></b></a>)}</nav>
   <div class="game-cards">{games.map(([key,label,a,b,desc,asset,url])=><article class={'game-card '+key} data-motion>
     <a href={url}><img class="game-art" loading="lazy" src={'/assets/home/'+asset} alt=""/><div class="game-copy"><small>{label}</small><h3>{a}<br/>{b}</h3></div><span class="game-note">{desc}</span>{key==='tower'&&<Artwork class="card-star" desktop="ee881.svg" mobile="85e05.svg"/>}{key==='jump'&&<Artwork class="jump-arrow" desktop="0361d.svg" mobile="ab481.svg"/>}</a>
-    <button type="button" class="section-pause icon-pause" data-pause aria-label={'暂停'+label+'动效'}>Ⅱ</button>
   </article>)}</div>
   <div class="gallery-tail"><img src="/assets/home/86357.svg" alt=""/><b>每一种好玩，<br/>都有普莱的想象力。</b><a href="#agent">认识你的 AI 搭子 ↘</a></div>
 </div></section>
@@ -21,7 +20,6 @@ const games = [
   <picture class="wave cyan"><source srcset="/assets/home/3d403.svg" media="(max-width:799px)"/><img src="/assets/home/12733.svg" alt=""/></picture>
   <picture class="wave violet"><source srcset="/assets/home/0627e.svg" media="(max-width:799px)"/><img src="/assets/home/bd469.svg" alt=""/></picture>
   <div class="rail">
-    <button type="button" class="section-pause" data-pause>Ⅱ 暂停此区动效</button>
     <small>普莱 AI Agent</small><div class="spread"><h2>一个普莱。<br/>好多种可能。</h2><p class="desktop-copy">游戏里的灵感搭子，<br/>也是你天马行空的共创伙伴。</p><p class="mobile-copy">游戏、音乐、造型，跟着灵感走。</p></div>
     <div class="agent-art"><strong>PLAI</strong><a href="/2048/" class="cue cue-game"><b>2048</b><span>玩出新招</span></a><a class="cue cue-music" href="/studio/?scene=music"><i>{Array.from({length:9},(_,i)=><em style={`height:${20+(i%3)*12}px`}></em>)}</i><span>听见灵感</span></a><a class="cue cue-style" href="/studio/?scene=fashion"><picture><source srcset="/assets/home/244fc.svg" media="(max-width:799px)"/><img src="/assets/home/0a60b.svg" alt=""/></picture><span>表达自己</span></a><img class="agent-plai" src="/assets/home/agent-plai.webp" loading="lazy" alt="普莱" /></div>
     <div class="agent-tail"><p>不止陪你聊聊。<br/>更陪你，把想法玩出来。</p><a href="/studio/">走进普莱工坊 ↗</a></div>

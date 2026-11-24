@@ -8,7 +8,6 @@ const roles = [
 const profile=['OZBEAT AI 联合创始人','国际数字经济与区块链 DBA 项目创办人','澳大利亚区块链元宇宙学院创办人','518 区块链社区创办人','上海国际社区学院院长','BM Intelligence Group 首席经济学家','香港区块链应用与投资研究院院长','澳大利亚区块链联盟首席经济学家'];
 ---
 <section class="team" id="team" data-motion><div class="rail">
-  <button type="button" class="section-pause" data-pause>Ⅱ 暂停此区动效</button>
   <small>Core Team · 普莱小队</small><div class="spread"><h2>四个普莱，<br/>同一颗好奇心。</h2><div class="team-lead"><b>Guess right, Plai give u a surprise!<br/>Pretty fun, huh?</b><p>注册后，猜猜这四位的幕后身份。<br/>选对答案，解锁 NewCoin 奖励资格。</p></div></div>
   <div class="role-grid">{roles.map(([role,lead,desktop,mobile])=><article class={'role role-'+role}><div class="mystery" style={`--silhouette:url(/assets/home/${desktop});--silhouette-mobile:url(/assets/home/${mobile})`} aria-hidden="true"><b>?</b></div><h3>NewPlay {role}</h3><p>{lead}</p><button type="button" data-open-role={role} aria-haspopup="dialog">{role==='CSO'?'身份即将揭晓':'猜猜 TA 是谁'} <span>↗</span></button></article>)}</div>
   <p class="fineprint">Core Team 包含虚构角色设定。当前仅供体验竞猜流程，不发放 NC 奖励。</p>

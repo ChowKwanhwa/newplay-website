@@ -12,8 +12,6 @@
 .home .spread>p{font-size:clamp(14px,1.32vw,19px);line-height:1.8;max-width:35%}
 .home h2{font-size:clamp(44px,5.35vw,77px);line-height:1.12;font-weight:900;letter-spacing:-.055em}
 .home .fineprint,.home .market-source{font-size:11px;line-height:1.65}
-.home .section-pause,.home .hero-bottom button{border:1px solid #9db7dcb3;background:#ffffffe6;border-radius:99px;color:#172449;z-index:4;font-size:11px;font-weight:550;padding:6px 13px;line-height:1.35}
-.home .section-pause{position:absolute;right:clamp(12px,1.52vw,22px);top:10px}
 .skip-home{position:absolute;top:-100px;left:12px;z-index:20;background:white;padding:12px}
 .skip-home:focus{top:12px}
 .home-header{background:var(--ice);position:relative;z-index:5}
@@ -69,9 +67,8 @@
 .preview-controls [data-cover-pause]{margin-left:auto;flex:0 1 88px}
 .hero-bottom{position:absolute!important;left:0;right:0;bottom:24px;display:flex;justify-content:space-between;align-items:center}
 .hero-bottom a,.hero-bottom small{font-size:11px;font-weight:400}
-.hero-bottom small{color:#6881a3}
+.hero-bottom small{position:absolute;left:50%;translate:-50% 0;color:#6881a3}
 .hero-bottom em{font:24px var(--np-font-latin);margin-left:16px}
-.hero-bottom button{font-size:12px!important;min-width:126px;min-height:38px}
 .agent-ticket,.mobile-copy{display:none}
 .home-dialog{border:0;border-radius:22px;max-height:90dvh;overflow:auto;padding:32px;color:var(--ink);box-shadow:0 20px 100px #04173855}
 .home-dialog::backdrop{background:#071436b8}
@@ -133,7 +130,6 @@
 .game-art{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;z-index:-2}
 .game-copy{position:absolute;left:4.8%;top:6%}.game-copy small{font-size:13px}.game-copy h3,.studio-card h3{font-size:clamp(32px,3.61vw,52px);line-height:1.13;letter-spacing:-.055em;margin-top:16px}
 .game-note{position:absolute;bottom:6%;left:4.8%;font-size:14px}
-.game-card .icon-pause{top:8px;right:8px;padding:4px 8px;min-width:29px}
 .tower{grid-column:1/9;height:620px;margin-right:1.4%}.tower .game-copy{top:auto;bottom:13%}.tower h3{font-size:clamp(36px,4.2vw,61px)}.tower a::after,.jump a::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,#081229ed,transparent);z-index:-1}
 .card-star{position:absolute;top:6%;right:5%;width:7.4%}
 .puzzle{grid-column:9/13;margin:90px 0 0 5.5%}.puzzle>a{background:#46588c;border-radius:48% 48% 9px 9px}.puzzle .game-art{top:auto;bottom:0;height:68%}.puzzle .game-copy{left:7%;right:7%;top:11%;text-align:center}.puzzle .game-note{left:8%;right:8%;text-align:center}.puzzle h3,.poker h3{font-size:clamp(30px,3.08vw,45px)}
@@ -218,12 +214,32 @@
 .footer-grid{display:grid;grid-template-columns:1.5fr .85fr 1fr .8fr;gap:24px}
 .footer-grid nav{display:flex;flex-direction:column;align-items:flex-start;gap:17px}
 .footer-grid h3{color:#12234c;font-size:15px}.footer-grid a,.footer-grid p{font-size:14px}.footer-grid nav a{display:flex;align-items:center;gap:5px}.footer-grid nav img{width:18px}
-.footer-intro h3{font:700 22px var(--np-font-latin);margin:20px 0 11px}.footer-intro p{line-height:1.7}.footer-intro>a:last-child{display:inline-block;font-weight:700;color:var(--blue);margin-top:22px;border-bottom:1px solid}
+.footer-intro h3{font:700 22px var(--np-font-latin);margin:20px 0 11px}.footer-intro p{line-height:1.7}.footer-intro>a[href="/games/"]{display:inline-block;font-weight:700;color:var(--blue);margin-top:22px;border-bottom:1px solid}
 .footer-fine{margin-top:62px;display:flex;align-items:center;gap:14px;border-top:1px solid #10214b26;padding-top:22px;color:#58657a;font-size:10px}
 .footer-fine span{margin-right:auto}.footer-fine button{font-size:10px;border:0;padding:5px 0;background:none}.home-footer .fineprint{font-size:10px;margin-top:15px}
 .policy-dialog{width:min(460px,92vw)}
-@keyframes reveal-marker{from{transform:scaleX(0)}to{transform:scaleX(1)}}
-@keyframes deal-plai{from{translate:6% 2%;scale:.94}60%{translate:-1% -1%}to{translate:0;scale:1}}
+/* An uneven leading edge suggests bristles. The final frame fills the approved marker. */
+@keyframes brush-stroke {
+  from {clip-path:polygon(0 0,-4% 0,-2% 6%,-3% 16%,0 18%,-3% 23%,-1% 39%,-4% 44%,-2% 52%,-3% 60%,0 62%,-2% 67%,-1% 81%,-4% 86%,-2% 94%,-3% 100%,0 100%)}
+  to   {clip-path:polygon(0 0,100% 0,102% 6%,101% 16%,104% 18%,101% 23%,103% 39%,100% 44%,102% 52%,101% 60%,104% 62%,102% 67%,103% 81%,100% 86%,102% 94%,101% 100%,0 100%)}
+}
+@keyframes plai-hop {
+  0%   {transform:translate(2%,4%) rotate(3deg) scale(.96)}
+  42%  {transform:translate(-.6%,-3.4%) rotate(-2deg) scale(1.012)}
+  70%  {transform:translate(0,.8%) rotate(.8deg) scale(1.008,.988)}
+  86%  {transform:translate(0,-.6%) rotate(-.3deg)}
+  100% {transform:none}
+}
+@keyframes plai-float {
+  50% {transform:translateY(-1.2%) rotate(-.8deg)}
+}
+@keyframes ticket-drop {
+  0%   {transform:translateY(calc(-1 * var(--fall))) rotate(-9deg);opacity:0}
+  25%  {opacity:1}
+  67%  {transform:translateY(9px) rotate(2.4deg)}
+  84%  {transform:translateY(-5px) rotate(-1deg)}
+  100% {transform:none;opacity:1}
+}
 @keyframes deal-card{from{translate:-11cqw 12cqw;transform:rotate(-28deg) scale(.65);opacity:0}55%{translate:-3cqw -2.5cqw}85%{translate:0 .3cqw}to{translate:0;transform:none;opacity:1}}
 @keyframes deal-orbit{from{opacity:0;scale:.93}to{opacity:1;scale:1}}
 @keyframes orbit-drift{50%{translate:0 -6px;transform:rotate(2deg)}}
@@ -234,9 +250,15 @@
 @keyframes equalize{50%{scale:1 .5}}
 @keyframes finale-orbit{50%{transform:rotate(9deg)}}
 @media(prefers-reduced-motion:no-preference){
-  .home-hero[data-enter] .marker:before{animation:reveal-marker .52s cubic-bezier(.18,.8,.2,1) both}
-  .home-hero[data-enter] .mint:before{animation-delay:.14s}
-  .home-hero[data-enter] .hero-plai{animation:deal-plai 1.1s cubic-bezier(.22,.8,.24,1) both}
+  .home-hero[data-enter] .marker:before{animation:brush-stroke .78s cubic-bezier(.48,.09,.24,.95) .10s both}
+  .home-hero[data-enter] .mint:before{animation-delay:.58s}
+  .hero-art[data-arrived] .hero-plai{transform-origin:52% 83%;animation:plai-hop 1.12s cubic-bezier(.22,.65,.32,1),plai-float 3.4s ease-in-out 1.12s}
+  .intro-art a{--fall:clamp(100px,14vw,210px);--drop-delay:0s}
+  .intro-art .make-ticket{--drop-delay:.09s}
+  .intro-art .meet-ticket{--drop-delay:.19s}
+  .intro-art [data-drop="waiting"]{opacity:0}
+  .intro-art [data-drop="playing"]{animation:ticket-drop .9s cubic-bezier(.27,.63,.38,1) var(--drop-delay) backwards}
+  .home [data-motion][data-offscreen] *,.home [data-motion][data-offscreen] *::before{animation-play-state:paused!important}
   .home-hero[data-enter] .playing-cards,.home-hero[data-enter] .hero-token,.home-hero[data-enter] .jump-token{animation:deal-card .86s cubic-bezier(.22,.8,.24,1) both}
   .home-hero[data-enter] .hero-token{animation-delay:.16s}.home-hero[data-enter] .playing-cards{animation-delay:.3s}.home-hero[data-enter] .jump-token{animation-delay:.44s}
   .home-hero[data-enter] .orbit-bg,.home-hero[data-enter] .hero-star{animation:deal-orbit .8s ease-out both}
@@ -248,8 +270,6 @@
   .role{animation:spotlight 8s ease-in-out infinite}.role:nth-child(2){animation-delay:-2s}.role:nth-child(3){animation-delay:-4s}.role:nth-child(4){animation-delay:-6s}
   .music .studio-decoration i{animation:equalize 1.2s ease-in-out var(--delay) infinite}
   .final-star,.final-ring{animation:finale-orbit 12s ease-in-out infinite}
-  .home [data-motion][data-paused] *,.home [data-motion][data-offscreen] *,.home [data-motion][data-paused] *::before,.home [data-motion][data-offscreen] *::before{animation-play-state:paused!important}
-  .home-hero[data-paused][data-enter] :is(.marker,.hero-plai,.playing-cards,.hero-token,.jump-token,.orbit-bg,.hero-star),.home-hero[data-paused][data-enter] .marker::before{animation:none}
 }
 @media(max-width:1100px) and (min-width:800px){
  .home{--edge:4.8vw}.home .wide{padding-inline:4.8vw}.home-header nav{gap:13px}
@@ -290,7 +310,6 @@
  .agent-ticket{position:absolute;top:1253px;left:var(--edge);right:var(--edge);border-top:1px solid #9ab8df;display:flex;align-items:center;gap:12px;padding-top:12px;font-size:11px;font-weight:700}
  .agent-ticket img:first-child{width:6px}.agent-ticket img:last-child{width:23px;margin-left:auto}.agent-ticket b{font-size:8px;color:var(--blue);letter-spacing:.12em}
  .hero-bottom{bottom:13px}.hero-bottom a{font-size:9px}.hero-bottom small{display:none}.hero-bottom em{font-size:18px;margin-left:8px}
- .hero-bottom button{min-width:104px;min-height:32px;font-size:11px!important}
  .intro-poster .wide{min-height:876px;padding-top:38px}
  .intro-text{width:100%}.intro-text h2{font-size:clamp(46px,11.5vw,70px);margin-top:22px;line-height:1.15}.intro-text p{font-size:14px}.intro-text strong{font-size:21px}
  .intro-text nav{display:none}
@@ -345,7 +364,7 @@
 }
 .hero-art[data-out-of-view] *,.home-hero[data-offscreen] .hero-art *{animation-play-state:paused!important}
 @media(max-width:799px) and (prefers-reduced-motion:no-preference){
-  .home-hero[data-enter] .hero-art>*{animation:none}
+  .home-hero[data-enter] .hero-art>:is(.playing-cards,.hero-token,.jump-token,.hero-star){animation:none}
 }
 .hero-actions a span{font:700 .82em var(--np-font-latin)}
 .preview-cover{background-image:var(--cover);text-shadow:0 1px 4px #081c34c0}
@@ -392,3 +411,9 @@
 @media(max-width:799px){.home-header nav .mobile-only-link{display:inline-flex}.cta-arrow{width:9px}}
 .room-caption .mv-status{font-size:12px;color:#cdd6ef;margin-top:10px}
 @media(min-width:800px){.ecosystem .wide{padding-bottom:30px}}
+
+@media (hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference) {
+  .game-card>a{transition:transform .32s cubic-bezier(.2,.75,.25,1),box-shadow .32s}
+  .game-card>a:is(:hover,:focus-visible){transform:translateY(-4px) scale(1.035);box-shadow:0 18px 40px #050d2890}
+  .game-card:focus-within,.game-card:hover{z-index:1}
+}

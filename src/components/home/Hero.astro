@@ -11,9 +11,9 @@ import Artwork from './Artwork.astro';
         locationURL.searchParams.delete('intro');
         history.replaceState(history.state,'',locationURL.pathname + locationURL.search + locationURL.hash);
       }
-      if (!matchMedia('(prefers-reduced-motion: reduce)').matches && (replay || !sessionStorage.getItem('newplay-home-intro'))) {
+      if (!matchMedia('(prefers-reduced-motion: reduce)').matches && (replay || sessionStorage.getItem('newplay-home-intro') !== '2')) {
         document.currentScript.parentElement.dataset.enter = '';
-        sessionStorage.setItem('newplay-home-intro','1');
+        sessionStorage.setItem('newplay-home-intro','2');
       }
     } catch {}
   </script>
@@ -34,5 +34,5 @@ import Artwork from './Artwork.astro';
     <Premiere/>
   </div>
   <a class="agent-ticket" href="#agent"><img src="/assets/home/e3b67.svg" alt=""/><span><b>PLAI / AI AGENT</b><br/>找游戏。学玩法。一起进阶。</span><img src="/assets/home/e1aff.svg" alt=""/></a>
-  <div class="hero-bottom rail"><a href="#intro">向下滚动，打开下一局 <em>↓</em></a><small>NewPlay, Play New.</small><button type="button" data-pause>暂停动效</button></div>
+  <div class="hero-bottom rail"><a href="#intro">向下滚动，打开下一局 <em>↓</em></a><small>NewPlay, Play New.</small></div>
 </section>

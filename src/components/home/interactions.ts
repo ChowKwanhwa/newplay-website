@@ -2,23 +2,6 @@ const home = document.querySelector<HTMLElement>('.home');
 if (home) {
   const motionPreference = matchMedia('(prefers-reduced-motion: reduce)');
   const sections = Array.from(home.querySelectorAll<HTMLElement>('[data-motion]'));
-  const manuallyPaused = new WeakSet<HTMLElement>();
-
-  function renderMotion(section: HTMLElement) {
-    const paused = manuallyPaused.has(section) || motionPreference.matches;
-    section.toggleAttribute('data-paused', paused);
-    const control = section.querySelector<HTMLButtonElement>('[data-pause]');
-    if (!control) return;
-    const iconOnly = control.classList.contains('icon-pause');
-    const hero = section.classList.contains('home-hero');
-    const name = hero ? '动效' : '此区动效';
-    const label = paused ? '继续' : '暂停';
-    control.setAttribute('aria-pressed', String(paused));
-    control.setAttribute('aria-label', motionPreference.matches ? '已按系统偏好减少动态效果' : label + name);
-    control.disabled = motionPreference.matches;
-    control.textContent = iconOnly ? (paused ? '▷' : 'Ⅱ') : (hero ? '' : paused ? '▷ ' : 'Ⅱ ') + label + name;
-  }
-
   const visibility = new Map<Element, boolean>();
   function updateVisibility(section: HTMLElement) {
     section.toggleAttribute('data-offscreen', document.hidden || visibility.get(section) === false);
@@ -29,27 +12,43 @@ if (home) {
       updateVisibility(entry.target as HTMLElement);
     });
   });
-  sections.forEach(section => {
-    observer.observe(section);
-    renderMotion(section);
-    section.querySelector('[data-pause]')?.addEventListener('click', () => {
-      if (manuallyPaused.has(section)) manuallyPaused.delete(section);
-      else manuallyPaused.add(section);
-      section.removeAttribute('data-enter');
-      renderMotion(section);
-    });
-  });
+  sections.forEach(section => observer.observe(section));
   document.addEventListener('visibilitychange', () => sections.forEach(updateVisibility));
-  motionPreference.addEventListener('change', () => sections.forEach(renderMotion));
+
   const hero = home.querySelector<HTMLElement>('.home-hero')!;
-  // End the one-shot deal before starting the separate ambient loops.
   hero.addEventListener('animationend', event => {
-    if (event.animationName === 'deal-card' && (event.target as Element).matches('.jump-token')) hero.removeAttribute('data-enter');
-    if (event.animationName === 'reveal-marker' && (event.target as Element).matches('.mint') && matchMedia('(max-width:799px)').matches) hero.removeAttribute('data-enter');
+    if (event.animationName === 'brush-stroke' && event.target === hero.querySelector('.mint')) {
+      hero.removeAttribute('data-enter');
+    }
   });
+  motionPreference.addEventListener('change', () => {
+    if (motionPreference.matches) hero.removeAttribute('data-enter');
+  });
+
   const heroArt = hero.querySelector<HTMLElement>('.hero-art')!;
-  const artObserver = new IntersectionObserver(([entry]) => heroArt.toggleAttribute('data-out-of-view', !entry.isIntersecting));
+  const artObserver = new IntersectionObserver(([entry]) => {
+    heroArt.toggleAttribute('data-out-of-view', !entry.isIntersecting);
+    if (entry.isIntersecting) heroArt.setAttribute('data-arrived', '');
+  }, { threshold: 0.12 });
   artObserver.observe(heroArt);
+
+  // Observe each card at its resting position so the mobile tickets fall when they come into view.
+  const tickets = home.querySelectorAll<HTMLAnchorElement>('.intro-art a');
+  const ticketObserver = new IntersectionObserver(entries => {
+    for (const entry of entries) {
+      if (!entry.isIntersecting) continue;
+      (entry.target as HTMLElement).dataset.drop = 'playing';
+      ticketObserver.unobserve(entry.target);
+    }
+  }, { threshold: 0.16 });
+  tickets.forEach(ticket => {
+    ticket.dataset.drop = 'waiting';
+    ticketObserver.observe(ticket);
+    ticket.addEventListener('focus', () => {
+      ticketObserver.unobserve(ticket);
+      delete ticket.dataset.drop;
+    }, { once: true });
+  });
 
   const menu = home.querySelector<HTMLButtonElement>('.menu-switch')!;
   const navigation = home.querySelector<HTMLElement>('#home-nav')!;

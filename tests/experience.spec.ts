@@ -65,3 +65,30 @@ test('game catalog search can reach an empty state and recover', async ({ page }
   await page.locator('[data-game]:visible').click();
   await expect(page).toHaveURL(/\/2048\/$/);
 });
+
+test('home motion, card hover and official links', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'no-preference' });
+  await page.goto('/?intro=replay');
+  await expect(page.locator('.hero-art')).toHaveAttribute('data-arrived', '');
+  await expect(page.locator('.hero-plai')).toHaveCSS('animation-name', 'plai-hop, plai-float');
+  await expect(page.locator('[data-pause]')).toHaveCount(0);
+
+  const ticket = page.locator('.meet-ticket');
+  await ticket.scrollIntoViewIfNeeded();
+  await expect(ticket).toHaveAttribute('data-drop', 'playing');
+  await expect(ticket).toHaveCSS('animation-name', 'ticket-drop');
+  await expect(ticket).toHaveCSS('opacity', '1');
+
+  const game = page.locator('.game-card > a').first();
+  await game.hover();
+  await expect.poll(() => game.evaluate(el => new DOMMatrix(getComputedStyle(el).transform).a)).toBeGreaterThan(1.03);
+  const links = page.getByRole('navigation', {name: 'NewPlay 官方链接'});
+  await expect(links.getByText('X（Twitter）')).toHaveAttribute('href', 'https://x.com/newplayglobal');
+  await expect(links.getByText('Telegram')).toHaveAttribute('href', 'https://t.me/newplayglobal');
+  await expect(links.getByText('官网')).toHaveAttribute('href', 'https://newplay.game');
+
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await expect(ticket).toHaveCSS('animation-name', 'none');
+  await expect(game).toHaveCSS('transform', 'none');
+  await expect(page.locator('.hero-plai')).toHaveCSS('animation-name', 'none');
+});
