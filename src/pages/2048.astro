@@ -1,0 +1,35 @@
+---
+import GameLayout from "../components/games/GameLayout.astro";
+---
+
+<GameLayout title="普莱 2048" description="小小数字，大大可能。想动动脑时再来。"
+  ><section class="numbers g-section">
+    <div class="g-wrap g-two">
+      <div>
+        <a href="/games/">返回好玩宇宙</a><span class="g-label"
+          >普莱 2048 · 自选小挑战</span
+        ><h1>小小数字，<br />大大可能。</h1><p>
+          想动动脑时再来。使用方向键或滑动棋盘，合并相同数字；也可以撤销上一步。
+        </p><a href="https://newplay.cryptao.uk/2048.html" class="g-btn primary"
+          >试着玩一局 ↗</a>
+      </div><img src="/assets/games/tile-2048.webp" alt="2048 数字棋盘" />
+    </div>
+  </section></GameLayout
+>
+<style>
+  .numbers {
+    background: #edf4f7;
+  }
+  .numbers img {
+    width: 100%;
+    border-radius: 24px;
+  }
+  .numbers .g-label {
+    margin-top: 55px;
+  }
+  .numbers p {
+    line-height: 1.85;
+    margin: 22px 0;
+    max-width: 36em;
+  }
+</style>

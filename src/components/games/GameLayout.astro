@@ -1,0 +1,11 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import SiteNav from "../SiteNav.astro";
+import SiteFooter from "../SiteFooter.astro";
+import "../../styles/games.css";
+const { title, description } = Astro.props;
+---
+
+<Layout {title} {description}
+  ><SiteNav /><main class="g-page"><slot /></main><SiteFooter /></Layout
+>

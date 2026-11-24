@@ -1,0 +1,32 @@
+---
+const roles = [
+  ['CEO','谁在为好玩掌舵？','role-ceo.webp','role-ceo-mobile.webp',['Elon Musk','Sam Altman','Jensen Huang','Others']],
+  ['CTO','谁让想象成为现实？','role-cto.webp','role-cto-mobile.webp',['Steve Wozniak','John Carmack','Linus Torvalds','Others']],
+  ['CSO','新的身份，敬请期待。','role-cso.webp','role-cso-mobile.webp',[]],
+  ['CMO','谁让好玩被看见？','role-cmo.webp','role-cmo-mobile.webp',['Steve Jobs','Gary Vaynerchuk','Seth Godin','Others']]
+] as const;
+const profile=['OZBEAT AI 联合创始人','国际数字经济与区块链 DBA 项目创办人','澳大利亚区块链元宇宙学院创办人','518 区块链社区创办人','上海国际社区学院院长','BM Intelligence Group 首席经济学家','香港区块链应用与投资研究院院长','澳大利亚区块链联盟首席经济学家'];
+---
+<section class="team" id="team" data-motion><div class="rail">
+  <button type="button" class="section-pause" data-pause>Ⅱ 暂停此区动效</button>
+  <small>Core Team · 普莱小队</small><div class="spread"><h2>四个普莱，<br/>同一颗好奇心。</h2><div class="team-lead"><b>Guess right, Plai give u a surprise!<br/>Pretty fun, huh?</b><p>注册后，猜猜这四位的幕后身份。<br/>选对答案，解锁 NewCoin 奖励资格。</p></div></div>
+  <div class="role-grid">{roles.map(([role,lead,desktop,mobile])=><article class={'role role-'+role}><div class="mystery" style={`--silhouette:url(/assets/home/${desktop});--silhouette-mobile:url(/assets/home/${mobile})`} aria-hidden="true"><b>?</b></div><h3>NewPlay {role}</h3><p>{lead}</p><button type="button" data-open-role={role} aria-haspopup="dialog">{role==='CSO'?'身份即将揭晓':'猜猜 TA 是谁'} <span>↗</span></button></article>)}</div>
+  <p class="fineprint">Core Team 包含虚构角色设定。当前仅供体验竞猜流程，不发放 NC 奖励。</p>
+</div></section>
+{roles.map(([role,,,,answers])=><dialog class="quiz-dialog home-dialog" data-quiz={role} aria-labelledby={'quiz-'+role}>
+  <button class="dialog-close" type="button" data-dismiss aria-label="关闭">×</button>
+  {role==='CSO'?<><small>CORE TEAM / NewPlay CSO</small><h2 id={'quiz-'+role}>新的身份，<br/>即将揭晓。</h2><p>这一题，先留一点悬念。<br/>角色更新后，再来猜猜 TA 是谁。</p><b>身份竞猜暂未开放</b><a href="/games/">先去看看其他好玩 ↗</a></>:<>
+    <small>Core Team · 身份挑战</small><h2 id={'quiz-'+role}>猜猜 NewPlay {role} 是谁？</h2><p>选一个你觉得最像的答案。</p>
+    <div class="answers">{answers.map((name,i)=><button type="button" data-answer={i} disabled><b>{String.fromCharCode(65+i)}</b> {name}</button>)}</div>
+    <div class="quiz-status" aria-live="polite"><strong>先注册，再来解锁答案。</strong><p>先看看注册后的竞猜效果。</p></div>
+    <button class="quiz-action" type="button">预览已注册状态</button><p class="fineprint">交互预览，不创建真实账号。趣味角色竞猜，人物选项不代表真实任职。</p>
+  </>}
+</dialog>)}
+<section class="adviser"><div class="wide">
+  <small>EXPERTISE / AI MUSIC</small><div class="spread"><h2>让好玩的灵感，<br/>接上专业的声音。</h2><p>技术顾问支持，<br/>让音乐创作连接更丰富的体验。</p></div>
+  <article class="adviser-card"><div class="portrait"><img src="/assets/home/advisor-robert-lee.webp" alt="Dr Robert Lee" loading="lazy"/><a href="https://auaimusic.com/" target="_blank" rel="noopener">查看机构公开介绍 ↗</a></div>
+    <div class="profile"><h3>Dr Robert Lee</h3><b>AI 音乐技术顾问</b><p>澳大利亚 AI 音乐联盟联合创始人 · OZBEAT AI 联合创始人</p><div class="profile-summary"><strong>教授、经济学博士 · AI 与数字经济</strong><p>以顾问形式提供 AI 音乐方向的技术支持，为创作体验与产品生态带来专业视角。</p></div>
+    <details><summary><span>展开公开履历 ↓</span><span>收起公开履历 ↑</span></summary><h4>公开履历 / PUBLIC PROFILE</h4><ul>{profile.map(p=><li>{p}</li>)}</ul></details>
+    <div class="music-signature"><strong>AI × MUSIC</strong><i class="signature-bars">{Array.from({length:17},(_,i)=><em style={`height:${24+(i%5)*11}px`}></em>)}</i><p>共探 AI 音乐创作与内容生态合作，按具体产品计划推进。</p></div></div>
+  </article><p class="fineprint">下一步 / 共探 AI 音乐创作与内容生态合作，按具体产品计划推进。</p>
+</div></section>

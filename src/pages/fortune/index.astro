@@ -1,0 +1,182 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import SiteNav from "../../components/SiteNav.astro";
+import SiteFooter from "../../components/SiteFooter.astro";
+import data from "../../scripts/games/fortune-text.json";
+import "../../styles/fortune.css";
+---
+
+<Layout
+  title="普莱好运签"
+  description="给此刻，找一点灵感。选择主题和星座，免费开启一份预设的本地灵感解读。"
+  ><div class="fortune-nav"><SiteNav /></div><main class="fortune">
+    <section class="f-hero">
+      <div class="f-art"></div><img
+        class="f-orbit"
+        alt=""
+        src="/assets/games/fortune-orbit.svg"
+      /><div class="f-wrap">
+        <div class="f-hero-copy">
+          <p class="f-kicker">星座灵感 × PLAI 解读</p><h1>
+            普莱<br />好运签<span>✦</span>
+          </h1><p>不问注定。<br />一起找找，下一步的灵感。</p><a
+            class="f-btn pink"
+            href="#draw">开启我的好运签　↘</a
+          ><small>本地内容演示 · 不扣 NC · 不预测未来</small>
+        </div><div class="f-motion">
+          <button id="show-ritual">看抽签演出</button><button id="motion"
+            >暂停动效</button>
+        </div><div class="f-hero-foot">
+          <small>一点星座灵感，一次认真对话。</small><small
+            >NewPlay, Play New.</small>
+        </div>
+      </div>
+    </section>
+    <section class="f-block f-structure">
+      <div class="f-wrap">
+        <div>
+          <p class="f-kicker">一张签，不止一句好听的话。</p><h2>
+            把此刻的心情，<br />读成下一步的可能。
+          </h2>
+        </div><div class="structure-list">
+          {
+            [
+              ["签文", "给心情一个入口"],
+              ["主题解读", "换个视角看处境"],
+              ["3 个行动建议", "从能做的小事开始"],
+              ["PLAI 追问", "把启发再聊深一点"],
+            ].map(([label, tip]) => (
+              <div>
+                <>
+                  <b>{label}</b>
+                  <small>{tip}</small>
+                </>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+    <section id="draw" class="f-block">
+      <div class="f-wrap">
+        <div class="f-heading">
+          <div>
+            <p class="f-kicker">你的星座灵感剧场</p><h2>
+              今天，想听哪一种回响？
+            </h2>
+          </div><span class="preview-badge">预览模式 / 不扣 NC</span>
+        </div><form id="f-form">
+          <div>
+            <fieldset>
+              <legend>①　选一个此刻的主题</legend><div class="f-themes">
+                {
+                  data.topics.map((t, i) => (
+                    <label>
+                      <>
+                        <input
+                          type="radio"
+                          name="theme"
+                          value={i}
+                          checked={i === 0}
+                        />
+                        <span>
+                          <>
+                            <b>{t.name}</b>
+                            <small>{data.labels[i]}</small>
+                          </>
+                        </span>
+                      </>
+                    </label>
+                  ))
+                }
+              </div>
+            </fieldset>
+            <fieldset>
+              <legend>②　选择你的星座　<small>只作灵感视角</small></legend><div
+                class="f-signs"
+              >
+                {
+                  data.signs.map((s, i) => (
+                    <label>
+                      <>
+                        <input
+                          type="radio"
+                          name="sign"
+                          value={i}
+                          checked={i === 0}
+                        />
+                        <span>
+                          <img
+                            src={"/assets/games/zodiac-" + i + ".svg"}
+                            alt=""
+                          />
+                          {s}
+                        </span>
+                      </>
+                    </label>
+                  ))
+                }
+              </div><small>不需要精确生日、出生时间或地址。</small>
+            </fieldset>
+          </div>
+          <div class="f-question">
+            <label for="question"
+              >③　留一句心里的话　<small>可选 / 私密</small></label
+            ><textarea
+              id="question"
+              maxlength="100"
+              placeholder="例如：我想开始一个新计划，却一直没迈出第一步。"
+            ></textarea><div class="f-count">
+              <small>留空也可以开启</small><small id="f-count">0 / 100</small>
+            </div><p class="fine-print">
+              只在此页暂留，不上传、不写入收藏。刷新或离开即清除，分享默认不含问题。此演示不分析自由文本，解读按主题与星座视角匹配。
+            </p><div class="f-price">
+              <h3>先看清楚，再决定</h3><p>
+                本次体验 <b>演示 / 预览不扣 NC</b>
+              </p><small
+                >正式 NC 用量与收费待产品及服务配置。当前未配置，不可收费。</small>
+            </div><button class="f-btn pink wide" type="submit"
+              >查看确认预览　↗</button
+            ><small class="center"
+              >本页没有真实账户、支付或实时 AI 调用。</small>
+          </div>
+        </form>
+        <details class="f-preview">
+          <summary>预览状态测试</summary><p>
+            查看本地预设的加载或重试界面。
+          </p><button class="f-btn" data-test="loading">加载中</button><button
+            class="f-btn"
+            data-test="error">加载失败</button>
+        </details>
+      </div>
+    </section>
+    <section class="f-block f-saved">
+      <div class="f-wrap">
+        <div class="f-heading">
+          <div>
+            <p class="f-kicker">留给下次的自己</p><h2>我的灵感收藏</h2>
+          </div><button class="f-link" id="clear-saved">清空本机收藏</button>
+        </div><div id="saved-list"></div><small role="status" id="saved-info"
+          >尚无收藏。揭签后主动收藏，才会保存在此浏览器；不包含私密问题。</small>
+      </div>
+    </section>
+    <section class="f-outro">
+      <div class="f-wrap">
+        <div>
+          <small>不替你决定未来。</small><h2>陪你，开启新的可能。</h2>
+        </div><div>
+          <a href="/classic/">去普莱牌桌</a><a href="/lieflat/">去宿舍防线</a>
+        </div>
+      </div>
+    </section>
+    <dialog id="f-dialog">
+      <span class="f-kicker">普莱好运签 · 本地预览</span><h2 id="dialog-title">
+        确认本次体验
+      </h2><p id="dialog-copy"></p><div>
+        <button class="f-btn pink" id="reveal">确认揭签</button><button
+          class="f-btn"
+          id="f-cancel">取消</button>
+      </div>
+    </dialog>
+  </main><SiteFooter /></Layout
+><script src="../../scripts/games/fortune.ts"></script>

@@ -1,0 +1,9 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="338.422" height="450" viewBox="0 0 338.422 450" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path id="v15 decoration ::before" d="M169.211 0L338.422 90L321.501 360L169.211 450L16.9211 360L0 90L169.211 0Z" fill="url(#paint0_radial_0_70)"/>
+<defs>
+<radialGradient id="paint0_radial_0_70" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(169.211 180) scale(169.211 225)">
+<stop stop-color="#A3C8FF" stop-opacity="0.216"/>
+<stop offset="0.6" stop-opacity="0"/>
+</radialGradient>
+</defs>
+</svg>

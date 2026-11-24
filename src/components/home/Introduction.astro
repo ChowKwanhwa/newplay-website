@@ -1,0 +1,28 @@
+---
+const metrics = [['19.3亿','移动游戏新安装量'],['$6.25亿','手游内购收入'],['#2','全球游戏下载量排名']];
+const partners = [
+  ['Animoca Brands','战略投资 AWARP','partner-animoca.webp'],['AWARP','生态网络','partner-awarp.webp'],['LADT','生态连接','partner-ladt.webp'],['NewPay','支付生态伙伴','partner-newpay.webp'],
+  ['BNB Chain','公链生态 · 合作方向','partner-bnb.webp'],['TikTok App Portal','流量入口 · 合作方向','partner-tiktok.webp'],['Tether / Circle','USDT / USDC 通道规划','partner-tether.webp','partner-circle.webp'],['CertiK','安全审计 · 目标','partner-certik.webp'],
+  ['SEA Gaming Guilds','公会协作 · 合作方向','◎'],['Legal Advisory','专业服务 · 规划','§']
+];
+---
+<div id="intro" class="intro-chapter" data-motion>
+<section class="intro-poster"><div class="wide">
+  <button type="button" class="section-pause" data-pause>Ⅱ 暂停此区动效</button>
+  <div class="intro-plane"></div><div class="intro-slash"></div>
+  <div class="intro-text"><small>认识 NewPlay</small><h2>好玩的下一代，<br/>不止下一局。</h2><p>NewPlay 是一个新一代<br/><strong>AI Agent + GameFi + SocialFi</strong><br/>泛娱乐生态，让好玩与灵感一起发生。</p>
+    <nav aria-label="认识 NewPlay"><a href="/games/">开一局，快乐就有了。 ↗</a><a href="/studio/">让普莱接住你的灵感。 ↗</a><a href="/cooperation/">和同好，把好玩接下去。 ↗</a></nav></div>
+  <div class="intro-art"><a class="play-poster" href="/games/"><b>PLAY</b><span>GameFi</span></a><img class="intro-plai" src="/assets/home/intro-plai.webp" alt="" loading="lazy"/><a class="make-ticket" href="/studio/"><b>MAKE IT YOURS</b><span>AI Agent · 音乐与造型，玩出自己</span></a><a class="meet-ticket" href="/cooperation/"><b>MEET YOUR PEOPLE</b><span>SocialFi · 让同好相遇</span></a></div>
+</div></section>
+<section class="market"><div class="wide">
+  <small>NEXT PLAY / SOUTHEAST ASIA</small><div class="spread"><h2>年轻人的下一局，<br/>就在这里。</h2><p>从轻量游戏进入，用创作留下故事，<br/>让同好把快乐接下去。</p></div>
+  <div class="metrics">{metrics.map(([n,title],i)=><article><small>0{i+1}</small><h3>{n}</h3><b>{title}</b><p>东南亚 · 2025 Q1</p></article>)}</div>
+  <a class="market-source" href="https://sensortower.com/blog/southeast-asia-mobile-gaming-2025" target="_blank" rel="noopener">Sensor Tower · 东南亚手游市场洞察 2025 ↗</a><p class="fineprint">App Store / Google Play 估算；历史市场数据。</p>
+</div></section>
+<section class="ecosystem"><div class="wide">
+  <small>CONNECTED FOR THE NEXT PLAY</small><div class="spread"><h2>好玩的世界，<br/>一起撑大点。</h2><p>Animoca Brands 战略投资 AWARP，<br/>连接 LADT 与 NewPay 的生态网络。</p></div>
+  {[partners.slice(0,4),partners.slice(4)].map((group,groupIndex)=><div class="partner-group"><h3>{groupIndex===0?'生态连接':'生态合作方向与专业服务'}</h3><div class="partners">{group.map(([title,desc,asset,extra])=><article>
+    <div class:list={['partner-logo',{awarp:title==='AWARP',pair:!!extra}]}>{asset.endsWith('.webp')?<img src={'/assets/home/'+asset} loading="lazy" alt=""/>:<b>{asset}</b>}{extra&&<img src={'/assets/home/'+extra} loading="lazy" alt=""/>}</div><b>{title}</b><p>{desc}</p>
+  </article>)}</div></div>)}<p class="fineprint">合作方向、通道规划与审计目标按各自阶段推进。</p>
+</div></section>
+</div>

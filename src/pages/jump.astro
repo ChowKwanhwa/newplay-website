@@ -1,0 +1,304 @@
+---
+import GameLayout from "../components/games/GameLayout.astro";
+---
+
+<GameLayout
+  title="普莱跳一跳"
+  description="按住蓄力，松开起跳。让能量停在绿色区间，陪普莱跳到下一块平台。"
+>
+  <section class="jump g-section">
+    <div class="g-wrap">
+      <span class="g-label">普莱跳一跳 · 本地可玩 demo</span><div
+        class="jump-lead"
+      >
+        <h1>轻轻一跃。<br />跳出日常。</h1><p>
+          按住蓄力，松开起跳。<br />让能量停在绿色区间，陪普莱跳到下一块平台。
+        </p>
+      </div>
+      <div class="play-grid">
+        <div class="console">
+          <header>
+            <h3>这次能跳多远？</h3><strong
+              ><span id="score">0</span><small>分 · 本地</small></strong>
+          </header><div class="jump-board">
+            <i class="cloud"></i><div class="pad start">
+              <img id="jumper" src="/assets/plai-hero-ice.png" alt="普莱" />
+            </div><div class="pad end"><small>下一站</small></div>
+          </div><div
+            class="charge"
+            role="meter"
+            aria-label="蓄力"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            aria-valuenow="0"
+          >
+            <i></i>
+          </div>
+          <div class="g-actions">
+            <button id="charge" class="g-btn primary">按住蓄力，松开跳跃</button
+            ><button id="reset" class="g-btn">重新开始</button>
+          </div><p class="g-muted">
+            也可聚焦按钮后按住空格键，松开起跳。绿色区间为 45–75%，每次成功 +10
+            分。
+          </p><p id="jump-report" role="status">
+            普莱准备好了。试着跳上第一块平台。
+          </p>
+        </div>
+        <aside id="leaderboard">
+          <span class="pill">示例榜 · 不是真实玩家</span><h2>
+            一起，再跳远一点。
+          </h2><div class="best">
+            <p>本标签页最好成绩</p><strong id="best">0</strong><p
+              id="best-status"
+            >
+              尚未挑战
+            </p>
+          </div><ol>
+            {
+              [120, 90, 60, 30].map((n, i) => (
+                <li>
+                  <>
+                    <span>
+                      {i + 1} · 示例玩家 {String.fromCharCode(65 + i)}
+                    </span>
+                    <b>{n}</b>
+                  </>
+                </li>
+              ))
+            }
+          </ol><button id="copy" class="g-btn">复制挑战邀请</button><span
+            id="copy-status"
+            role="status"></span><p class="g-muted">
+            仅将本地最好成绩与这份固定示例榜对比。没有联网排名，不上传成绩。
+          </p><a href="https://newplay.cryptao.uk/jump.html"
+            >打开正式游戏入口 ↗</a>
+        </aside>
+      </div>
+    </div>
+  </section>
+</GameLayout>
+<script src="../scripts/games/jump.ts"></script>
+<style>
+  .jump {
+    background: #d9f5f2;
+    padding-bottom: 100px;
+  }
+  .jump-lead {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 52px;
+  }
+  .jump-lead h1 {
+    font-size: clamp(46px, 4.2vw, 66px);
+  }
+  .jump-lead p {
+    line-height: 1.9;
+  }
+  .play-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr);
+    gap: 44px;
+    align-items: start;
+  }
+  .console {
+    background: #f5fbff;
+    border: 1px solid #abcadd;
+    border-radius: 28px;
+    padding: 32px;
+  }
+  .console header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+  }
+  .console h3 {
+    font-size: 23px;
+  }
+  .console header strong {
+    font:
+      700 42px/1 "NewPlay Space",
+      sans-serif;
+    text-align: right;
+  }
+  .console small {
+    display: block;
+    font-size: 12px;
+    margin-top: 8px;
+  }
+  .jump-board {
+    position: relative;
+    background: #d4e7ff;
+    height: clamp(210px, 19.4vw, 290px);
+    border-radius: 20px;
+    overflow: hidden;
+  }
+  .cloud {
+    background: #eef7ff;
+    border-radius: 100px;
+    width: 25%;
+    height: 20%;
+    position: absolute;
+    right: -2%;
+    top: 11%;
+  }
+  .pad {
+    position: absolute;
+    border-radius: 20% 25% 12% 12%;
+    width: 14%;
+    height: 15%;
+    transform: skewY(-4deg);
+  }
+  .pad.start {
+    left: 13%;
+    bottom: 11%;
+    background: #3685bf;
+    box-shadow: 0 10px #185880;
+  }
+  .pad.end {
+    right: 12%;
+    bottom: 29%;
+    background: #a6d487;
+    box-shadow: 0 10px #529956;
+  }
+  .pad.end small {
+    position: absolute;
+    bottom: 120%;
+    right: 10%;
+    white-space: nowrap;
+  }
+  .pad img {
+    position: absolute;
+    bottom: 80%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 150%;
+    max-width: 155px;
+    height: clamp(115px, 12vw, 175px);
+    object-fit: contain;
+    mask-image:
+      linear-gradient(90deg, transparent, #000 8% 92%, transparent),
+      linear-gradient(transparent, #000 8% 92%, transparent);
+    mask-composite: intersect;
+  }
+  .charge {
+    position: relative;
+    height: 17px;
+    border: 1px solid #879cb6;
+    background: linear-gradient(
+      to right,
+      #dce8f3 45%,
+      #99c7a8 45% 75%,
+      #dce8f3 75%
+    );
+    border-radius: 12px;
+    margin-top: 28px;
+    overflow: hidden;
+  }
+  .charge i {
+    position: absolute;
+    background: #243962;
+    height: 100%;
+    width: 4px;
+    left: var(--power, 0%);
+  }
+  #charge {
+    touch-action: none;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+  .console p {
+    margin-top: 18px;
+  }
+  .jump aside {
+    padding-top: 28px;
+    line-height: 1.7;
+  }
+  .pill {
+    font-size: 13px;
+    border: 1px solid #537789;
+    border-radius: 99px;
+    padding: 5px 12px;
+  }
+  .jump aside h2 {
+    font-size: clamp(28px, 2.3vw, 40px);
+    margin: 38px 0 28px;
+  }
+  .best {
+    border-block: 1px solid #9abebd;
+    padding: 24px 0;
+  }
+  .best strong {
+    font:
+      700 56px "NewPlay Space",
+      sans-serif;
+  }
+  .jump ol {
+    list-style: none;
+    margin: 22px 0;
+    padding: 0;
+  }
+  .jump li {
+    border-bottom: 1px solid #516984;
+    padding: 15px 0;
+    display: flex;
+    justify-content: space-between;
+  }
+  .jump aside .g-muted {
+    margin: 19px 0;
+  }
+  .jump aside > a {
+    font-size: 14px;
+  }
+  #copy-status {
+    font-size: 13px;
+  }
+  @media (max-width: 700px) {
+    .jump-lead {
+      display: block;
+      margin-bottom: 26px;
+    }
+    .jump-lead p {
+      margin-top: 20px;
+    }
+    .play-grid {
+      grid-template-columns: 1fr;
+      gap: 28px;
+    }
+    .console {
+      padding: 20px 14px;
+    }
+    .jump-board {
+      height: 230px;
+    }
+    .pad.start,
+    .pad.end {
+      width: 24%;
+      height: 18%;
+    }
+    .pad.start {
+      bottom: 18%;
+    }
+    .pad.end {
+      bottom: 33%;
+    }
+    .pad img {
+      width: 130px;
+      height: 130px;
+      bottom: 66%;
+    }
+    .jump .g-btn {
+      font-size: 13px;
+    }
+    .jump aside {
+      padding: 0;
+    }
+    .jump aside h2 {
+      margin: 24px 0;
+    }
+    .jump {
+      padding-bottom: 58px;
+    }
+  }
+</style>

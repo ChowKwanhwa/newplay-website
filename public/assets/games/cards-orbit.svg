@@ -1,0 +1,6 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="864" height="480" viewBox="0 0 864 480" fill="none" xmlns="http://www.w3.org/2000/svg">
+<mask id="stroke0_0_98" fill="white">
+<path d="M864 240C864 372.548 670.587 480 432 480C193.413 480 0 372.548 0 240C0 107.452 193.413 0 432 0C670.587 0 864 107.452 864 240Z"/>
+</mask>
+<ellipse id="v14:node-40 | games-v14-orbit" cx="432" cy="240" rx="432" ry="240" stroke-width="2" stroke="#8DA1FF" mask="url(#stroke0_0_98)"/>
+</svg>

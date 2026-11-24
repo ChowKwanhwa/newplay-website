@@ -1,0 +1,239 @@
+---
+import Layout from "../layouts/Layout.astro";
+import "../styles/lieflat.css";
+const rules = [
+  [
+    "BED / 资源核心",
+    "先找床，再发育。",
+    "走到空床旁，点击上床躺下。",
+    "睡眠产金币，升级床铺提高产出。",
+  ],
+  [
+    "DOOR / 生存底线",
+    "门，别让它破。",
+    "上床后开始布置房内防线。",
+    "升级与修复房门，延长生存时间。",
+  ],
+  [
+    "TOWER / 反击时刻",
+    "塔，把压力打回去。",
+    "在房间空地放置炮塔。",
+    "配合发电设施，抵御后续攻势。",
+  ],
+];
+---
+
+<Layout
+  title="躺平发育"
+  description="人已躺平，防线拉满。走进宿舍，找空床、攒资源，体验一局本地宿舍生存塔防原型。"
+>
+  <main class="dorm">
+    <nav class="d-nav" aria-label="躺平发育导航">
+      <div class="d-wrap">
+        <a href="/" aria-label="NewPlay 首页"
+          ><img src="/assets/newplay-logo.svg" alt="NewPlay" /></a
+        ><strong>躺平发育</strong><a href="#lab">战术实验室</a><a href="#rules"
+          >生存法则</a
+        ><a href="#rank">今夜生存榜</a><a href="/games/">返回好玩宇宙 ↗</a>
+      </div>
+    </nav>
+    <section class="d-hero">
+      <div class="d-hero-inner">
+        <div
+          class="d-art"
+          role="img"
+          aria-label="夜色中普莱躺在自己的宿舍防线内"
+        >
+        </div><div class="d-copy">
+          <small>宿舍生存塔防　/　PvE</small><h1>躺平发育</h1><h2>
+            人已躺平，<br />防线拉满。
+          </h2><p>
+            开始游戏，跑进宿舍找空床。<br />躺下攒资源，升门、建塔守住这一夜。
+          </p><a class="cut-btn" href="#lab">开始游戏 <span>↗</span></a><a
+            class="rule-link"
+            href="#rules">先看生存法则　↓</a
+          ><small class="d-note">玩法概念页 · 可点击交互演示</small>
+        </div>
+      </div>
+    </section>
+    <div class="ticker">
+      <div class="d-wrap">
+        开始游戏　↗　移动找空床　↗　上床产金币　↗　升门建塔
+      </div>
+    </div>
+    <section id="lab" class="lab">
+      <div class="d-wrap">
+        <small>NIGHT SHIFT / 先试一局</small><div class="d-sectionhead">
+          <h2>这一间，<br />我来守。</h2><p>
+            先开始，再操控普莱走进宿舍找空床。
+          </p>
+        </div>
+        <div class="d-console" tabindex="-1" aria-label="宿舍玩法演示">
+          <header>
+            <b id="d-board">NIGHT SHIFT / 宿舍走廊</b><b id="d-step">00 / 06</b>
+          </header><div class="d-grid">
+            <div class="map" data-phase="Start">
+              <div class="wallet">
+                <b id="coins">●　0</b><b id="energy">ϟ　0</b>
+              </div><h3 id="map-title">熄灯前，<br />先跑起来。</h3><img
+                id="d-plai"
+                src="/assets/games/dorm-plai.webp"
+                alt="普莱"
+              /><button id="map-action" hidden></button><span
+                id="map-alert"
+                hidden></span><i id="turret" hidden aria-hidden="true"
+              ></i><small id="map-note">先走动，找到空床，再上床。</small>
+            </div>
+            <div class="d-controller">
+              <small id="d-label">START / 开始这一局</small><h3 id="d-title">
+                先开始，<br />再去找床。
+              </h3><p id="d-body" aria-live="polite">
+                按下开始，普莱出现在走廊。<br />自己走去找空床，躺下后再筑防线。
+              </p><div class="controller">
+                <div class="keys">
+                  {
+                    [
+                      ["up", "↑", "上"],
+                      ["left", "←", "左"],
+                      ["right", "→", "右"],
+                      ["down", "↓", "下"],
+                    ].map(([dir, arrow, label]) => (
+                      <button
+                        type="button"
+                        data-move={dir}
+                        aria-label={"向" + label + "移动"}
+                        disabled
+                      >
+                        {arrow}
+                      </button>
+                    ))
+                  }
+                </div><span>方向键 / WASD<br />或点击方向控件移动</span>
+              </div><button id="d-next" class="cut-btn"
+                ><b>开始游戏</b><span>↗</span></button
+              ><button id="d-fail" hidden>查看失守分支 ↗</button><small
+                class="d-note">交互演示 · 不提交成绩或发放奖励</small>
+            </div>
+          </div>
+        </div>
+        <small class="fine"
+          >交互演示 · 数值为界面样例；正式规则以产品确认为准。</small
+        ><p class="instruction">
+          点击「开始游戏」，用方向控件移动；走到空床旁，再上床躺下。
+        </p>
+      </div>
+    </section>
+    <section id="rules" class="rules">
+      <div class="d-wrap">
+        <small>生存法则 / 资源都要花在刀刃上</small><h2>
+          先跑，找空床。<br />躺下，才发育。
+        </h2><div class="equipment">
+          {
+            rules.map(([label, title, a, b], i) => (
+              <article>
+                <>
+                  <div
+                    class="equipment-art"
+                    style={"--position:" + i * 50 + "%"}
+                  />
+                  <div class="num">0{i + 1}</div>
+                  <small>{label}</small>
+                  <h3>{title}</h3>
+                  <p>
+                    {a}
+                    <br />
+                    {b}
+                  </p>
+                </>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+    <section class="d-agent">
+      <div class="d-wrap">
+        <strong aria-hidden="true">PLAI</strong><h2>
+          你负责躺。<br />我负责出主意。
+        </h2><p>
+          先升门，还是先补一座炮塔？<br />PLAI 帮你读懂资源与防线的取舍。
+        </p><a href="#lab">进入战术实验室　↗</a><small
+          >仅练习 / PvE辅助；不计入真人挑战榜。</small>
+      </div>
+    </section>
+    <section class="rank" id="rank">
+      <div class="d-wrap">
+        <small>每一秒，都算你的本事。</small><div class="d-sectionhead">
+          <h2>今夜生存榜</h2><p>真人挑战与 Agent 练习分开展示。</p>
+        </div><div class="rank-tabs">
+          <button aria-pressed="true" data-league="human">真人挑战</button
+          ><button aria-pressed="false" data-league="agent">Agent 练习</button>
+        </div><div class="podium">
+          {
+            [
+              ["02", "夜猫选手B", "09:21", "left"],
+              ["01", "梦游选手A", "09:48", "center"],
+              ["03", "守门选手C", "08:56", "right"],
+            ].map(([n, name, time, color]) => (
+              <article>
+                <>
+                  <strong>{n}</strong>
+                  <b data-human={name} data-agent={"PLAI练习舱" + n}>
+                    {name}
+                  </b>
+                  <span
+                    style={
+                      "background-image:url(/assets/games/podium-" +
+                      color +
+                      ".svg)"
+                    }
+                  >
+                    {time}
+                    <small>守夜时长</small>
+                  </span>
+                </>
+              </article>
+            ))
+          }
+        </div>
+        <div class="runners">
+          {
+            [
+              ["04", "08:32"],
+              ["05", "08:05"],
+              ["06", "07:48"],
+              ["07", "07:26"],
+            ].map(([n, time]) => (
+              <div>
+                <>
+                  <b>{n}</b>
+                  <b
+                    data-human={"示例守夜人 " + Number(n)}
+                    data-agent={"PLAI练习样例 " + Number(n)}
+                  >
+                    示例守夜人 {Number(n)}
+                  </b>
+                  <b>{time}</b>
+                </>
+              </div>
+            ))
+          }
+        </div><div class="mobile-position">
+          <small>我的守夜记录</small><h3>尚未上榜</h3><p>
+            未连接真实账号<br />进入正式游戏后再查看成绩。
+          </p>
+        </div><small class="mobile-disclosure"
+          >真人榜不接收 Agent 辅助成绩。</small
+        ><small>榜单为虚构布局样例，不代表真实用户成绩。</small>
+      </div>
+    </section>
+    <footer class="d-footer">
+      <div class="d-wrap">
+        <h2>晚安，<br />明天继续开局。</h2><a href="/games/"
+          >回到 NewPlay 好玩宇宙　↗</a
+        ><small>NewPlay · 玩法概念与交互原型</small>
+      </div>
+    </footer>
+  </main></Layout
+>
+<script src="../scripts/games/dorm.ts"></script>

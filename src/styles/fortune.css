@@ -1,0 +1,751 @@
+.fortune {
+  --night: #080f2c;
+  --line: #354368;
+  --pale: #e6eafa;
+  --pink: #ffabb1;
+  --blue: #4169ff;
+  --muted: #afbddd;
+  color: var(--pale);
+  background: var(--night);
+  font-size: 16px;
+}
+.fortune :is(h1, h2, h3, p) {
+  margin: 0;
+}
+.f-wrap {
+  width: min(87.8%, 1265px);
+  margin: auto;
+}
+.fortune small,
+.fine-print {
+  font-size: 12px;
+  line-height: 1.8;
+  color: var(--muted);
+}
+.f-kicker {
+  font-size: 13px;
+  color: var(--pink);
+  margin-bottom: 16px !important;
+}
+.fortune h2 {
+  font-size: clamp(26px, 2.3vw, 38px);
+  line-height: 1.35;
+  letter-spacing: -0.035em;
+}
+.f-btn {
+  border-radius: 6px;
+  border: 1px solid #6481b3;
+  background: #17264e;
+  color: var(--pale);
+  min-height: 46px;
+  text-decoration: none;
+  padding: 10px 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font: inherit;
+}
+.f-btn.pink {
+  background: var(--pink);
+  color: #10162d;
+  border-color: var(--pink);
+  font-weight: 700;
+}
+.f-btn.wide {
+  width: 100%;
+}
+.f-hero {
+  position: relative;
+  background: #07102d;
+  overflow: hidden;
+  min-height: 730px;
+}
+.f-art,
+.f-orbit {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.f-art {
+  background: url("/assets/games/fortune-hero.webp") center/cover;
+}
+.f-orbit {
+  object-fit: cover;
+  pointer-events: none;
+  animation: fortune-orbit 7s ease-in-out infinite alternate;
+}
+@keyframes fortune-orbit {
+  to {
+    transform: translate(1.2%, 0.8%) rotate(0.9deg);
+  }
+}
+.f-paused .f-orbit {
+  animation-play-state: paused;
+}
+.f-hero .f-wrap {
+  position: relative;
+  min-height: 730px;
+}
+.f-hero-copy {
+  padding-top: 60px;
+  width: 52%;
+}
+.f-hero-copy > .f-kicker {
+  font-size: 16px;
+}
+.f-hero-copy h1 {
+  position: relative;
+  display: inline-block;
+  font-weight: 900;
+  letter-spacing: -0.065em;
+  font-size: clamp(75px, 8.2vw, 118px);
+  line-height: 1.02;
+}
+.f-hero-copy h1 span {
+  position: absolute;
+  left: calc(100% + 28px);
+  top: 2%;
+  font-size: 0.5em;
+  color: #ffe875;
+}
+.f-hero-copy > p:not(.f-kicker) {
+  line-height: 1.7;
+  font-size: 21px;
+  margin: 30px 0;
+}
+.f-hero-copy .f-btn {
+  min-height: 67px;
+  width: 264px;
+}
+.f-hero-copy small {
+  display: block;
+  margin-top: 14px;
+}
+.f-motion {
+  position: absolute;
+  top: 22px;
+  right: -3%;
+  display: flex;
+  gap: 12px;
+}
+.f-motion button {
+  border: 0;
+  min-height: 38px;
+  padding: 8px 18px;
+  border-radius: 99px;
+  background: #e8edfc;
+  color: #121a38;
+  font-weight: 700;
+  font-size: 13px;
+}
+.f-motion button:first-child {
+  background: #ffe875;
+}
+.f-hero-foot,
+.f-heading,
+.f-outro .f-wrap,
+.result-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+.f-hero-foot {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 54px;
+  border-top: 1px solid #aabbd844;
+}
+.f-block {
+  border-top: 1px solid var(--line);
+  padding: 66px 0;
+}
+.f-structure .f-wrap {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 55px;
+}
+.f-structure h2 {
+  font-size: clamp(30px, 2.7vw, 40px);
+}
+.structure-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: center;
+  gap: 16px;
+}
+.structure-list > div {
+  border-left: 3px solid var(--blue);
+  padding-left: 16px;
+}
+.structure-list small,
+.f-themes small {
+  display: block;
+}
+.f-heading {
+  margin-bottom: 35px;
+}
+.preview-badge {
+  border: 1px solid #827c45;
+  color: #ffe875;
+  border-radius: 30px;
+  font-size: 12px;
+  padding: 10px 16px;
+  white-space: nowrap;
+}
+.f-block form {
+  display: grid;
+  grid-template-columns: 1.06fr 1fr;
+  gap: 5%;
+  line-height: 1.65;
+}
+.fortune fieldset {
+  border: 0;
+  min-width: 0;
+  margin: 0 0 26px;
+  padding: 0;
+}
+.fortune legend,
+.f-question > label {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  display: block;
+}
+.f-themes,
+.f-signs {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+.f-themes label,
+.f-signs label {
+  position: relative;
+  cursor: pointer;
+  min-width: 0;
+}
+.fortune input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+}
+.f-themes span,
+.f-signs span {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 94px;
+  background: #131e42;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 14px 18px;
+}
+.fortune input[type="radio"]:focus-visible + span {
+  outline: 3px solid #ffe875;
+  outline-offset: 3px;
+}
+.f-themes input:checked + span {
+  background: var(--blue);
+  border-color: #839bff;
+}
+.f-themes input:checked + span small {
+  color: white;
+}
+.f-signs {
+  grid-template-columns: repeat(6, 1fr);
+  gap: 9px;
+  margin-bottom: 14px;
+}
+.f-signs span {
+  align-items: center;
+  min-height: 85px;
+  padding: 6px;
+  gap: 6px;
+  font-size: 12px;
+}
+.f-signs img {
+  width: 29px;
+  height: 29px;
+  object-fit: contain;
+}
+.f-signs input:checked + span {
+  background: var(--pink);
+  color: #10162d;
+}
+.f-signs input:checked + span img {
+  filter: brightness(0.24);
+}
+.f-question {
+  border-left: 1px solid var(--line);
+  padding-left: 32px;
+}
+.f-question textarea {
+  width: 100%;
+  min-height: 130px;
+  resize: vertical;
+  border-radius: 7px;
+  padding: 15px;
+  color: var(--pale);
+  background: #101832;
+  border: 1px solid #56668e;
+  font-size: 14px;
+}
+.f-count,
+.f-price p {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+.fine-print {
+  margin: 12px 0 !important;
+}
+.f-price {
+  border-top: 1px solid var(--line);
+  margin: 22px 0;
+  padding: 18px 0 0;
+}
+.f-price h3 {
+  font-size: 17px;
+}
+.f-price p {
+  margin: 10px 0;
+  font-size: 13px;
+}
+.f-price b {
+  color: #ffe875;
+}
+.fortune .center {
+  display: block;
+  text-align: center;
+  margin: 9px 0;
+}
+.f-preview {
+  border-top: 1px solid var(--line);
+  margin: 32px 0 0;
+  padding-top: 15px;
+  font-size: 13px;
+  color: var(--muted);
+}
+.f-preview summary {
+  cursor: pointer;
+}
+.f-preview .f-btn {
+  margin-top: 10px;
+}
+.f-saved {
+  padding: 45px 0 64px;
+}
+.f-saved .f-heading {
+  margin-bottom: 18px;
+}
+.f-link,
+.f-outro a,
+.result-foot a {
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid #8792b3;
+  color: inherit;
+  text-decoration: none;
+  padding: 6px 0;
+  font-size: 14px;
+}
+.f-outro {
+  background: var(--blue);
+  padding: 45px 0;
+}
+.f-outro small {
+  color: #e5ecff;
+}
+.f-outro a {
+  margin-right: 16px;
+}
+.f-outro h2 {
+  margin-top: 8px;
+}
+.fortune dialog {
+  color: var(--pale);
+  background: #111d3c;
+  border: 1px solid #6579a5;
+  border-radius: 15px;
+  max-width: min(440px, 90vw);
+  padding: 28px;
+}
+.fortune dialog::backdrop {
+  background: #060b21bd;
+}
+.fortune dialog p {
+  line-height: 1.7;
+  margin: 16px 0 22px;
+}
+.fortune dialog .f-btn + .f-btn {
+  margin-left: 10px;
+}
+.saved-item {
+  display: inline-block;
+  padding: 14px 18px;
+  border: 1px solid var(--line);
+  margin: 5px;
+  color: var(--pale);
+  border-radius: 8px;
+  text-decoration: none;
+}
+.result {
+  min-height: 100vh;
+  padding: 26px 0;
+}
+.result-head {
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 24px;
+}
+.result-head .f-kicker {
+  margin: 0 !important;
+}
+.result-grid {
+  display: grid;
+  grid-template-columns: 38% 1fr;
+  gap: 5%;
+  align-items: start;
+}
+.sign-card {
+  position: relative;
+  isolation: isolate;
+  min-height: 360px;
+  aspect-ratio: 3/4;
+  border: 1px solid #8b9ccf;
+  border-radius: 18px;
+  overflow: hidden;
+  background: linear-gradient(#091432, #12214b);
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
+}
+.sign-card > header {
+  position: absolute;
+  left: 8%;
+  right: 7%;
+  top: 6%;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.sign-card header img {
+  width: 82px;
+  filter: brightness(0) invert(1);
+}
+.sign-art {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 76%;
+  object-fit: cover;
+  z-index: -1;
+}
+.sign-text {
+  padding: 7.8%;
+  background: linear-gradient(transparent, #101c3cf2 28%);
+}
+.sign-text h2 {
+  margin: 8px 0 13px;
+  color: #ffb6bc;
+}
+.sign-text p {
+  margin: 14px 0 19px;
+  line-height: 1.7;
+}
+.sign-actions,
+.follow {
+  display: flex;
+  gap: 12px;
+}
+.sign-actions button {
+  flex: 1;
+}
+.reading h1 {
+  font-size: clamp(36px, 3vw, 52px);
+  line-height: 1.2;
+  margin: 8px 0 20px;
+}
+.reading .verse {
+  font-size: 21px;
+}
+.reading section {
+  border-top: 1px solid var(--line);
+  padding-top: 22px;
+  margin-top: 34px;
+}
+.reading section h2 {
+  font-size: 20px;
+  margin-bottom: 16px;
+}
+.reading p,
+.reading li {
+  font-size: 15px;
+  line-height: 1.85;
+  color: #c0cbe2;
+}
+.reading blockquote {
+  margin: 22px 0 12px;
+  border-left: 3px solid var(--blue);
+  padding: 4px 0 4px 16px;
+}
+.reading blockquote b {
+  color: var(--pink);
+}
+.reading ol {
+  list-style: none;
+  counter-reset: actions;
+  padding: 0;
+}
+.reading li {
+  counter-increment: actions;
+  padding-left: 44px;
+  position: relative;
+  margin: 18px 0;
+}
+.reading li::before {
+  content: counter(actions, decimal-leading-zero);
+  color: var(--pink);
+  border-top: 1px solid var(--pink);
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.follow {
+  margin: 16px 0 0;
+}
+.follow button {
+  font-size: 14px;
+}
+.result-foot {
+  border-top: 1px solid var(--line);
+  margin-top: 50px;
+  padding-top: 26px;
+}
+.result-foot > div {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+.result-foot a {
+  margin-left: auto;
+}
+.result-foot > small {
+  display: block;
+  margin-top: 20px;
+}
+#result-status {
+  overflow-wrap: anywhere;
+  color: var(--pink);
+  font-size: 14px;
+}
+@media (max-width: 700px) {
+  .f-wrap {
+    width: calc(100% - 40px);
+  }
+  .f-hero,
+  .f-hero .f-wrap {
+    min-height: 868px;
+  }
+  .f-hero-copy {
+    width: 100%;
+    padding-top: 32px;
+  }
+  .f-hero-copy > .f-kicker {
+    font-size: 13px;
+  }
+  .f-hero-copy h1 {
+    font-size: clamp(70px, 19vw, 86px);
+  }
+  .f-hero-copy > p:not(.f-kicker) {
+    font-size: 16px;
+    margin: 20px 0;
+  }
+  .f-hero-copy .f-btn {
+    min-height: 52px;
+    width: 210px;
+  }
+  .f-art {
+    inset: auto 0 0;
+    height: 51%;
+    background-position: 75% center;
+    background-size: auto 100%;
+    background-repeat: no-repeat;
+  }
+  .f-orbit {
+    inset: auto 0 0;
+    height: 51%;
+  }
+  .f-motion {
+    top: 50%;
+    right: 0;
+    gap: 5px;
+  }
+  .f-motion button {
+    font-size: 11px;
+    min-height: 31px;
+    padding: 6px 12px;
+  }
+  .f-hero-foot {
+    height: 42px;
+    gap: 8px;
+  }
+  .f-hero-foot small {
+    font-size: 9px;
+  }
+  .f-block {
+    padding: 45px 0;
+  }
+  .f-structure .f-wrap,
+  #f-form {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+  .f-heading {
+    display: block;
+  }
+  .f-heading .preview-badge {
+    margin-top: 12px;
+  }
+  .f-structure h2 {
+    font-size: 28px;
+  }
+  .structure-list {
+    gap: 15px;
+  }
+  .structure-list b {
+    font-size: 14px;
+  }
+  .structure-list small {
+    font-size: 11px;
+  }
+  .f-signs {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .f-signs span {
+    min-height: 70px;
+  }
+  .f-themes span {
+    padding: 12px;
+    min-height: 88px;
+  }
+  .f-question {
+    border-left: 0;
+    border-top: 1px solid var(--line);
+    padding: 20px 0 0;
+  }
+  .f-outro .f-wrap {
+    display: block;
+  }
+  .f-outro a {
+    display: inline-block;
+    margin-top: 18px;
+  }
+  .f-saved .f-heading {
+    display: flex;
+  }
+  .result {
+    padding: 16px 0;
+  }
+  .result-head {
+    align-items: start;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .result-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  .sign-actions button,
+  .follow button {
+    font-size: 13px;
+    padding: 9px;
+  }
+  .reading .verse {
+    font-size: 17px;
+  }
+  .result-foot > div {
+    display: grid;
+  }
+  .result-foot a {
+    margin: auto;
+  }
+  .f-hero {
+    background: #080f2c;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .f-orbit {
+    animation: none;
+  }
+}
+.sign-art {
+  height: 100%;
+  object-fit: contain;
+}
+.f-hero-copy h1 span {
+  animation: fortune-star 7s ease-in-out infinite alternate;
+}
+.f-paused .f-hero-copy h1 span {
+  animation-play-state: paused;
+}
+@keyframes fortune-star {
+  to {
+    transform: rotate(9deg) scale(0.94);
+  }
+}
+@media (max-width: 700px) {
+  .f-hero,
+  .f-hero .f-wrap {
+    min-height: 890px;
+  }
+  .f-art {
+    height: 500px;
+    background-position: right center;
+    background-image:
+      linear-gradient(
+        180deg,
+        #07102d,
+        transparent 22%,
+        transparent 90%,
+        #07102d
+      ),
+      url("/assets/games/fortune-hero.webp");
+  }
+  .f-orbit {
+    height: 500px;
+  }
+  .f-motion {
+    top: 410px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .f-hero-copy h1 span {
+    animation: none;
+  }
+}
+.fortune-nav .site-header,
+.fortune-nav .mobile-nav nav {
+  background: white;
+}
+.fortune-nav .bar {
+  min-height: 90px;
+}
+.sign-card header img {
+  filter: none;
+  width: 22%;
+}
+@media (max-width: 700px) {
+  .fortune-nav .bar {
+    min-height: 72px;
+  }
+  .result .f-wrap {
+    width: calc(100% - 44px);
+  }
+}

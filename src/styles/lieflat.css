@@ -1,0 +1,915 @@
+@font-face {
+  font-family: "NewPlay QingKe";
+  src: url("/fonts/qingke-site.woff2") format("woff2"),
+    url("/fonts/ZCOOLQingKeHuangYou-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-display: swap;
+}
+.dorm {
+  --ink: #151c3b;
+  --night: #121337;
+  --mint: #66f2ba;
+  --paper: #f8f6ec;
+  --yellow: #ffe04b;
+  background: var(--night);
+  color: var(--ink);
+  overflow: hidden;
+  font-synthesis: none;
+}
+.dorm :is(h1, h2, h3, p) {
+  margin: 0;
+}
+.dorm a {
+  text-decoration: none;
+}
+.dorm button {
+  font: inherit;
+}
+.d-wrap {
+  width: min(calc(100% - 11.12%), 1280px);
+  margin-inline: auto;
+}
+.dorm small {
+  font-size: 13px;
+}
+.d-nav {
+  background: var(--paper);
+  color: var(--ink);
+  font-weight: 700;
+}
+.d-nav .d-wrap {
+  height: 84px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.d-nav a {
+  font-size: 14px;
+}
+.d-nav img {
+  width: 142px;
+  display: block;
+}
+.d-nav strong {
+  margin-left: min(6vw, 85px);
+}
+.d-hero {
+  color: white;
+}
+.d-hero-inner {
+  max-width: 1440px;
+  margin: auto;
+  height: 832px;
+  position: relative;
+}
+.d-art {
+  position: absolute;
+  right: 0;
+  top: 68px;
+  width: 70.83%;
+  height: 680px;
+  background:
+    linear-gradient(90deg, var(--night), transparent 15%),
+    linear-gradient(
+      180deg,
+      var(--night),
+      transparent 9%,
+      transparent 90%,
+      var(--night)
+    ),
+    url("/assets/lieflat-dorm-hero.jpg") center/contain no-repeat;
+}
+.d-copy {
+  position: relative;
+  margin-left: 5.56%;
+  padding-top: 68px;
+  width: min(590px, 52%);
+}
+.d-copy > small:first-child {
+  color: var(--mint);
+  font-weight: 700;
+  font-size: 14px;
+}
+.d-copy h1 {
+  font:
+    400 clamp(82px, 8.613vw, 124px) / 1.1 "NewPlay KuaiLe",
+    sans-serif;
+  color: var(--yellow);
+  margin: 14px 0 16px -6px;
+  white-space: nowrap;
+}
+.d-copy h2 {
+  font-size: clamp(47px, 4.31vw, 62px);
+  font-weight: 900;
+  line-height: 1.17;
+}
+.d-copy p {
+  color: #d2d3f1;
+  font-size: 17px;
+  line-height: 1.8;
+  margin: 41px 0 44px;
+}
+.cut-btn {
+  border: 0;
+  background: var(--mint);
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  clip-path: polygon(0 0, 91% 0, 100% 35%, 100% 100%, 0 100%);
+  min-height: 70px;
+  padding: 14px 22px;
+  width: 278px;
+  font-weight: 700;
+  font-size: 20px;
+}
+.cut-btn span {
+  font:
+    700 30px "NewPlay Space",
+    sans-serif;
+}
+.cut-btn:focus-visible {
+  background: white;
+  outline: 0;
+}
+.rule-link {
+  display: block;
+  margin-top: 29px;
+  font-weight: 700;
+  color: #e2deff;
+}
+.d-note {
+  display: block;
+  color: #abaac9;
+  margin-top: 22px;
+}
+.ticker {
+  background: var(--yellow);
+  font-weight: 700;
+  padding: 24px 0;
+  font-size: 23px;
+  min-height: 84px;
+}
+.lab {
+  background: #b5f7d8;
+  padding: 52px 0 32px;
+  min-height: 1100px;
+}
+.d-sectionhead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  margin: 15px 0;
+}
+.dorm .d-sectionhead h2,
+.rules h2,
+.d-footer h2 {
+  font:
+    400 72px/1.05 "NewPlay QingKe",
+    "NewPlay Noto SC",
+    sans-serif;
+}
+.d-sectionhead p {
+  width: 36%;
+  font-size: 16px;
+}
+.d-console {
+  border-radius: 24px;
+  background: var(--night);
+  color: white;
+  padding: 20px 2.2% 32px;
+}
+.d-console header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #d5d4eb;
+  font-size: 16px;
+}
+.d-console header b:last-child,
+.d-controller > small:first-child {
+  color: var(--mint);
+}
+.d-grid {
+  display: grid;
+  grid-template-columns: 2.7fr 1fr;
+  gap: 4%;
+  padding-top: 35px;
+  align-items: center;
+}
+.map {
+  aspect-ratio: 1.44;
+  position: relative;
+  overflow: hidden;
+  border-radius: 13px;
+  background:
+    linear-gradient(#17143c40, #17143c4d),
+    url("/assets/games/dorm-map.webp") center/cover;
+}
+.map h3 {
+  position: absolute;
+  left: 5%;
+  top: 12%;
+  font:
+    400 clamp(28px, 4vw, 59px) / 1.08 "NewPlay QingKe",
+    sans-serif;
+  color: var(--yellow);
+  z-index: 1;
+}
+.map img {
+  width: 41%;
+  height: 67%;
+  object-fit: contain;
+  position: absolute;
+  left: 52%;
+  top: 25%;
+}
+.map small {
+  position: absolute;
+  bottom: 6%;
+  left: 4%;
+  font-weight: bold;
+  background: #16123699;
+  padding: 5px;
+}
+.wallet {
+  position: absolute;
+  left: 2%;
+  top: 2%;
+  display: flex;
+  gap: 8px;
+}
+.wallet b {
+  padding: 3px 8px;
+  background: #282142;
+  border-radius: 10px;
+  color: var(--yellow);
+}
+.d-controller h3 {
+  font-size: clamp(26px, 2.5vw, 38px);
+  margin: 12px 0 24px;
+  line-height: 1.17;
+  white-space: pre-line;
+}
+.d-controller p {
+  font-size: 16px;
+  line-height: 1.8;
+  color: #c4c1d9;
+  white-space: pre-line;
+}
+.controller {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  margin: 25px 0 30px;
+}
+.controller span {
+  font-size: 12px;
+  color: #aeb7d9;
+}
+.keys {
+  display: grid;
+  grid-template: repeat(3, 36px) / repeat(3, 36px);
+  gap: 3px;
+}
+.keys button {
+  border: 1px solid #736790;
+  border-radius: 7px;
+  background: #443665;
+  color: white;
+  font-weight: 700;
+}
+.keys button:disabled {
+  opacity: 0.45;
+}
+.keys button:nth-child(1) {
+  grid-area: 1/2;
+}
+.keys button:nth-child(2) {
+  grid-area: 2/1;
+}
+.keys button:nth-child(3) {
+  grid-area: 2/3;
+}
+.keys button:nth-child(4) {
+  grid-area: 3/2;
+}
+.d-controller .cut-btn {
+  width: 100%;
+  font-size: 17px;
+}
+.d-controller .d-note {
+  font-size: 11px;
+}
+#d-fail {
+  border: 0;
+  background: transparent;
+  color: var(--yellow);
+  padding: 10px;
+}
+.fine {
+  display: block;
+  margin: 25px 0 10px;
+  color: #53685b;
+}
+.instruction {
+  font-weight: 700;
+}
+.rules {
+  background: var(--paper);
+  padding: 55px 0 18px;
+  min-height: 650px;
+}
+.rules h2 {
+  margin: 22px 0 64px;
+}
+.equipment {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+.equipment article {
+  position: relative;
+  border-top: 1px solid #d0ccbf;
+  padding: 33px 0 0;
+}
+.equipment .num {
+  font:
+    700 72px/1 "NewPlay Space",
+    sans-serif;
+  color: #825bff;
+}
+.equipment article:nth-child(2) .num {
+  color: #314bff;
+}
+.equipment article:nth-child(3) .num {
+  color: #118a73;
+}
+.equipment small {
+  font:
+    700 11px "NewPlay Space",
+    sans-serif;
+  color: #6e6980;
+}
+.equipment h3 {
+  margin: 65px 0 9px;
+  font-size: 23px;
+}
+.equipment p {
+  font-size: 15px;
+  line-height: 1.75;
+  color: #65657c;
+}
+.equipment-art {
+  position: absolute;
+  right: 0;
+  top: -23px;
+  width: 55%;
+  aspect-ratio: 1;
+  background: url("/assets/games/dorm-equipment.webp") var(--position)
+    center/300% 100% no-repeat;
+}
+.d-agent {
+  background: #7448ff;
+  color: white;
+}
+.d-agent .d-wrap {
+  min-height: 250px;
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 14px;
+  padding: 35px 0;
+}
+.d-agent strong {
+  position: absolute;
+  right: 0;
+  top: 35px;
+  font:
+    700 104px "NewPlay Space",
+    sans-serif;
+  color: #9071ff;
+}
+.d-agent :is(h2, p, a, small) {
+  position: relative;
+}
+.d-agent h2 {
+  font-size: 45px;
+  line-height: 1.2;
+}
+.d-agent p {
+  align-self: center;
+  line-height: 1.8;
+}
+.d-agent a {
+  color: var(--yellow);
+  font-weight: 700;
+}
+.rank {
+  background: #314bff;
+  color: white;
+  padding: 56px 0 44px;
+  min-height: 840px;
+}
+.rank .d-sectionhead h2 {
+  font-size: 92px;
+}
+.rank-tabs {
+  display: flex;
+  gap: 36px;
+  margin: 38px 0 20px;
+}
+.rank-tabs button {
+  border: 0;
+  border-bottom: 4px solid transparent;
+  background: transparent;
+  color: #b5c5ff;
+  font-weight: bold;
+  font-size: 21px;
+  min-width: 180px;
+  text-align: left;
+  padding: 0 0 8px;
+}
+.rank-tabs button[aria-pressed="true"] {
+  border-color: var(--yellow);
+  color: white;
+}
+.podium {
+  display: grid;
+  grid-template-columns: 1fr 1.08fr 1fr;
+  gap: 2%;
+  align-items: end;
+}
+.podium article {
+  padding-top: 40px;
+  min-width: 0;
+}
+.podium article > strong,
+.podium article > b {
+  display: block;
+  padding: 0 7%;
+}
+.podium article > strong {
+  font:
+    700 64px/1.2 "NewPlay Space",
+    sans-serif;
+  margin-bottom: 50px;
+}
+.podium article:nth-child(2) > strong {
+  font-size: 92px;
+  color: var(--yellow);
+}
+.podium article:nth-child(3) > strong {
+  margin-bottom: 30px;
+}
+.podium article span {
+  display: block;
+  background-position: center;
+  background-size: 100% 100%;
+  color: var(--ink);
+  padding: 25px 7% 13px;
+  font:
+    700 30px "NewPlay Space",
+    sans-serif;
+}
+.runners {
+  margin: 30px 0 55px;
+}
+.runners > div {
+  display: grid;
+  grid-template-columns: 8% 1fr auto;
+  border-top: 1px solid #8797ff;
+  padding: 13px 0;
+}
+.mobile-position {
+  display: none;
+}
+.d-footer {
+  background: #d6cbff;
+}
+.d-footer .d-wrap {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  align-items: start;
+  gap: 30px;
+  min-height: 280px;
+  padding: 44px 0;
+}
+.d-footer h2 {
+  font-size: 58px;
+}
+.d-footer a {
+  font-weight: 700;
+  margin-top: 24px;
+}
+@media (min-width: 1450px) {
+  .d-copy {
+    margin-left: 80px;
+  }
+}
+@media (max-width: 850px) {
+  .d-nav .d-wrap {
+    height: 76px;
+  }
+  .d-nav :is(strong, a):not(:first-child):not(:last-child) {
+    display: none;
+  }
+  .d-grid {
+    grid-template-columns: 1.8fr 1fr;
+  }
+  .controller {
+    flex-wrap: wrap;
+  }
+}
+@media (max-width: 700px) {
+  .d-wrap {
+    width: calc(100% - 48px);
+  }
+  .d-nav img {
+    width: 113px;
+  }
+  .d-nav a {
+    font-size: 12px;
+  }
+  .d-hero-inner {
+    height: 938px;
+  }
+  .d-copy {
+    margin-left: 24px;
+    padding-top: 30px;
+    width: calc(100% - 48px);
+  }
+  .d-copy > small:first-child {
+    font-size: 12px;
+  }
+  .d-copy h1 {
+    font-size: clamp(70px, 22.56vw, 88px);
+    margin: 13px 0 18px -4px;
+  }
+  .d-copy h2 {
+    font-size: 44px;
+  }
+  .d-copy p {
+    font-size: 14px;
+    margin: 18px 0 0;
+  }
+  .d-art {
+    top: 390px;
+    right: -7.7%;
+    width: 115.4%;
+    height: 300px;
+    background:
+      linear-gradient(
+        180deg,
+        var(--night),
+        transparent 21%,
+        transparent 82%,
+        var(--night)
+      ),
+      url("/assets/lieflat-dorm-hero.jpg") center/contain no-repeat;
+  }
+  .d-copy > .cut-btn {
+    position: absolute;
+    top: 728px;
+    width: 100%;
+  }
+  .d-copy > .rule-link {
+    position: absolute;
+    top: 820px;
+    font-size: 14px;
+    margin: 0;
+  }
+  .d-copy > .d-note {
+    position: absolute;
+    top: 880px;
+    font-size: 11px;
+    margin: 0;
+  }
+  .ticker {
+    padding: 16px 0;
+    font-size: 15px;
+    min-height: 76px;
+  }
+  .lab {
+    min-height: 1250px;
+    padding: 37px 0;
+  }
+  .d-sectionhead {
+    display: block;
+  }
+  .dorm .d-sectionhead h2,
+  .rules h2 {
+    font-size: 52px;
+  }
+  .d-sectionhead p {
+    width: 100%;
+    font-size: 13px;
+    margin: 14px 0 26px;
+  }
+  .d-grid {
+    grid-template-columns: 1fr;
+    gap: 19px;
+    padding-top: 18px;
+  }
+  .d-console {
+    padding: 18px 16px 23px;
+    border-radius: 16px;
+  }
+  .d-console header,
+  .d-console header b {
+    font-size: 11px;
+  }
+  .map {
+    aspect-ratio: 1.16;
+  }
+  .map h3 {
+    font-size: 36px;
+  }
+  .map img {
+    width: 45%;
+    height: 65%;
+    left: 51%;
+  }
+  .map small {
+    font-size: 10px;
+  }
+  .d-controller p {
+    font-size: 13px;
+  }
+  .controller {
+    flex-direction: row-reverse;
+    justify-content: space-between;
+  }
+  .d-controller h3 {
+    font-size: 28px;
+    margin: 6px 0 10px;
+  }
+  .fine {
+    font-size: 11px !important;
+  }
+  .instruction {
+    font-size: 14px;
+  }
+  .rules {
+    min-height: 1060px;
+    padding: 55px 0 16px;
+  }
+  .rules h2 {
+    margin: 16px 0 45px;
+  }
+  .equipment {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+  .equipment article {
+    min-height: 225px;
+    padding-top: 22px;
+  }
+  .equipment .num {
+    font-size: 55px;
+  }
+  .equipment h3 {
+    font-size: 19px;
+    margin: 24px 0 8px;
+  }
+  .equipment p {
+    font-size: 13px;
+  }
+  .equipment-art {
+    width: 43%;
+    top: 0;
+  }
+  .d-agent .d-wrap {
+    min-height: 340px;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding: 35px 0;
+  }
+  .d-agent strong {
+    font-size: 58px;
+    top: 28px;
+  }
+  .d-agent h2 {
+    font-size: 33px;
+  }
+  .d-agent p {
+    font-size: 14px;
+  }
+  .rank {
+    min-height: 1600px;
+    padding: 50px 0;
+  }
+  .rank .d-sectionhead h2 {
+    font-size: 63px;
+  }
+  .rank-tabs {
+    gap: 16px;
+    margin: 40px 0;
+  }
+  .rank-tabs button {
+    font-size: 16px;
+    min-width: 0;
+    width: 45%;
+  }
+  .podium {
+    gap: 1.5%;
+  }
+  .podium article > strong {
+    font-size: 38px;
+    margin-bottom: 60px;
+  }
+  .podium article:nth-child(2) > strong {
+    font-size: 54px;
+  }
+  .podium article > b {
+    font-size: 12px;
+  }
+  .podium article span {
+    font-size: 18px;
+    min-height: 86px;
+    padding-top: 28px;
+  }
+  .runners > div {
+    padding: 21px 0;
+    font-size: 13px;
+    grid-template-columns: 15% 1fr auto;
+  }
+  .mobile-position {
+    display: block;
+    background: #212f9c;
+    padding: 30px 20px;
+    margin: 60px 0;
+    color: white;
+  }
+  .mobile-position h3 {
+    font-size: 28px;
+  }
+  .d-footer .d-wrap {
+    min-height: 400px;
+    grid-template-columns: 1fr;
+    padding: 42px 0;
+  }
+  .d-footer h2 {
+    font-size: 49px;
+  }
+  .d-footer a {
+    margin: 0;
+  }
+  .dorm small {
+    font-size: 12px;
+  }
+}
+.map {
+  aspect-ratio: 850/605;
+  background: #16113b url("/assets/games/dorm-map.webp") center/100% auto
+    no-repeat;
+}
+.map[data-phase="Start"]::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgb(16 16 46 / 57%);
+}
+.map[data-phase="Start"] img {
+  width: 38%;
+  height: 58%;
+  left: 51%;
+  top: 24%;
+}
+.map h3 {
+  white-space: pre-line;
+}
+.map.sleeping {
+  background: #16113b url("/assets/games/dorm-sleep.webp") right bottom/200%
+    auto no-repeat;
+}
+.wallet b {
+  background: #171438;
+}
+.wallet b:last-child {
+  color: var(--mint);
+}
+.keys button:enabled {
+  color: var(--ink);
+  background: var(--mint);
+}
+.map #map-alert {
+  position: absolute;
+  left: 2%;
+  top: 27%;
+  background: #4b244e;
+  color: #ffcad5;
+  font-size: clamp(12px, 1.4vw, 20px);
+  font-weight: 700;
+  padding: 2%;
+}
+.map #turret,
+.map #map-action {
+  position: absolute;
+  top: 18%;
+  left: 36%;
+  width: 18%;
+  aspect-ratio: 1;
+}
+.map #turret {
+  background: url("/assets/games/dorm-equipment.webp") right center/300% 100%
+    no-repeat;
+}
+.map #map-action {
+  background: #111b4699;
+  color: var(--mint);
+  border: 2px solid var(--mint);
+  border-radius: 13px;
+  font-size: 32px;
+  z-index: 1;
+}
+.map[data-phase="Bedside"] #map-action {
+  width: 50%;
+  aspect-ratio: auto;
+  top: auto;
+  bottom: 2%;
+  left: 46%;
+  font-size: 14px;
+  padding: 7px;
+}
+.map.sleeping #map-note {
+  background: #121337;
+  width: 98%;
+  left: 1%;
+  bottom: 2%;
+  padding: 6px 2% 12px;
+}
+.map.sleeping #map-note::after {
+  content: "";
+  position: absolute;
+  bottom: 3px;
+  left: 2%;
+  width: var(--health, 100%);
+  height: 4px;
+  background: var(--mint);
+  max-width: 96%;
+  border-radius: 6px;
+}
+.podium article span small,
+.runners > div:nth-child(n + 3),
+.mobile-disclosure {
+  display: none;
+}
+.d-hero .d-copy p {
+  margin-top: 45px;
+  margin-bottom: 54px;
+}
+@media (max-width: 700px) {
+  .d-hero .d-copy p {
+    margin: 18px 0 0;
+  }
+  .d-console {
+    min-height: 760px;
+  }
+  .map {
+    aspect-ratio: 1.16;
+  }
+  .runners > div:nth-child(n + 3) {
+    display: grid;
+  }
+  .runners > div {
+    min-height: 88px;
+    align-items: center;
+  }
+  .mobile-position {
+    min-height: 198px;
+  }
+  .mobile-position p {
+    font-size: 12px;
+    line-height: 1.7;
+    margin-top: 12px;
+  }
+  .mobile-position h3 {
+    font-family: "NewPlay QingKe", "NewPlay Noto SC", sans-serif;
+    font-weight: 400;
+    font-size: 37px;
+    margin-top: 16px;
+  }
+  .mobile-disclosure {
+    display: block;
+    margin-bottom: 75px;
+  }
+  .podium article span small {
+    display: block;
+    font-size: 10px;
+  }
+  .rank .d-sectionhead h2 {
+    font-size: 60px;
+  }
+  .rank-tabs {
+    margin-top: 52px;
+  }
+  .podium {
+    min-height: 280px;
+  }
+  .runners {
+    margin-bottom: 64px;
+  }
+}

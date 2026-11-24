@@ -1,0 +1,12 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="426" height="90" viewBox="0 0 426 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Perspective podium plinth" clip-path="url(#clip0_0_96)">
+<path id="Vector" d="M0 18L406 0L426 12L20 30L0 18Z" fill="#FFE04B"/>
+<path id="Vector_2" d="M20 30L426 12V76L20 90V30Z" fill="#FFE04B"/>
+<path id="Vector_3" d="M0 18L20 30V90L0 76V18Z" fill="#8494D7"/>
+</g>
+<defs>
+<clipPath id="clip0_0_96">
+<rect width="426" height="90" fill="white"/>
+</clipPath>
+</defs>
+</svg>

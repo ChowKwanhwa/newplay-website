@@ -1,0 +1,175 @@
+.business {
+  color: #12234c;
+  line-height: 1.65;
+}
+.business :where(h1, h2, h3, h4, p, figure, ul, ol) {
+  margin: 0;
+}
+.business img {
+  display: block;
+  max-width: 100%;
+}
+:where(
+  .business button,
+  .business select,
+  .business textarea,
+  .business input
+) {
+  color: inherit;
+}
+.business :where(button, a) {
+  touch-action: manipulation;
+}
+.biz-wrap {
+  width: min(calc(100% - 13.89vw), 1240px);
+  margin-inline: auto;
+}
+.biz-overline {
+  font-size: 0.81rem;
+  font-weight: 700;
+  line-height: 1.55;
+}
+.biz-title,
+.biz-heading {
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.065em;
+  text-wrap: pretty;
+}
+.biz-title {
+  font-size: clamp(3.4rem, 5.28vw, 4.75rem);
+}
+.biz-heading {
+  font-size: clamp(2rem, 3.4vw, 3.25rem);
+}
+.biz-lead {
+  font-size: 1.0625rem;
+  line-height: 1.9;
+}
+.biz-note {
+  font-size: 0.78rem;
+  line-height: 1.8;
+  color: #526783;
+}
+.biz-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7em;
+  border: 1px solid transparent;
+  border-radius: 13px;
+  background: #12234c;
+  color: white !important;
+  padding: 14px 23px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 700;
+  line-height: 1.55;
+}
+.biz-btn:disabled {
+  color: #51617c !important;
+  background: #e0e8f2;
+  cursor: not-allowed;
+}
+.biz-btn.light {
+  background: transparent;
+  color: #12234c !important;
+  border-color: #aac2df;
+}
+.biz-link {
+  display: inline-block;
+  text-decoration: none;
+  font-weight: 700;
+  border-bottom: 1px solid currentColor;
+  padding: 7px 0;
+  line-height: 1.4;
+}
+.biz-panel {
+  background: white;
+  border: 1px solid #c5d7e8;
+  border-radius: 28px;
+  padding: 32px;
+}
+.biz-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.biz-dialog {
+  width: min(470px, calc(100% - 32px));
+  max-height: 85dvh;
+  overflow: auto;
+  background: white;
+  color: #12234c;
+  border: 1px solid #b8cbea;
+  border-radius: 24px;
+  padding: 30px;
+  box-shadow: 0 20px 80px #10234b33;
+}
+.biz-dialog::backdrop {
+  background: #091935a8;
+}
+.biz-dialog h2 {
+  margin: 0 0 14px;
+  font-size: 1.7rem;
+  letter-spacing: -0.045em;
+  line-height: 1.3;
+}
+.biz-dialog p {
+  margin: 12px 0 21px;
+}
+.biz-simple-header,
+.biz-simple-footer {
+  width: min(86%, 1240px);
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+}
+.biz-simple-header {
+  min-height: 94px;
+}
+.biz-simple-header img {
+  width: 142px;
+}
+.biz-simple-header a,
+.biz-simple-footer a {
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+.biz-simple-footer {
+  color: #526783;
+  font-size: 0.7rem;
+  padding: 24px 0;
+}
+@media (max-width: 760px) {
+  .biz-wrap {
+    width: calc(100% - 48px);
+  }
+  .biz-title {
+    font-size: clamp(2.55rem, 11vw, 3.8rem);
+  }
+  .biz-heading {
+    font-size: clamp(1.9rem, 8.5vw, 2.8rem);
+  }
+  .biz-lead {
+    font-size: 1rem;
+  }
+  .biz-panel {
+    padding: 24px;
+    border-radius: 22px;
+  }
+  .biz-simple-header,
+  .biz-simple-footer {
+    width: calc(100% - 44px);
+  }
+  .biz-simple-header {
+    min-height: 76px;
+  }
+  .biz-simple-header img {
+    width: 114px;
+  }
+}

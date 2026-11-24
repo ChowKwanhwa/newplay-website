@@ -1,0 +1,506 @@
+---
+import BusinessPage from "../../components/business/BusinessPage.astro";
+---
+
+<BusinessPage
+  standalone
+  title="节点付款演示"
+  description="查看 PLAI 启航节点套组的示例订单，切换支付方式并体验本地付款状态。"
+>
+  <div class="checkout">
+    <header class="biz-simple-header">
+      <a href="/"><img src="/assets/newplay-logo.svg" alt="NewPlay 首页" /></a
+      ><a href="/nodes/#packages">←　返回节点计划</a>
+    </header>
+    <div class="checkout-grid">
+      <section class="brand">
+        <p>●　和普莱一起，开启下一段好玩</p><h1>
+          下一段好玩，<br /><mark>准备开场。</mark>
+        </h1>
+        <div class="art">
+          <span class="word">PLAY<br />NEW.</span><picture
+            ><source
+              media="(max-width:760px)"
+              srcset="/assets/business/checkout-plai-mobile.webp"
+            /><img
+              src="/assets/business/checkout-plai.webp"
+              alt="普莱队长"
+              width="317"
+              height="490"
+            /></picture>
+        </div>
+        <div class="ticket">
+          <strong>↗　下一站，好玩。</strong><small>把无聊，留在上一局。</small>
+        </div>
+      </section>
+      <section class="order">
+        <div class="head"><h2>确认订单，</h2><span>好玩即将开场。</span></div>
+        <div class="biz-row sub">
+          <span>你的下一站</span><span class="badge">示例订单</span>
+        </div>
+        <div class="biz-row summary">
+          <div>
+            <h3>PLAI 启航节点套组</h3><p>
+              1 领航 + 3 共建。<br />实付金额以订单为准。
+            </p>
+          </div><div class="total">
+            <small>订单金额</small><strong>5,000</strong><span>USD</span>
+          </div>
+        </div>
+        <fieldset>
+          <legend>选择支付方式</legend><div class="methods">
+            {
+              [
+                ["fiat", "法币支付", "通过支付通道扫码"],
+                ["stable", "稳定币支付", "使用订单指定币种与网络"],
+              ].map(([key, title, description], i) => (
+                <label>
+                  <>
+                    <input
+                      type="radio"
+                      name="method"
+                      value={key}
+                      checked={i === 0}
+                    />
+                    <img
+                      src={"/assets/business/" + key + ".svg"}
+                      width="23"
+                      height="23"
+                      alt=""
+                    />
+                    <b>{title}</b>
+                    <small>{description}</small>
+                  </>
+                </label>
+              ))
+            }
+          </div>
+        </fieldset>
+        <button type="button" class="action" data-pay>获取付款二维码　 →</button
+        >
+        <div class="feedback" aria-live="polite">
+          <strong data-title>准备好后，获取二维码</strong><p data-status>
+            请确认套餐与金额。本地演示不会收款或创建真实订单。
+          </p>
+          <div class="preview" data-preview hidden>
+            <img
+              src="/assets/business/qr-placeholder.webp"
+              width="166"
+              height="166"
+              alt="二维码占位，仅供布局，不可支付"
+            /><div class="biz-row">
+              <span>通道示例</span><b data-channel>法币支付</b>
+            </div><button type="button" data-cancel>取消本次演示</button>
+          </div>
+        </div>
+        <div class="footnote">
+          <img
+            src="/assets/business/shield.svg"
+            alt=""
+            width="16"
+            height="16"
+          />示例支付流程 · 不接收资金
+        </div>
+      </section>
+    </div>
+    <footer class="biz-simple-footer">
+      <span>NewPlay, Play New.</span><span>把无聊，留在上一局。</span>
+    </footer>
+    <dialog class="biz-dialog">
+      <h2>取消本次付款演示？</h2><p>
+        可随时返回订单，重新选择示例支付方式。
+      </p><form method="dialog" class="biz-row">
+        <button class="biz-btn light" value="back">继续查看</button><button
+          class="biz-btn"
+          value="cancel">确认取消</button>
+      </form>
+    </dialog>
+  </div>
+</BusinessPage>
+<style>
+  .checkout {
+    min-height: 100vh;
+    background: #dcebff;
+    color: #163567;
+  }
+  .checkout-grid {
+    width: min(84%, 1204px);
+    margin: 54px auto 30px;
+    display: grid;
+    grid-template-columns: minmax(0, 624px) minmax(0, 520px);
+    justify-content: space-between;
+    align-items: start;
+    gap: 40px;
+  }
+  .brand {
+    position: relative;
+  }
+  .brand > p,
+  .order legend {
+    font-size: 13px;
+    font-weight: 700;
+  }
+  .brand > p {
+    color: #365779;
+  }
+  .brand > p::first-letter {
+    color: #008488;
+  }
+  .brand h1 {
+    position: relative;
+    z-index: 1;
+    margin: 20px 0 0;
+    font-size: clamp(44px, 4.8vw, 70px);
+    font-weight: 900;
+    line-height: 1.12;
+    letter-spacing: -0.065em;
+  }
+  .brand mark {
+    color: inherit;
+    background: linear-gradient(
+      178deg,
+      transparent 77%,
+      #ffe344 78% 91%,
+      transparent 92%
+    );
+  }
+  .art {
+    position: relative;
+    aspect-ratio: 624/500;
+    background: url("/assets/business/checkout-decor.svg") left bottom/100% 100%
+      no-repeat;
+  }
+  .art img {
+    position: absolute;
+    left: 31%;
+    bottom: 2%;
+    height: 98%;
+    width: 51%;
+    object-fit: contain;
+  }
+  .word {
+    position: absolute;
+    left: 9%;
+    top: 27%;
+    transform: rotate(-8deg);
+    color: #c2a61c85;
+    font:
+      900 clamp(32px, 4.1vw, 58px) / 0.95 "NewPlay Space",
+      sans-serif;
+    letter-spacing: -0.07em;
+  }
+  .ticket {
+    position: absolute;
+    bottom: 3%;
+    left: 1%;
+    transform: rotate(-6deg);
+    background: #2854f7;
+    color: white;
+    padding: 17px 23px;
+    border-radius: 10px;
+    box-shadow: 0 6px #acc7f4;
+  }
+  .ticket small {
+    display: block;
+    text-align: right;
+    font-size: 10px;
+  }
+  .order {
+    margin-top: 45px;
+    background: white;
+    border: 1px solid #bcd0ed;
+    border-radius: 27px;
+    padding: 28px;
+    box-shadow: 0 14px 37px #2f60900c;
+  }
+  .head {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+  }
+  .head h2 {
+    font-size: 18px;
+  }
+  .head span,
+  .sub,
+  .summary p,
+  .total small,
+  .total span,
+  .methods small,
+  .feedback p,
+  .footnote {
+    font-size: 11px;
+    color: #587295;
+  }
+  .order .sub {
+    margin: 24px 0 10px;
+  }
+  .badge {
+    padding: 3px 8px;
+    border-radius: 5px;
+    background: #edf5ff;
+  }
+  .summary {
+    padding-bottom: 24px;
+    border-bottom: 1px dashed #b7cce6;
+  }
+  .summary h3 {
+    font-size: 20px;
+  }
+  .summary p {
+    line-height: 1.4;
+    margin-top: 8px;
+  }
+  .total {
+    text-align: right;
+  }
+  .total > * {
+    display: block;
+  }
+  .total strong {
+    font:
+      700 32px/1.35 "NewPlay Space",
+      sans-serif;
+  }
+  .order fieldset {
+    border: 0;
+    padding: 0;
+    margin: 18px 0;
+  }
+  .methods {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  .methods label {
+    position: relative;
+    cursor: pointer;
+    border: 1px solid #d6e3f7;
+    background: #f7faff;
+    border-radius: 11px;
+    padding: 16px 14px;
+    display: grid;
+    gap: 3px;
+    line-height: 1.3;
+  }
+  .methods label:has(:checked) {
+    background: #edfaf7;
+    border-color: #00898b;
+  }
+  .methods input {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    accent-color: #008088;
+  }
+  .methods b {
+    font-size: 14px;
+    margin-top: 8px;
+  }
+  .action {
+    width: 100%;
+    background: #2854f7;
+    color: white;
+    border: 0;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 700;
+    padding: 14px;
+    box-shadow: 0 4px #dce6ff;
+  }
+  .feedback {
+    background: #f4f8fe;
+    border: 1px solid #e6eef8;
+    border-radius: 10px;
+    padding: 12px 15px;
+    margin: 20px 0 12px;
+  }
+  .feedback strong {
+    display: block;
+    font-size: 13px;
+    line-height: 1.45;
+  }
+  .feedback p {
+    margin-top: 4px;
+  }
+  .preview {
+    font-size: 12px;
+  }
+  .preview img {
+    margin: 18px auto;
+    background: white;
+    border: 1px solid #d6e3f6;
+    padding: 10px;
+  }
+  .preview .biz-row {
+    border-top: 1px solid #cadaee;
+    padding: 12px 0 6px;
+  }
+  .preview button {
+    background: none;
+    border: 0;
+    text-decoration: underline;
+    padding: 7px 0;
+    font-size: 12px;
+  }
+  .footnote {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+  }
+  .biz-simple-footer {
+    width: min(84%, 1204px);
+    border-top: 1px solid #b7cce6;
+  }
+  .checkout .biz-simple-header {
+    width: min(86%, 1280px);
+  }
+  @media (min-width: 1250px) {
+    .checkout {
+      min-height: max(100vh, 1000px);
+    }
+  }
+  @media (max-width: 760px) {
+    .checkout-grid {
+      display: block;
+      width: calc(100% - 36px);
+      margin: 6px auto 22px;
+    }
+    .brand {
+      height: 209px;
+      overflow: hidden;
+      padding: 20px 3px 0;
+    }
+    .brand > p {
+      font-size: 9px;
+    }
+    .brand h1 {
+      font-size: clamp(29px, 9vw, 42px);
+      margin: 14px 0 0;
+    }
+    .art {
+      position: absolute;
+      top: 0;
+      right: -4px;
+      width: 59%;
+      height: 216px;
+      background-image: url("/assets/business/checkout-decor-mobile.svg");
+    }
+    .art img {
+      left: auto;
+      right: -1%;
+      bottom: -15%;
+      height: 105%;
+      width: 78%;
+    }
+    .word {
+      display: none;
+    }
+    .ticket {
+      bottom: 10%;
+      left: 7%;
+      padding: 7px 14px;
+      font-size: 12px;
+      border-radius: 7px;
+    }
+    .ticket small {
+      font-size: 8px;
+    }
+    .order {
+      margin: 0;
+      padding: 20px;
+      border-radius: 21px;
+    }
+    .head h2 {
+      font-size: 16px;
+    }
+    .order .sub {
+      margin: 15px 0 8px;
+    }
+    .summary {
+      padding-bottom: 16px;
+    }
+    .order fieldset {
+      margin: 16px 0;
+    }
+    .order legend {
+      line-height: 1.4;
+    }
+    .summary h3 {
+      font-size: 17px;
+    }
+    .total strong {
+      font-size: 27px;
+    }
+    .methods label {
+      padding: 12px;
+    }
+    .methods small {
+      font-size: 10px;
+    }
+    .action {
+      padding: 12px;
+    }
+    .feedback {
+      padding: 10px 12px;
+      margin: 16px 0 10px;
+    }
+    .footnote {
+      font-size: 9px;
+    }
+    .biz-simple-footer {
+      width: calc(100% - 44px);
+      padding: 16px 0;
+      font-size: 10px;
+    }
+  }
+</style>
+<script>
+  const action = document.querySelector<HTMLButtonElement>("[data-pay]")!,
+    preview = document.querySelector<HTMLElement>("[data-preview]")!,
+    title = document.querySelector("[data-title]")!,
+    status = document.querySelector("[data-status]")!;
+  let pending = false;
+  function ready(message: string) {
+    pending = false;
+    preview.hidden = true;
+    action.textContent = "获取付款二维码　 →";
+    title.textContent = "准备好后，获取二维码";
+    status.textContent = message;
+  }
+  document
+    .querySelectorAll('input[name="method"]')
+    .forEach((r) =>
+      r.addEventListener("change", () =>
+        ready("支付方式已切换，可重新查看示例二维码。"),
+      ),
+    );
+  action.addEventListener("click", () => {
+    if (pending) {
+      status.textContent = "已刷新。此二维码仅供演示，没有真实付款记录。";
+      return;
+    }
+    pending = true;
+    preview.hidden = false;
+    action.textContent = "刷新付款状态　 →";
+    title.textContent = "等待扫码付款 · 本地演示";
+    status.textContent = "二维码仅供版面预览，无法扫描付款。";
+    document.querySelector("[data-channel]")!.textContent =
+      document.querySelector<HTMLInputElement>('input[name="method"]:checked')!
+        .value === "fiat"
+        ? "法币支付"
+        : "稳定币支付";
+  });
+  const dialog = document.querySelector("dialog")!;
+  document
+    .querySelector("[data-cancel]")!
+    .addEventListener("click", () => dialog.showModal());
+  dialog.addEventListener("close", () => {
+    if (dialog.returnValue === "cancel") {
+      ready("已取消本次模拟付款，可重新开始。");
+      action.focus();
+    }
+  });
+</script>

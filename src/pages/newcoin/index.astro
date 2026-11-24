@@ -1,0 +1,767 @@
+---
+import BusinessPage from "../../components/business/BusinessPage.astro";
+const tracks = [
+  {
+    title: "NewCoin 积分",
+    tag: "平台内的消费记录",
+    head: ["走进游戏与平台服务，", "让每一次消费有迹可循。"],
+    items: [
+      ["↗", "游戏与服务体验", "承接游戏与平台服务消费。"],
+      ["♫", "创作也有自己的节奏", "音乐、造型与内容服务，按规则说明消耗。"],
+      ["≡", "记录清楚，体验更轻松", "消费与任务结算分别说明，确认后再继续。"],
+    ],
+    link: "走进普莱工作室",
+    url: "/studio/",
+  },
+  {
+    title: "NewCoin Token",
+    tag: "生态中的流通机制",
+    head: ["让参与与连接，", "拥有走向生态的可能。"],
+    items: [
+      ["⇄", "面向资产流通", "与消费积分区分，承接生态中的流通方向。"],
+      ["✧", "连接生态奖励", "结合真实业务与有效参与，按相应规则评估。"],
+      ["⌁", "随产品一起生长", "服务范围与参与方式，随生态进展逐步公布。"],
+    ],
+    link: "了解参与方向",
+    url: "#roles",
+  },
+];
+const roles = [
+  {
+    name: "我是玩家",
+    icon: "↗",
+    tag: "玩家的下一份好玩",
+    head: ["从想玩一局，", "到找到自己的风格。"],
+    copy: "从轻量游戏出发，探索内容与平台服务。普莱围绕玩法提供引导，让每次体验都有继续探索的入口。",
+    link: "探索游戏世界",
+    href: "/games/",
+    image: "/assets/business/newcoin-player.webp",
+  },
+  {
+    name: "我是创作者",
+    icon: "♫",
+    tag: "创作者的下一份好玩",
+    head: ["把一份灵感，", "变成自己的作品。"],
+    copy: "从心情音乐到普莱造型，跟着示例流程，探索属于自己的表达。",
+    link: "和普莱开启创作",
+    href: "/studio/",
+    image: "/assets/business/studio-music.webp",
+  },
+  {
+    name: "我是社群伙伴",
+    icon: "✳",
+    tag: "社群伙伴的下一份好玩",
+    head: ["让同频的人，", "在这里相遇。"],
+    copy: "围绕游戏、音乐与作品找到同伴，一起交流创作和社群合作方向。",
+    link: "探索合作路径",
+    href: "/cooperation/?role=creator",
+    image: "/assets/business/about-social.webp",
+  },
+];
+---
+
+<BusinessPage
+  title="NewCoin"
+  description="了解 NewCoin 积分与 Token 的不同用途，探索游戏、AI 创作与社群的产品方向。"
+>
+  <div class="nc">
+    <section class="launch">
+      <div class="orbital" aria-hidden="true"></div><div
+        class="biz-wrap launch-inner"
+      >
+        <div class="lockup">
+          <img
+            src="/assets/business/coin.svg"
+            alt=""
+            width="30"
+            height="30"
+          /><b>NewCoin</b><small>生态机制规划</small>
+        </div>
+        <h1>让好玩，<br />不止于这一局。</h1><p>
+          从一局游戏，到一首战歌，再到与你同频的人。<br />NewCoin 连接 NewPlay
+          的消费场景与生态机制，<br />让好玩在更多地方发生。
+        </p>
+        <div class="launch-links">
+          <a class="biz-btn yellow" href="#mechanism">探索 NewCoin　↘</a><a
+            class="biz-link"
+            href="#roles">看看未来的可能　↗</a>
+        </div>
+        <small>游戏 × AI 创作 × 社群 · 能力分阶段推进</small>
+      </div><button type="button" class="pause" aria-pressed="false"
+        >暂停动效</button
+      ><div class="biz-wrap launch-foot">
+        <span>一份热爱，更多连接。</span><span
+          >Play. Create. Connect.　　 <a href="#mechanism">向下探索　↓</a
+          ></span>
+      </div>
+    </section>
+    <section id="mechanism" class="mechanism biz-wrap">
+      <div class="section-head">
+        <div>
+          <p class="biz-overline">两种角色，同一个 NewPlay 世界</p><h2>
+            体验与生态，<br />各有清楚的路径。
+          </h2>
+        </div><p>
+          NewCoin 不是一个混在一起的余额。<br />消费积分与流通
+          Token，各自承接不同的用途。
+        </p>
+      </div>
+      <div class="tracks">
+        {
+          tracks.map((track, i) => (
+            <>
+              <article class:list={["track", i === 1 && "token"]}>
+                <>
+                  <div class="track-head">
+                    {i === 0 ? (
+                      <span>NC</span>
+                    ) : (
+                      <img
+                        src="/assets/business/coin.svg"
+                        alt=""
+                        width="60"
+                        height="60"
+                      />
+                    )}
+                    <div>
+                      <>
+                        <small>{track.tag}</small>
+                        <h3>{track.title}</h3>
+                      </>
+                    </div>
+                  </div>
+                  <h4>
+                    {track.head[0]}
+                    <br />
+                    {track.head[1]}
+                  </h4>
+                  <ul>
+                    {track.items.map(([icon, name, detail]) => (
+                      <li>
+                        <i>{icon}</i>
+                        <div>
+                          <b>{name}</b>
+                          <p>{detail}</p>
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                  <a class="biz-link" href={track.url}>
+                    {track.link}　↗
+                  </a>
+                </>
+              </article>
+              {i === 0 && <div class="divider">各司其职　≠</div>}
+            </>
+          ))
+        }
+      </div>
+      <p class="biz-note centered">
+        两种机制分别记录与说明。积分不自动等于 Token，也不代表已开放兑换或奖励。
+      </p>
+    </section>
+    <section class="story">
+      <img
+        loading="lazy"
+        src="/assets/business/newcoin-story.webp"
+        alt="普莱与游戏手柄、音符和 NewCoin 同台"
+        width="920"
+        height="795"
+      />
+      <div>
+        <p class="biz-overline">让喜欢的事，继续发生</p><h2>
+          玩出故事，<br />让灵感被看见。
+        </h2><p>
+          好玩不必停在游戏结束。<br />普莱陪你找到玩法，也把一次体验，<br
+          />带向创作与相遇。
+        </p>
+        <ol>
+          {
+            [
+              ["先进入一场游戏", "轻量玩法，发现自己的节奏。"],
+              ["再留下一个作品", "战歌、造型或内容草稿，让灵感有形状。"],
+              ["和同频的人相遇", "把作品带回社群，让一个人的想法连接更多人。"],
+            ].map(([name, desc], i) => (
+              <li>
+                <>
+                  <i>0{i + 1}</i>
+                  <div>
+                    <>
+                      <b>{name}</b>
+                      <p>{desc}</p>
+                    </>
+                  </div>
+                </>
+              </li>
+            ))
+          }
+        </ol><a class="biz-link" href="/games/">发现下一份好玩　↗</a>
+      </div>
+    </section>
+    <section id="roles" class="audience biz-wrap">
+      <div class="section-head">
+        <div>
+          <p class="biz-overline">随着产品与生态推进</p><h2>
+            让不同的热爱，<br />在同一个世界相遇。
+          </h2>
+        </div><p>
+          玩家、创作者与社群伙伴，<br />共同丰富 NewPlay 的内容与连接。
+        </p>
+      </div>
+      <div class="switch">
+        {
+          roles.map((r, i) => (
+            <button
+              type="button"
+              data-role-tab={i}
+              aria-pressed={i === 0 ? "true" : "false"}
+            >
+              {r.name}
+              <span>{r.icon}</span>
+            </button>
+          ))
+        }
+      </div>
+      {
+        roles.map((r, i) => (
+          <article class="role" data-role-panel={i} hidden={i !== 0}>
+            <>
+              <div>
+                <>
+                  <small>{r.tag}</small>
+                  <h3>
+                    {r.head[0]}
+                    <br />
+                    {r.head[1]}
+                  </h3>
+                  <p>{r.copy}</p>
+                  <a class="biz-link" href={r.href}>
+                    {r.link}　↗
+                  </a>
+                </>
+              </div>
+              <img loading="lazy" src={r.image} alt="" />
+            </>
+          </article>
+        ))
+      }
+      <p class="biz-note">
+        以上为产品与生态方向。AI 生成、贡献记录、激励资格与 Token
+        服务按研发进展及对应规则逐步推进。
+      </p>
+    </section>
+    <section class="outro">
+      <div class="biz-wrap">
+        <div class="biz-row">
+          <h2>
+            <img src="/assets/business/coin.svg" alt="" />下一段好玩，<br
+            />一起去发现。
+          </h2><div>
+            <a class="biz-btn" href="/studio/">和普莱开启创作　↗</a><br /><a
+              class="biz-link"
+              href="/about/">认识 NewPlay　↗</a>
+          </div>
+        </div><p class="biz-note">
+          NewCoin
+          机制与服务分阶段推进，具体可用范围以正式公布的信息为准。本页不提供
+          Token 购买、兑换、提现或收益承诺。
+        </p>
+      </div>
+    </section>
+  </div></BusinessPage
+>
+<style>
+  .nc {
+    color: #13264c;
+  }
+  .nc h2 {
+    font-size: clamp(40px, 4.5vw, 66px);
+    line-height: 1.13;
+    letter-spacing: -0.065em;
+    font-weight: 900;
+    margin: 20px 0;
+  }
+  .nc h3,
+  .nc h4 {
+    line-height: 1.35;
+    letter-spacing: -0.045em;
+  }
+  .nc .biz-link {
+    font-size: 13px;
+  }
+  .launch {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    min-height: 750px;
+    background: #10254b;
+    color: white;
+  }
+  .launch::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    background:
+      linear-gradient(
+        90deg,
+        #0c1e3ffc 0%,
+        #0c1e3ff0 29%,
+        #0c1e3f75 48%,
+        transparent 68%
+      ),
+      url("/assets/business/newcoin-hero.webp") center/cover no-repeat;
+  }
+  .orbital {
+    position: absolute;
+    inset: 0 -4% 0 0;
+    background: url("/assets/business/newcoin-orbit.svg") center/100% 100%;
+    z-index: -1;
+    animation: orbit 6s ease-in-out infinite alternate;
+  }
+  .launch.stopped .orbital {
+    animation-play-state: paused;
+  }
+  @keyframes orbit {
+    to {
+      transform: translateY(-5px) rotate(0.6deg);
+    }
+  }
+  .launch-inner {
+    padding: 85px 0 110px;
+  }
+  .lockup {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .lockup b {
+    font:
+      700 23px "NewPlay Space",
+      sans-serif;
+  }
+  .lockup small {
+    border: 1px solid #7288a366;
+    border-radius: 30px;
+    padding: 3px 10px;
+    font-size: 10px;
+    color: #bdcee6;
+  }
+  .launch h1 {
+    font-size: clamp(56px, 6.3vw, 90px);
+    line-height: 1.08;
+    letter-spacing: -0.07em;
+    font-weight: 900;
+    margin: 28px 0 30px;
+  }
+  .launch-inner > p {
+    font-size: 16px;
+    line-height: 1.9;
+    color: #daebff;
+  }
+  .launch-links {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    margin: 29px 0 20px;
+  }
+  .yellow {
+    background: #ffe44d;
+    color: #13264c !important;
+  }
+  .launch-inner > small,
+  .launch-foot {
+    font-size: 11px;
+    color: #bdcee6;
+  }
+  .launch-foot {
+    position: absolute;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: space-between;
+  }
+  .launch-foot a {
+    color: inherit;
+  }
+  .pause {
+    position: absolute;
+    top: 25px;
+    right: 7%;
+    border: 0;
+    background: #edf4ff;
+    color: #17345f;
+    border-radius: 30px;
+    padding: 9px 18px;
+    font-size: 12px;
+  }
+  .mechanism,
+  .audience {
+    padding: 94px 0 72px;
+  }
+  .section-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    margin-bottom: 40px;
+  }
+  .section-head > p,
+  .story > div > p:not(.biz-overline),
+  .role > div > p {
+    font-size: 15px;
+    line-height: 1.9;
+    color: #526783;
+  }
+  .tracks {
+    display: grid;
+    grid-template-columns: 1fr 6.8% 1fr;
+  }
+  .track {
+    padding: 36px;
+    background: #edf4ff;
+    border-radius: 21px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .track-head {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+  .track-head span,
+  .track-head img {
+    width: 60px;
+    height: 60px;
+  }
+  .track-head span {
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: #2d55ff;
+    color: white;
+    font-weight: 850;
+  }
+  .track-head small,
+  .role small {
+    font-size: 12px;
+  }
+  .track-head h3 {
+    font-size: 24px;
+  }
+  .track h4 {
+    font-size: 26px;
+    margin: 28px 0;
+  }
+  .track ul,
+  .story ol {
+    padding: 0;
+    list-style: none;
+    display: grid;
+    gap: 21px;
+    margin: 0 0 25px;
+  }
+  .nc li {
+    display: flex;
+    align-items: start;
+    gap: 12px;
+  }
+  .nc li i {
+    font-style: normal;
+    font-weight: 700;
+    color: #3864a5;
+  }
+  .nc li b {
+    font-size: 15px;
+  }
+  .nc li p {
+    font-size: 12px;
+    opacity: 0.78;
+    margin-top: 3px;
+  }
+  .track .biz-link {
+    margin-top: auto;
+  }
+  .track.token {
+    background: #10344c;
+    color: #f2faff;
+  }
+  .token i {
+    color: #87e8d0;
+  }
+  .divider {
+    display: grid;
+    place-items: center;
+    writing-mode: vertical-rl;
+    font-size: 13px;
+    color: #6c87a7;
+    letter-spacing: 0.25em;
+  }
+  .centered {
+    text-align: center;
+    margin-top: 22px;
+  }
+  .story {
+    display: grid;
+    grid-template-columns: 52.4% 47.6%;
+    background: #e8f5ff;
+  }
+  .story > img {
+    width: 100%;
+    height: 100%;
+    min-height: clamp(680px, 55.2vw, 795px);
+    max-height: 810px;
+    object-fit: cover;
+  }
+  .story > div {
+    align-self: center;
+    padding: 60px clamp(26px, 5vw, 92px) 60px 30px;
+  }
+  .story ol {
+    margin-top: 26px;
+  }
+  .story i {
+    border: 1px solid #a9bfd9;
+    border-radius: 50%;
+    padding: 3px 6px;
+    font-size: 12px;
+  }
+  .switch {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+  }
+  .switch button {
+    border: 0;
+    border-bottom: 3px solid #a4b2c4;
+    background: none;
+    text-align: left;
+    padding: 18px 0;
+    color: #70839c;
+    font-size: 17px;
+    display: flex;
+    justify-content: space-between;
+    gap: 4px;
+  }
+  .switch [aria-pressed="true"] {
+    border-color: #2453eb;
+    color: #183d7d;
+    font-weight: 700;
+  }
+  .role {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: end;
+    gap: 6%;
+    background: #f3f7fd;
+    border-radius: 0 0 22px 22px;
+    padding: 44px 50px 0;
+    min-height: 434px;
+    overflow: hidden;
+  }
+  .role > div {
+    align-self: center;
+    padding-bottom: 44px;
+  }
+  .role h3 {
+    font-size: clamp(26px, 2.7vw, 40px);
+    margin: 12px 0;
+  }
+  .role .biz-link {
+    margin-top: 20px;
+  }
+  .role img {
+    justify-self: center;
+    max-width: 100%;
+    height: 390px;
+    width: auto;
+    object-fit: contain;
+  }
+  .audience > .biz-note {
+    margin-top: 15px;
+  }
+  .outro {
+    background: #ffe972;
+    padding: 40px 0;
+  }
+  .outro h2 {
+    font-size: clamp(34px, 3.5vw, 52px);
+    position: relative;
+    padding-left: 68px;
+  }
+  .outro h2 img {
+    position: absolute;
+    left: 0;
+    top: 4px;
+    width: 44px;
+  }
+  .outro .biz-note {
+    border-top: 1px solid #b9a449;
+    padding-top: 18px;
+    margin-top: 20px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .orbital {
+      animation: none;
+    }
+  }
+  @media (max-width: 760px) {
+    .launch {
+      min-height: 990px;
+    }
+    .launch::before {
+      background:
+        linear-gradient(180deg, #0c1e3f 0% 37%, transparent 58%),
+        url("/assets/business/newcoin-hero-mobile.webp") right 4px bottom 45px /
+          auto 475px no-repeat;
+    }
+    .orbital {
+      background-image: url("/assets/business/newcoin-orbit-mobile.svg");
+    }
+    .launch-inner {
+      padding: 40px 0;
+    }
+    .launch h1 {
+      font-size: clamp(40px, 11.2vw, 62px);
+    }
+    .launch-inner > p {
+      font-size: 14px;
+    }
+    .launch-links {
+      gap: 12px;
+    }
+    .launch-links a {
+      font-size: 12px;
+    }
+    .launch-links .biz-btn {
+      padding: 13px;
+    }
+    .pause {
+      top: 43%;
+      right: 24px;
+    }
+    .launch-foot {
+      font-size: 9px;
+      gap: 8px;
+    }
+    .launch-foot > span:nth-child(2) {
+      font-size: 0;
+    }
+    .launch-foot a {
+      font-size: 10px;
+    }
+    .section-head {
+      display: block;
+      margin-bottom: 25px;
+    }
+    .nc h2 {
+      font-size: clamp(34px, 9vw, 51px);
+    }
+    .mechanism,
+    .audience {
+      padding: 50px 0;
+    }
+    .tracks,
+    .story,
+    .role {
+      grid-template-columns: 1fr;
+    }
+    .track {
+      padding: 24px;
+    }
+    .track h4 {
+      font-size: 23px;
+    }
+    .track-head span,
+    .track-head img {
+      width: 50px;
+      height: 50px;
+    }
+    .divider {
+      writing-mode: horizontal-tb;
+      padding: 13px;
+    }
+    .centered {
+      text-align: left;
+    }
+    .story > div {
+      grid-row: 1;
+      padding: 48px 24px 28px;
+    }
+    .story > img {
+      height: 400px;
+      min-height: 0;
+    }
+    .switch {
+      gap: 6px;
+    }
+    .switch button {
+      font-size: 12px;
+    }
+    .role {
+      padding: 24px 24px 0;
+    }
+    .role > div {
+      padding: 0;
+    }
+    .role img {
+      height: 300px;
+    }
+    .role h3 {
+      font-size: 27px;
+    }
+    .outro .biz-row {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+    }
+    .outro .biz-row > div {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .outro .biz-row > div br {
+      display: none;
+    }
+    .outro .biz-btn {
+      font-size: 12px;
+      padding: 11px;
+    }
+    .outro h2 {
+      margin: 3px 0;
+    }
+    .outro {
+      padding: 34px 0;
+    }
+    .outro h2 {
+      padding-left: 42px;
+    }
+    .outro h2 img {
+      width: 30px;
+    }
+  }
+</style>
+<script>
+  const launch = document.querySelector(".launch")!,
+    pause = document.querySelector<HTMLButtonElement>(".pause")!;
+  function motion(stopped: boolean) {
+    launch.classList.toggle("stopped", stopped);
+    pause.setAttribute("aria-pressed", String(stopped));
+    pause.textContent = stopped ? "继续动效" : "暂停动效";
+  }
+  motion(matchMedia("(prefers-reduced-motion:reduce)").matches);
+  pause.addEventListener("click", () =>
+    motion(!launch.classList.contains("stopped")),
+  );
+  document.querySelectorAll<HTMLButtonElement>("[data-role-tab]").forEach((b) =>
+    b.addEventListener("click", () => {
+      document
+        .querySelectorAll("[data-role-tab]")
+        .forEach((t) => t.setAttribute("aria-pressed", String(t === b)));
+      document
+        .querySelectorAll<HTMLElement>("[data-role-panel]")
+        .forEach((p) => (p.hidden = p.dataset.rolePanel !== b.dataset.roleTab));
+    }),
+  );
+</script>

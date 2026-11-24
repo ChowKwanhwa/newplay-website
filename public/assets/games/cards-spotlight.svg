@@ -1,0 +1,21 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="1440" height="1476.47" viewBox="0 0 1440 1476.47" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="v15 source cone gradients &#194;&#183; native SVG" clip-path="url(#clip0_0_95)">
+<path id="Vector" d="M1440 0H0V1476.47H1440V0Z" fill="url(#paint0_linear_0_95)"/>
+<path id="Vector_2" d="M1440 0H0V1476.47H1440V0Z" fill="url(#paint1_linear_0_95)"/>
+</g>
+<defs>
+<linearGradient id="paint0_linear_0_95" x1="1592.51" y1="312.685" x2="-152.507" y2="1163.78" gradientUnits="userSpaceOnUse">
+<stop offset="0.12" stop-opacity="0"/>
+<stop offset="0.122" stop-opacity="0.082"/>
+<stop offset="0.29" stop-opacity="0"/>
+</linearGradient>
+<linearGradient id="paint1_linear_0_95" x1="-152.506" y1="312.685" x2="1592.51" y2="1163.78" gradientUnits="userSpaceOnUse">
+<stop offset="0.12" stop-opacity="0"/>
+<stop offset="0.122" stop-opacity="0.047"/>
+<stop offset="0.29" stop-opacity="0"/>
+</linearGradient>
+<clipPath id="clip0_0_95">
+<rect width="1440" height="1476.47" fill="white"/>
+</clipPath>
+</defs>
+</svg>

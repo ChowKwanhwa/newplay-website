@@ -1,0 +1,8 @@
+---
+interface Props { desktop: string; mobile?: string; class?: string; }
+const {desktop,mobile,class:className} = Astro.props;
+---
+<picture class={className} aria-hidden="true">
+  {mobile && <source media="(max-width:799px)" srcset={'/assets/home/'+mobile}/>}
+  <img src={'/assets/home/'+desktop} alt="" />
+</picture>

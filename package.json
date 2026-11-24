@@ -1,0 +1,22 @@
+{
+  "name": "newplay-website",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "deploy": "npm run build && wrangler deploy",
+    "test": "node --test tests/worker.test.js",
+    "test:browser": "playwright test",
+    "deploy:production": "npm run build && wrangler deploy --env production"
+  },
+  "dependencies": {
+    "astro": "7.4.13"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.65.1",
+    "wrangler": "4.167.0"
+  }
+}

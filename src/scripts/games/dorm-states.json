@@ -1,0 +1,174 @@
+{
+  "Start": {
+    "board": "NIGHT SHIFT / 宿舍走廊",
+    "step": "00 / 06",
+    "coin": "●  0",
+    "power": "ϟ  0",
+    "caption": "",
+    "label": "START / 开始这一局",
+    "title": "先开始，\n再去找床。",
+    "body": "按下开始，普莱出现在走廊。\n自己走去找空床，躺下后再筑防线。",
+    "action": "开始游戏",
+    "next": "Spawn",
+    "moves": {}
+  },
+  "Bedside": {
+    "board": "NIGHT SHIFT / 宿舍走廊",
+    "step": "02 / 06",
+    "coin": "●  0",
+    "power": "ϟ  0",
+    "caption": "入夜前  00:18",
+    "label": "MOVE / 自己走去找空床",
+    "title": "到床边了，躺下。",
+    "body": "现在才出现上床操作。\n躺下后开始产金币，再安排升级。",
+    "action": "上床躺下",
+    "next": "Sleeping",
+    "moves": {
+      "up": "Inside"
+    }
+  },
+  "Build": {
+    "board": "宿舍 07 / 守夜演示",
+    "step": "04 / 06",
+    "coin": "●  120",
+    "power": "ϟ  20",
+    "caption": "装甲门 Lv.1  /  生命 100%",
+    "label": "SURVIVE / 躺下后才发育",
+    "title": "资源到了，补上火力。",
+    "body": "在室内空地建造炮塔。\n床、门和火力，别落下任何一环。",
+    "action": "建造炮塔 · 60金币",
+    "next": "Defend",
+    "moves": {}
+  },
+  "Defend": {
+    "board": "宿舍 07 / 守夜演示",
+    "step": "05 / 06",
+    "coin": "●  60",
+    "power": "ϟ  20",
+    "caption": "装甲门 Lv.1  /  生命 38%",
+    "label": "SURVIVE / 躺下后才发育",
+    "title": "它来了，守住这扇门。",
+    "body": "门受损，及时修复与升级。\n炮塔反击，普莱继续躺着发育。",
+    "action": "修门 · 查看演示结算",
+    "next": "Success",
+    "moves": {}
+  },
+  "Success": {
+    "board": "宿舍 07 / 守夜演示",
+    "step": "06 / 06",
+    "coin": "●  30",
+    "power": "ϟ  20",
+    "caption": "",
+    "label": "演示结算 / 再试一次",
+    "title": "这一夜，守住了。",
+    "body": "走位找床、攒钱和筑防线。\n下一局，试试不同的升级顺序。",
+    "action": "再来一局",
+    "next": "Start",
+    "moves": {}
+  },
+  "Failure": {
+    "board": "宿舍 07 / 守夜演示",
+    "step": "06 / 06",
+    "coin": "●  0",
+    "power": "ϟ  0",
+    "caption": "装甲门 Lv.1  /  生命 0%",
+    "label": "演示结算 / 再试一次",
+    "title": "门破了，重整防线。",
+    "body": "门的等级落后，防线就会吃紧。\n重新开局，试试更早升级房门。",
+    "action": "重新开始",
+    "next": "Start",
+    "moves": {}
+  },
+  "Spawn": {
+    "board": "NIGHT SHIFT / 宿舍走廊",
+    "step": "01 / 06",
+    "coin": "●  0",
+    "power": "ϟ  0",
+    "caption": "",
+    "label": "MOVE / 自己走去找空床",
+    "title": "开局了，先跑起来。",
+    "body": "普莱出生在走廊。\n用方向控件移动，自己寻找空床。",
+    "action": "向上走 · 探索走廊",
+    "next": "Door",
+    "moves": {
+      "up": "Door"
+    }
+  },
+  "Junction": {
+    "board": "NIGHT SHIFT / 宿舍走廊",
+    "step": "01 / 06",
+    "coin": "●  0",
+    "power": "ϟ  0",
+    "caption": "",
+    "label": "MOVE / 自己走去找空床",
+    "title": "往哪边？自己走。",
+    "body": "走廊连着不同宿舍。\n往上查看床位，往下返回右侧入口。",
+    "action": "向上走 · 查看床位",
+    "next": "Occupied",
+    "moves": {
+      "up": "Occupied",
+      "down": "Door"
+    }
+  },
+  "Occupied": {
+    "board": "NIGHT SHIFT / 宿舍走廊",
+    "step": "01 / 06",
+    "coin": "●  0",
+    "power": "ϟ  0",
+    "caption": "入夜前  00:23",
+    "label": "MOVE / 自己走去找空床",
+    "title": "这张床，有人了。",
+    "body": "已入住的床不能再躺。\n退回走廊，继续找空床。",
+    "action": "向下走 · 继续找床",
+    "next": "Junction",
+    "moves": {
+      "down": "Junction"
+    }
+  },
+  "Door": {
+    "board": "NIGHT SHIFT / 宿舍走廊",
+    "step": "01 / 06",
+    "coin": "●  0",
+    "power": "ϟ  0",
+    "caption": "",
+    "label": "MOVE / 自己走去找空床",
+    "title": "右侧，看见空床。",
+    "body": "沿着走廊走，不要停太久。\n往右穿过敞开的门，走进宿舍。",
+    "action": "向右走 · 穿过房门",
+    "next": "Inside",
+    "moves": {
+      "up": "Junction",
+      "right": "Inside",
+      "down": "Spawn"
+    }
+  },
+  "Inside": {
+    "board": "NIGHT SHIFT / 宿舍走廊",
+    "step": "02 / 06",
+    "coin": "●  0",
+    "power": "ϟ  0",
+    "caption": "",
+    "label": "MOVE / 自己走去找空床",
+    "title": "进房了，继续走。",
+    "body": "空床在房间下方。\n走到床边，才可以上床躺下。",
+    "action": "向下走 · 走到床边",
+    "next": "Bedside",
+    "moves": {
+      "left": "Door",
+      "down": "Bedside"
+    }
+  },
+  "Sleeping": {
+    "board": "宿舍 07 / 守夜演示",
+    "step": "03 / 06",
+    "coin": "●  30",
+    "power": "ϟ  0",
+    "caption": "",
+    "label": "SURVIVE / 躺下后才发育",
+    "title": "人躺下，金币开工。",
+    "body": "普莱已经睡进床里。\n先升级床铺，把资源节奏拉起来。",
+    "action": "升级床铺 · 演示",
+    "next": "Build",
+    "moves": {}
+  }
+}

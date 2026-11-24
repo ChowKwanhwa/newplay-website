@@ -1,0 +1,24 @@
+---
+const groups = [
+  {title:'产品与体验', links:[['小游戏','/games/'],['AI 工作室','/studio/'],['NewCoin','/newcoin/']]},
+  {title:'一起创造', links:[['游戏开发者','/cooperation/?role=game'],['创作者与内容','/cooperation/?role=creator'],['技术与体验合作','/cooperation/?role=tech'],['NewPay 合作','/cooperation/?role=payment']]},
+  {title:'认识我们', links:[['关于 NewPlay','/about/'],['认识普莱','/about/#plai'],['产品方向','/studio/']]}
+];
+---
+<footer class="brand-footer">
+  <div class="footer-grid">
+    <div class="intro"><a href="/"><img src="/assets/newplay-logo.svg" width="142" alt="NewPlay 首页" /></a><strong>NewPlay, Play New.</strong><p>面向东盟年轻人的数字娱乐新空间。<br/>从小游戏开始，发现更多好玩。</p><a class="explore" href="/games/">发现你的下一份好玩 ↗</a></div>
+    {groups.map(group=><section><h2>{group.title}</h2>{group.links.map(([label,url])=><a href={url}>{label}</a>)}</section>)}
+  </div>
+  <div class="notes"><span>© 2026 NewPlay.　 Play New.</span><a href="/information/#terms">使用与权益提示</a><a href="/information/#privacy">数据与隐私说明</a></div>
+  <small>品牌概念视觉 · 游戏、Agent 与创作画面用于表达产品方向。</small>
+</footer>
+<style>
+  .brand-footer{background:#eaf1fc;color:#12234c;padding:clamp(44px,5.55vw,80px) max(calc((100% - 1240px)/2),6.94%) 48px}
+  .footer-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr .85fr;gap:24px}.intro img{display:block;margin-bottom:12px}
+  strong{font:700 23px/1.4 var(--np-font-latin);letter-spacing:-.6px}.intro p{font-size:14px;color:#455573;line-height:1.9;margin:8px 0 32px}
+  a{color:inherit;text-decoration:none}a:hover{text-decoration:underline;text-underline-offset:4px}.explore{color:#234bff;font-size:14px;font-weight:700;border-bottom:1px solid;padding-bottom:5px}
+  section h2{font-size:17px;margin:5px 0 22px}section a{display:block;font-size:14px;color:#455573;margin:0 0 20px}
+  .notes{display:flex;gap:24px;font-size:12px;border-top:1px solid #c6d2e4;padding-top:18px;margin:46px 0 16px}.notes span{margin-right:auto}small{color:#455573;font-size:12px}
+  @media(max-width:700px){.brand-footer{padding:44px 24px 32px}.footer-grid{grid-template-columns:repeat(2,1fr);gap:30px 12px}.intro{grid-column:1/-1}.notes{flex-wrap:wrap;gap:12px 20px}.notes span{width:100%}}
+</style>

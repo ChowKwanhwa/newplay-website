@@ -1,0 +1,10 @@
+---
+const navigation = [['首页','/'],['好玩宇宙','/games/'],['普莱 AI Agent','/studio/'],['NewCoin','/newcoin/'],['合作','/cooperation/'],['关于','/about/'],['节点计划','/nodes/']];
+---
+<header class="home-header" id="top">
+  <div class="rail">
+    <a class="home-logo" href="/" aria-label="NewPlay 首页"><img src="/assets/home/c80be.svg" alt="NewPlay" width="142" height="42" /></a>
+    <button class="menu-switch" type="button" aria-controls="home-nav" aria-expanded="false" aria-label="打开导航"><i></i><i></i></button>
+    <nav id="home-nav" aria-label="主导航">{navigation.map(([label,url])=><a aria-current={url==='/'?'page':undefined} href={url}>{label}</a>)}<a class="mobile-only-link" href="/payment/">付款演示</a></nav>
+  </div>
+</header>

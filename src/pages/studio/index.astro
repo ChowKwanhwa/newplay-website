@@ -1,0 +1,317 @@
+---
+import BusinessPage from "../../components/business/BusinessPage.astro";
+---
+
+<BusinessPage
+  title="普莱 AI 工作室"
+  description="从一句想法开始，和普莱试试音乐与造型。体验示例报价、作品和本标签页的积分流水。"
+>
+  <section class="studio-stage">
+    <div class="biz-wrap studio-grid">
+      <div class="intro">
+        <p class="biz-overline">普莱 AI 工作室 · 交互演示</p><h1
+          class="biz-title"
+        >
+          让你的心情，<br />有自己的作品。
+        </h1>
+        <p class="biz-lead">
+          从一句想法开始，和普莱试试音乐与造型。这里展示创作流程，尚未接入生成模型。
+        </p>
+        <figure>
+          <img
+            src="/assets/business/studio-music.webp"
+            width="490"
+            height="426"
+            alt="戴着蓝色耳机的普莱站在唱片上"
+          /><figcaption>你的灵感，正在找到频率。</figcaption>
+        </figure>
+        <a href="#studio-account"
+          >示例余额 <b data-balance>40</b> NC · 查看流水 ↓</a>
+      </div>
+      <div class="biz-panel console">
+        <div class="biz-row">
+          <small>本地创作体验</small><span class="badge">未接 AI 模型</span>
+        </div>
+        <div class="scene" aria-label="创作场景">
+          <button type="button" data-scene="music" aria-pressed="true"
+            >♫ 心情音乐</button
+          ><button type="button" data-scene="fashion" aria-pressed="false"
+            >✦ 普莱造型</button>
+        </div>
+        <label for="prompt"><b data-prompt-label>这次想表达什么？</b></label
+        ><textarea id="prompt" rows="2" maxlength="240"
+          >给今天的小小胜利，配一首轻快的歌</textarea
+        >
+        <div class="biz-row price">
+          <span data-route>输入心情 → 示例报价 → 确认 → 预制片段</span><strong
+            data-price>8 示例NC</strong>
+        </div>
+        <p class="biz-note">
+          场景消耗仅为演示，不是正式价格。不会生成真实 AI
+          内容，也不会操作真实账户。
+        </p>
+        <div class="status" aria-live="polite" data-status>
+          写下想法，先看报价，再决定。
+        </div>
+        <div class="buttons">
+          <button type="button" data-main class="biz-btn">查看示例报价</button
+          ><button type="button" data-cancel class="biz-btn light" hidden
+            >取消</button
+          ><button type="button" data-play class="biz-btn light" hidden
+            >试听示例片段</button>
+        </div>
+        <details>
+          <summary>体验其他状态</summary><div class="test-states">
+            <button data-test="insufficient">余额不足</button><button
+              data-test="failure">生成失败</button
+            ><button data-test="timeout">等待超时</button>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+  <section class="ledger" id="studio-account">
+    <div class="biz-wrap studio-grid">
+      <div class="ledger-intro">
+        <h2 class="biz-heading">先说清楚，<br />再一起创造。</h2><p
+          class="biz-lead"
+        >
+          本地示例音乐与造型仅供体验流程。正式模型能力、版权范围、审核要求与计费规则需在上线前明确。
+        </p><a class="biz-btn light" href="/newcoin/"
+          >走进 NewCoin 用途展台 ↗</a>
+      </div>
+      <div class="account">
+        <small>本标签页 · 示例积分账户</small><div class="biz-row">
+          <div><strong data-balance>40</strong> 示例NC</div><img
+            src="/assets/business/coin.svg"
+            width="64"
+            height="64"
+            alt=""
+          />
+        </div>
+        <div class="biz-row">
+          <small>预占 <b data-reserved>0</b> 示例NC</small><small
+            >仅此标签页保存</small>
+        </div>
+        <p class="biz-note">
+          与 NewCoin Token 分开。本演示没有 Token
+          资产、兑换或提现功能。关闭标签页后结束示例会话。
+        </p>
+        <div class="entries">
+          <span>示例流水</span><ul data-entries>
+            <li>初始演示额度：40 示例NC</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+</BusinessPage>
+<style>
+  .studio-stage {
+    background: #10234b;
+    padding: 70px 0 80px;
+  }
+  .studio-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+    gap: clamp(40px, 9vw, 160px);
+    align-items: start;
+  }
+  .intro {
+    color: white;
+  }
+  .intro h1 {
+    margin: 19px 0 26px;
+  }
+  .intro > .biz-lead {
+    color: #c1d7ed;
+  }
+  .intro figure {
+    position: relative;
+    margin: 54px 0 20px;
+  }
+  .intro img {
+    width: min(100%, 490px);
+    aspect-ratio: 490/426;
+    height: auto;
+    object-fit: cover;
+    border-radius: 28px;
+  }
+  .intro figcaption {
+    position: absolute;
+    bottom: 15px;
+    left: 20px;
+    padding: 8px 14px;
+    border-radius: 30px;
+    background: #10234be8;
+    font-size: 12px;
+  }
+  .intro > a {
+    color: #dae8ff;
+    text-decoration: none;
+    font-size: 13px;
+  }
+  .console {
+    font-size: 14px;
+  }
+  .console .badge {
+    border: 1px solid;
+    border-radius: 20px;
+    padding: 5px 12px;
+    font-size: 11px;
+  }
+  .scene {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px;
+    background: #edf2f9;
+    border-radius: 14px;
+    padding: 5px;
+    margin: 27px 0 22px;
+  }
+  .scene button {
+    border: 0;
+    background: none;
+    color: #526783;
+    padding: 13px 5px;
+    border-radius: 10px;
+  }
+  .scene button[aria-pressed="true"] {
+    color: white;
+    background: #12234c;
+  }
+  .console textarea {
+    display: block;
+    width: 100%;
+    background: #f9fcff;
+    border: 1px solid #9eb5ce;
+    border-radius: 12px;
+    padding: 11px 13px;
+    margin: 8px 0 18px;
+    resize: vertical;
+    font-size: 16px;
+  }
+  .price {
+    font-size: 11px;
+  }
+  .price strong {
+    font-size: 20px;
+    white-space: nowrap;
+  }
+  .console .biz-note {
+    margin: 20px 0;
+  }
+  .status {
+    background: #edf4fc;
+    border-radius: 14px;
+    padding: 16px;
+    min-height: 80px;
+    white-space: pre-line;
+  }
+  .status img {
+    max-height: 140px;
+    object-fit: contain;
+    margin-inline: auto;
+  }
+  .buttons,
+  .test-states {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin: 24px 0;
+  }
+  .console details {
+    margin: 30px 0 8px;
+    font-size: 12px;
+  }
+  .console summary {
+    cursor: pointer;
+  }
+  .test-states button {
+    border: 1px solid #b5c9e0;
+    border-radius: 8px;
+    background: #edf4fc;
+    padding: 8px;
+  }
+  .ledger {
+    background: #eaf1fc;
+    padding: 72px 0;
+  }
+  .ledger-intro p {
+    margin: 28px 0;
+  }
+  .account {
+    border-block: 1px solid #aebfd6;
+    padding: 20px 0 10px;
+  }
+  .account strong {
+    font:
+      700 54px/1.7 "NewPlay Space",
+      sans-serif;
+  }
+  .account .biz-note {
+    margin: 16px 0;
+  }
+  .entries {
+    border-top: 1px solid #bccde1;
+    padding: 16px 0;
+    font-size: 14px;
+  }
+  .entries ul {
+    list-style: none;
+    padding: 8px 0 0;
+    font-size: 12px;
+  }
+  @media (min-width: 1250px) {
+    .studio-grid {
+      grid-template-columns: 510px minmax(0, 590px);
+      justify-content: space-between;
+      gap: 40px;
+    }
+    .studio-stage {
+      min-height: 962.5px;
+      padding-bottom: 62px;
+    }
+    .intro figure {
+      margin-top: 42px;
+    }
+    .ledger {
+      min-height: 466px;
+    }
+  }
+  @media (max-width: 760px) {
+    .studio-grid {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 28px;
+    }
+    .studio-stage,
+    .ledger {
+      padding: 40px 0;
+    }
+    .intro h1 {
+      margin: 20px 0;
+    }
+    .intro figure {
+      margin: 44px 0 21px;
+    }
+    .intro img {
+      width: 100%;
+    }
+    .console {
+      min-height: 649px;
+    }
+    .price {
+      align-items: start;
+    }
+    .price strong {
+      font-size: 17px;
+    }
+    .ledger-intro p {
+      margin: 20px 0;
+    }
+    .account strong {
+      font-size: 46px;
+    }
+  }
+</style>
+<script src="../../components/business/studio.ts"></script>

@@ -1,0 +1,38 @@
+---
+import Premiere from './Premiere.astro';
+import Artwork from './Artwork.astro';
+---
+<section class="home-hero" data-motion aria-labelledby="home-title">
+  <script is:inline>
+    try {
+      const locationURL = new URL(location.href);
+      const replay = locationURL.searchParams.get('intro') === 'replay';
+      if (replay) {
+        locationURL.searchParams.delete('intro');
+        history.replaceState(history.state,'',locationURL.pathname + locationURL.search + locationURL.hash);
+      }
+      if (!matchMedia('(prefers-reduced-motion: reduce)').matches && (replay || !sessionStorage.getItem('newplay-home-intro'))) {
+        document.currentScript.parentElement.dataset.enter = '';
+        sessionStorage.setItem('newplay-home-intro','1');
+      }
+    } catch {}
+  </script>
+  <picture class="orbit-bg" aria-hidden="true"><source media="(max-width:799px)" srcset="/assets/home/cc328.svg"/><img src="/assets/home/e9e15.svg" alt="" /></picture>
+  <div class="hero-art" aria-hidden="true">
+    <img class="hero-plai" src="/assets/home/hero-plai.webp" fetchpriority="high" alt="" width="790" height="790"/>
+    <picture class="orbit-one"><source media="(max-width:799px)" srcset="/assets/home/a77e6.svg"/><img src="/assets/home/aa5a9.svg" alt=""/></picture>
+    <picture class="orbit-two"><source media="(max-width:799px)" srcset="/assets/home/62e8c.svg"/><img src="/assets/home/a5434.svg" alt=""/></picture>
+    <picture class="hero-star"><source media="(max-width:799px)" srcset="/assets/home/467ed.svg"/><img src="/assets/home/b06a0.svg" alt=""/></picture>
+    <div class="hero-token"><b>2048</b><small>MAKE YOUR MOVE</small></div>
+    <div class="playing-cards"><i>A<strong>♠</strong></i><i>K<strong>♥</strong></i></div>
+    <div class="jump-token"><picture><source media="(max-width:799px)" srcset="/assets/home/69257.svg"/><img src="/assets/home/68b99.svg" alt=""/></picture><small>ONE MORE<br/>JUMP</small></div>
+  </div>
+  <div class="hero-copy rail">
+    <h1 id="home-title" aria-label="NewPlay，年轻人的数字娱乐空间。"><span class="latin np-home-title-latin">NewPlay，</span><span class="zh-line np-home-title-zh"><span class="marker yellow">年轻人的</span></span><span class="zh-line np-home-title-zh"><span class="marker mint">数字娱乐</span><span class="ending">空间。</span></span></h1>
+    <nav class="hero-actions" aria-label="发现 NewPlay"><a href="/games/">发现游戏 <Artwork desktop="048dd.svg" mobile="490d2.svg" class="cta-arrow"/></a><a href="/studio/">AI 创作 <Artwork desktop="048dd.svg" mobile="490d2.svg" class="cta-arrow"/></a><a href="/cooperation/">连接同好 <Artwork desktop="048dd.svg" mobile="490d2.svg" class="cta-arrow"/></a></nav>
+    <p class="hero-intro">跳进一个新世界。找到你的下一局。<br/>普莱陪你发现、学会，再玩出自己的风格。</p>
+    <Premiere/>
+  </div>
+  <a class="agent-ticket" href="#agent"><img src="/assets/home/e3b67.svg" alt=""/><span><b>PLAI / AI AGENT</b><br/>找游戏。学玩法。一起进阶。</span><img src="/assets/home/e1aff.svg" alt=""/></a>
+  <div class="hero-bottom rail"><a href="#intro">向下滚动，打开下一局 <em>↓</em></a><small>NewPlay, Play New.</small><button type="button" data-pause>暂停动效</button></div>
+</section>

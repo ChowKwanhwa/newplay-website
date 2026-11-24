@@ -1,0 +1,12 @@
+---
+import Artwork from './Artwork.astro';
+const studios=[
+  ['fashion','造型实验室','不止一种，','是你的样子。','studio-fashion.webp','试试造型创作 ↗','今天的风格，你说了算。'],
+  ['music','我的心情战歌','把心情，','调到喜欢的频率。','studio-music.webp','试试心情音乐 ↗','这一刻，自带 BGM。']
+];
+---
+<section class="workshop" id="workshop"><div class="rail">
+  <small>普莱工坊</small><div class="spread"><h2>你的灵感，<br/>今天穿什么？</h2><p>换个造型，换首心情。<br/>把「我喜欢」，变成「很像我」。</p></div>
+  <Artwork desktop="85f35.svg" mobile="0f0c2.svg" class="work-star"/><div class="studio-cards">{studios.map(([key,label,a,b,src,action,note])=><article class={'studio-card '+key} data-motion><button type="button" class="section-pause" data-pause>Ⅱ 暂停此区动效</button>{key==='fashion'&&<Artwork class="fashion-star" desktop="8cc65.svg" mobile="a231b.svg"/>}<small>{label}</small><h3>{a}<br/>{b}</h3><img class="studio-art" src={'/assets/home/'+src} alt="" loading="lazy"/><a href={`/studio/?scene=${key}`}>{action}</a><div class="studio-decoration">{key==='fashion'?<><Artwork desktop="b6309.svg" mobile="2292e.svg"/><Artwork desktop="c1d06.svg" mobile="e6af9.svg"/><Artwork desktop="0bb33.svg" mobile="4f65c.svg"/></>:Array.from({length:17},(_,i)=><i style={`height:${8+Math.abs(Math.sin(i*2.7))*18}px;--delay:-${i/7}s`}></i>)}</div><p>{note}</p></article>)}</div>
+</div></section>
+<section class="finale" data-motion><button type="button" class="section-pause" data-pause>Ⅱ 暂停此区动效</button><picture class="final-star"><source srcset="/assets/home/85824.svg" media="(max-width:799px)"/><img src="/assets/home/9cdd4.svg" alt=""/></picture><picture class="final-ring"><source srcset="/assets/home/f653c.svg" media="(max-width:799px)"/><img src="/assets/home/c55da.svg" alt=""/></picture><small>好玩，会传染。</small><h2>带上你的灵感。<br/>下一场，一起<span class="final-break">玩。</span></h2><a href="/games/">NewPlay, Play New. <Artwork desktop="089e3.svg" mobile="ea74a.svg" class="cta-arrow"/></a></section>

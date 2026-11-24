@@ -1,0 +1,24 @@
+---
+const covers = [
+  {title:'普莱宣传 MV', tab:'MV', subtitle:'查看 MV 活动预告 ↗', art:'/assets/home/premiere-mv.webp', eyebrow:'PLAI / MUSIC VIDEO', lead:'用一首歌，打开普莱的好玩世界。', status:'原片暂不可用'},
+  {title:'NewPlay 短剧预告', tab:'短剧', subtitle:'预告资源待接入 ↗', art:'/assets/home/premiere-drama.webp', eyebrow:'NEWPLAY SHORT DRAMA', lead:'先看封面，预告片资源接入后即可播放。', status:'预告资源待接入'},
+  {title:'PLAI 启航节点计划', tab:'节点', subtitle:'制作中 · 敬请期待 ↗', art:'', eyebrow:'COMING SOON', lead:'预告正在制作中。准备好了，就在这里与你见面。', status:'制作中 · 敬请期待'}
+];
+const original = 'https://library.newplaymarkets.online/files/motion/209a8aa989/NewPlay-%E5%93%81%E7%89%8C%E5%AE%A3%E4%BC%A0%E7%89%87MV-%E8%8B%B1%E6%96%87%E7%89%88.mp4';
+---
+<div class="premiere" data-premiere data-original={original}>
+  <h2>NewPlay 精彩活动预告</h2>
+  <div class="preview-card">
+    <button class="preview-open" type="button" data-open-room aria-haspopup="dialog">
+      {covers.map((c,i)=><span class="preview-cover" data-cover={i} hidden={i!==0} style={c.art?`--cover:url("${c.art}")`:undefined}><b>{c.title}</b><small>{c.subtitle}</small></span>)}
+    </button>
+    <div class="preview-controls">{covers.map((c,i)=><button type="button" data-select-cover={i} aria-pressed={i===0}>{c.tab}</button>)}<button type="button" data-cover-pause>Ⅱ 暂停</button></div>
+  </div>
+  <dialog class="premiere-room home-dialog" aria-labelledby="premiere-title">
+    <div class="room-head"><div><small>NEWPLAY / PREMIERE ROOM</small><h2 id="premiere-title">精彩活动预告</h2><p>下一场好玩，先睹为快。</p></div><button type="button" data-dismiss>返回首页 ×</button></div>
+    {covers.map((c,i)=><article class="room-panel" data-cover={i} hidden={i!==0}><div class="room-poster" style={c.art?`background-image:url("${c.art}")`:undefined}>{!c.art&&<strong>PLAI 启航节点<br/>预告正在制作中。</strong>}</div><div class="room-caption"><small>{c.eyebrow}</small><h3>{c.title}</h3><p>{c.lead}</p>{i===0?<><p class="mv-status" role="status">原片暂不可用，可重新连接。</p><button class="room-play" type="button" data-check-original>重新连接原片</button><a class="room-play" data-play-original hidden target="_blank" rel="noopener">▶ 播放完整 MV ↗</a></>:i===2?<a class="room-play" href="/nodes/">查看节点计划 ↗</a>:<span class="room-unavailable">预告片待接入</span>}</div></article>)}
+    <article data-error hidden class="room-error"><h3>暂时没有连上，好玩不散场。</h3><p>可以重试，或先看看其他内容。</p><button type="button" data-retry>重新加载</button></article>
+    <div class="room-list">{covers.map((c,i)=><button type="button" data-select-cover={i} aria-pressed={i===0}><small>0{i+1}</small><b>{c.title}</b><span>{c.status}</span></button>)}</div>
+    <div class="room-foot"><button type="button" data-cover-pause>Ⅱ 暂停封面轮播</button><button type="button" data-show-error>播放遇到问题？查看重试状态</button></div>
+  </dialog>
+</div>

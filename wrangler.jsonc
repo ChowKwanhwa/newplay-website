@@ -1,0 +1,31 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "newplay-website-preview",
+  "main": "worker/index.js",
+  "compatibility_date": "2026-11-24",
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS",
+    "run_worker_first": true,
+    "html_handling": "force-trailing-slash",
+    "not_found_handling": "404-page"
+  },
+  "workers_dev": true,
+  "env": {
+    "production": {
+      "name": "newplay-website",
+      "workers_dev": false,
+      "assets": {
+        "directory": "./dist",
+        "binding": "ASSETS",
+        "run_worker_first": true,
+        "html_handling": "force-trailing-slash",
+        "not_found_handling": "404-page"
+      },
+      "routes": [
+        {"pattern": "newplay.game", "custom_domain": true},
+        {"pattern": "www.newplay.game", "custom_domain": true}
+      ]
+    }
+  }
+}

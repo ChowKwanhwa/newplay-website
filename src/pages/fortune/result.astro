@@ -1,0 +1,101 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import data from "../../scripts/games/fortune-text.json";
+import "../../styles/fortune.css";
+const sample = data.topics[0];
+---
+
+<Layout
+  title="你的灵感签 · 普莱好运签"
+  description="把启发留下，不把私密心事带出去。普莱好运签的本地预设解读。"
+>
+  <main class="fortune result">
+    <div class="f-wrap">
+      <header class="result-head">
+        <span class="f-kicker">你的灵感签 / 本地内容演示</span><span
+          data-result="context">白羊座 / 勇气与选择</span>
+      </header><div class="result-grid">
+        <section>
+          <div class="sign-card">
+            <header>
+              <img
+                src="/assets/games/fortune-wordmark.svg"
+                alt="NewPlay"
+              /><small>普莱好运签</small>
+            </header><img
+              class="sign-art"
+              src="/assets/games/fortune-art.webp"
+              alt="蓝色星环和金属流星艺术签"
+            /><div class="sign-text">
+              <small data-result="tag">白羊座灵感 / 向前一步</small><h2
+                data-result="title"
+              >
+                {sample.title}
+              </h2><p data-result="verse">{sample.verse}</p><small
+                >星座灵感 × PLAI 解读</small>
+            </div>
+          </div><small class="center">把启发留下，不把私密心事带出去。</small
+          ><div class="sign-actions">
+            <button class="f-btn" id="save">收藏此签</button><button
+              class="f-btn"
+              id="download">下载 SVG 签卡</button>
+          </div>
+        </section>
+        <article class="reading">
+          <p class="f-kicker">签文</p><h1 data-result="title">
+            {sample.title}
+          </h1><p class="verse" data-result="verse">{sample.verse}</p><section>
+            <h2>PLAI 的主题解读</h2><p data-result="interpretation">
+              {sample.interpretation}
+            </p><blockquote>
+              <b data-result="perspective">白羊座的灵感视角</b><p
+                data-result="view"
+              >
+                {data.views[0]}
+              </p>
+            </blockquote><small
+              >这份解读按主题与星座视角匹配；相同选择会得到同一份本地内容，不暗示命定结果。</small>
+          </section><section>
+            <h2>把灵感落到今天</h2><ol id="tips">
+              {
+                sample.actions.map((a, i) => (
+                  <li>
+                    <>
+                      <b>
+                        {
+                          [
+                            "把第一步缩到十分钟",
+                            "给试错留一个出口",
+                            "留下真实的小证据",
+                          ][i]
+                        }
+                      </b>
+                      <p>{a}</p>
+                    </>
+                  </li>
+                ))
+              }
+            </ol>
+          </section><section>
+            <h2>和 PLAI 再想一步</h2><p>选一个追问，看看本地延伸解读。</p><div
+              class="follow"
+            >
+              <button class="f-btn" data-follow="0"
+                >如果我还是不敢开始呢？</button
+              ><button class="f-btn" data-follow="1">怎么判断是否继续？</button>
+            </div><p id="follow-response" role="status"></p><small
+              >预写内容演示，不是实时 AI 对话。</small>
+          </section>
+        </article>
+      </div><footer class="result-foot">
+        <div>
+          <button id="share" class="f-btn pink">分享这份灵感</button><button
+            id="summary"
+            class="f-btn">复制解读摘要</button
+          ><a href="/fortune/#draw">重新选择 / 再抽一签</a>
+        </div><p id="result-status" role="status"></p><small
+          >星座仅是创作灵感，不是科学预测，不保证运势或任何结果。解读用于娱乐与自我思考，不提供投资、医疗或法律指导。</small>
+      </footer>
+    </div>
+  </main>
+</Layout><script src="../../scripts/games/fortune-result.ts"></script>

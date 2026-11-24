@@ -1,0 +1,18 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import SiteNav from "../SiteNav.astro";
+import SiteFooter from "../SiteFooter.astro";
+import "../../styles/business.css";
+interface Props {
+  title: string;
+  description: string;
+  standalone?: boolean;
+}
+const { title, description, standalone = false } = Astro.props;
+---
+
+<Layout title={title} description={description}>
+  {!standalone && <SiteNav />}
+  <main class="business"><slot /></main>
+  {!standalone && <SiteFooter />}
+</Layout>

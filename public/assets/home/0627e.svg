@@ -1,0 +1,33 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="2000" height="1390" viewBox="0 0 2000 1390" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Motion liquid fold violet" opacity="0.4" clip-path="url(#clip0_0_681)">
+<path id="Vector" d="M-319.444 973.419C166.667 544.277 444.444 1140.89 847.222 816.416C1180.56 544.277 1097.22 282.605 1569.44 303.539C1958.33 324.473 2138.89 41.8675 2347.22 62.8012L2361.11 355.874C1986.11 439.608 1805.56 680.346 1500 586.145C1152.78 491.943 1319.44 1004.82 958.333 1140.89C486.111 1297.89 152.778 837.349 -319.444 1287.42V973.419Z" fill="url(#paint0_linear_0_681)"/>
+<path id="Vector_2" d="M-250 586.145C222.222 240.738 555.556 900.151 1069.44 648.946C1513.89 429.142 1708.33 942.018 2236.11 701.28L2305.56 868.75C1666.67 1224.62 1444.44 669.88 1041.67 889.684C527.778 1140.89 152.778 460.542 -250 795.482V586.145Z" fill="url(#paint1_linear_0_681)"/>
+<path id="Vector_3" opacity="0.7" d="M-263.889 1146.12C333.333 669.879 555.556 1381.63 1097.22 1078.09C1500 858.283 1847.22 1318.83 2263.89 889.684V1057.15C1833.33 1517.7 1486.11 1025.75 1125 1245.56C527.778 1570.03 250 942.018 -263.889 1329.29V1146.12Z" fill="url(#paint2_linear_0_681)"/>
+</g>
+<defs>
+<linearGradient id="paint0_linear_0_681" x1="-319.444" y1="61.6922" x2="875.141" y2="1890.4" gradientUnits="userSpaceOnUse">
+<stop stop-color="#4C43F7"/>
+<stop offset="0.34" stop-color="#C6BAFF"/>
+<stop offset="0.48" stop-color="#E0FFFF"/>
+<stop offset="0.58" stop-color="#40D5E2"/>
+<stop offset="1" stop-color="#17365E"/>
+</linearGradient>
+<linearGradient id="paint1_linear_0_681" x1="-250" y1="991.299" x2="-55.9797" y2="14.5615" gradientUnits="userSpaceOnUse">
+<stop stop-color="#071E46"/>
+<stop offset="0.4" stop-color="#416BE5"/>
+<stop offset="0.62" stop-color="#9D88F5"/>
+<stop offset="0.74" stop-color="#F4CEFF"/>
+<stop offset="1" stop-color="#3741A3"/>
+</linearGradient>
+<linearGradient id="paint2_linear_0_681" x1="-263.889" y1="889.684" x2="-32.5239" y2="1794.05" gradientUnits="userSpaceOnUse">
+<stop stop-color="#4C43F7"/>
+<stop offset="0.34" stop-color="#C6BAFF"/>
+<stop offset="0.48" stop-color="#E0FFFF"/>
+<stop offset="0.58" stop-color="#40D5E2"/>
+<stop offset="1" stop-color="#17365E"/>
+</linearGradient>
+<clipPath id="clip0_0_681">
+<rect width="2000" height="1390" fill="white"/>
+</clipPath>
+</defs>
+</svg>

@@ -1,0 +1,31 @@
+---
+import '../styles/base.css';
+interface Props {
+  title?: string;
+  description?: string;
+}
+const { title = 'NewPlay', description = '年轻人的数字娱乐空间。跟普莱一起发现游戏、创作与同好。' } = Astro.props;
+const pageTitle = title.includes('NewPlay') ? title : title + ' · NewPlay';
+const canonical = new URL(Astro.url.pathname, Astro.site);
+---
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#d8e9fc" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={new URL('/assets/plai-hero-ice.png', Astro.site)} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/svg+xml" href="/assets/newplay-logo.svg" />
+    <link rel="stylesheet" href="/fonts.css" />
+    <link rel="stylesheet" href="/fonts/site-glyphs.css" />
+    <slot name="head" />
+  </head>
+  <body><slot /></body>
+</html>

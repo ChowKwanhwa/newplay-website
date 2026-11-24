@@ -1,0 +1,425 @@
+---
+import BusinessPage from "../../components/business/BusinessPage.astro";
+const roles = [
+  {
+    key: "game",
+    name: "游戏开发者",
+    icon: "/assets/business/cooperation-arrow.svg",
+    heading: "让好游戏，遇见新玩家。",
+    intro: "从可玩的演示开始，讨论内容适配、平台接入与持续运营。",
+    materials: [
+      "玩法说明与可玩演示",
+      "设备与语言适配情况",
+      "内容版权与授权范围",
+      "测试与运营安排",
+    ],
+  },
+  {
+    key: "creator",
+    name: "内容创作者",
+    icon: "/assets/business/cooperation-star.svg",
+    heading: "让你的作品，遇见同好。",
+    intro: "从一个作品样例开始，讨论内容共创、授权和发布安排。",
+    materials: [
+      "代表作品与内容方向",
+      "创作排期与交付形式",
+      "作品版权与授权范围",
+      "目标受众与发布渠道",
+    ],
+  },
+  {
+    key: "tech",
+    name: "技术伙伴",
+    glyph: "⌘",
+    heading: "把技术，变成好玩的体验。",
+    intro: "从可以验证的功能出发，一起讨论接口、适配与测试。",
+    materials: [
+      "技术方案与功能演示",
+      "接口与集成说明",
+      "数据范围与安全要求",
+      "测试环境与支持安排",
+    ],
+  },
+  {
+    key: "payment",
+    name: "支付伙伴",
+    glyph: "⇄",
+    heading: "一起探索 NewPay 合作。",
+    intro: "梳理服务地区、支付方式与接口能力，明确业务和数据边界。",
+    materials: [
+      "支持地区与服务资质",
+      "通道与结算说明",
+      "接口文档与测试环境",
+      "数据边界与风控安排",
+    ],
+  },
+];
+const stages = [
+  "有想法，准备探索",
+  "已有样例，准备讨论",
+  "已具备方案，准备验证",
+];
+---
+
+<BusinessPage
+  title="合作 · 一起创造"
+  description="游戏、内容、技术与支付合作，从适合你的路径出发，生成一份本地准备清单。"
+>
+  <section class="partner">
+    <div class="biz-wrap">
+      <p class="biz-overline">把你的擅长，带到下一场好玩。</p><h1
+        class="biz-title"
+      >
+        你带来可能。<br />我们一起<span>把它玩出来。</span>
+      </h1>
+      <p class="biz-lead">
+        游戏、内容、技术与支付，每一种合作都有不同起点。选一条路径，整理一份属于你的合作清单。
+      </p>
+      <div class="role-tabs" aria-label="选择合作方向">
+        {
+          roles.map((r, i) => (
+            <button
+              type="button"
+              data-role={r.key}
+              aria-pressed={i === 0 ? "true" : "false"}
+            >
+              {r.icon ? (
+                <img src={r.icon} width="32" height="32" alt="" />
+              ) : (
+                <span aria-hidden="true">{r.glyph}</span>
+              )}
+              <b>{r.name}</b>
+            </button>
+          ))
+        }
+      </div>
+      <div class="detail">
+        {
+          roles.map((r, i) => (
+            <article data-info={r.key} hidden={i !== 0}>
+              <>
+                <p class="biz-overline">合作路径</p>
+                <h2>{r.heading}</h2>
+                <p class="biz-lead">{r.intro}</p>
+              </>
+              <ol>
+                {[
+                  ["认识彼此", "对齐受众、内容和合作边界。"],
+                  ["小范围验证", "先看演示，再讨论适配与测试。"],
+                  ["一起明确下一步", "职责、交付、运营与规则共同确认。"],
+                ].map(([title, desc], n) => (
+                  <li>
+                    <span>{n + 1}</span>
+                    <div>
+                      <h3>{title}</h3>
+                      <p>{desc}</p>
+                    </div>
+                  </li>
+                ))}
+              </ol>
+            </article>
+          ))
+        }
+        <form class="biz-panel" id="checklist">
+          <h2>先整理一份准备清单。</h2><label for="stage"
+            ><b>你目前的阶段</b></label
+          ><select id="stage">{stages.map((s) => <option>{s}</option>)}</select>
+          {
+            roles.map((r, i) => (
+              <fieldset
+                data-materials={r.key}
+                hidden={i !== 0}
+                disabled={i !== 0}
+              >
+                <legend>你已经准备好的材料</legend>
+                {r.materials.map((m) => (
+                  <label>
+                    <input type="checkbox" value={m} /> {m}
+                  </label>
+                ))}
+              </fieldset>
+            ))
+          }
+          <button class="biz-btn" type="submit">生成本地清单</button><p
+            class="response"
+            role="status"
+          >
+            选项已更新，请重新生成本地清单。
+          </p>
+          <div class="result" data-result hidden>
+            <h3>你的合作准备清单</h3><p data-summary></p><ul data-items>
+            </ul><button type="button" data-copy>复制清单</button>
+          </div>
+        </form>
+      </div>
+      <p class="biz-note">
+        本页是合作准备工具，不代表已签约、受理或承诺合作。支付相关资质、地区、接口与数据边界需双方确认。
+      </p>
+    </div>
+  </section>
+</BusinessPage>
+<style>
+  .partner {
+    background: #dceafc;
+    padding: 76px 0;
+  }
+  .partner h1 {
+    margin: 25px 0;
+  }
+  .partner > .biz-wrap > .biz-lead {
+    max-width: 710px;
+  }
+  .role-tabs {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+    margin: 62px 0;
+  }
+  .role-tabs button {
+    display: grid;
+    gap: 20px;
+    text-align: left;
+    align-content: end;
+    background: none;
+    border: 0;
+    border-bottom: 5px solid #536c90;
+    padding: 18px 4px 24px;
+    color: #455f84;
+    font-size: 19px;
+  }
+  .role-tabs button span {
+    font:
+      400 32px/1 "NewPlay Space",
+      sans-serif;
+  }
+  .role-tabs button:not([aria-pressed="true"]) b {
+    font-weight: 450;
+  }
+  .role-tabs button[aria-pressed="true"] {
+    color: #264afa;
+    border-color: #264afa;
+  }
+  .detail {
+    display: grid;
+    grid-template-columns: 1fr 0.92fr;
+    gap: 5.5%;
+    align-items: start;
+  }
+  .detail article > h2 {
+    font-size: clamp(1.6rem, 2.65vw, 38px);
+    line-height: 1.3;
+    letter-spacing: -0.045em;
+    margin: 23px 0;
+  }
+  .detail article > .biz-lead,
+  .detail li p {
+    color: #4c6381;
+  }
+  .detail ol {
+    display: grid;
+    gap: 32px;
+    list-style: none;
+    padding: 0;
+    margin: 38px 0;
+  }
+  .detail ol li {
+    display: flex;
+    align-items: start;
+    gap: 20px;
+  }
+  .detail li h3 {
+    font-size: 17px;
+  }
+  .detail li p {
+    font-size: 14px;
+    margin-top: 8px;
+  }
+  .detail li > span {
+    width: 32px;
+    height: 32px;
+    display: grid;
+    place-items: center;
+    border: 1px solid #95abc8;
+    border-radius: 50%;
+    font-size: 13px;
+  }
+  .detail form {
+    font-size: 14px;
+    min-height: 567px;
+  }
+  .detail form h2 {
+    font-size: 23px;
+    margin-bottom: 22px;
+  }
+  .detail form b,
+  .detail legend {
+    font-weight: 700;
+    font-size: 13px;
+  }
+  .detail select {
+    width: 100%;
+    border: 1px solid #9ab6d9;
+    border-radius: 11px;
+    background: #f9fcff;
+    padding: 12px;
+    margin: 8px 0 14px;
+  }
+  .detail fieldset {
+    border: 0;
+    padding: 0;
+    margin: 0 0 30px;
+  }
+  .detail fieldset label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 0;
+  }
+  .detail legend {
+    padding: 0;
+    margin-bottom: 16px;
+  }
+  .detail input {
+    width: 19px;
+    height: 19px;
+    accent-color: #294bff;
+  }
+  .response {
+    font-size: 12px;
+    margin: 18px 0 10px;
+  }
+  .partner > .biz-wrap > .biz-note {
+    margin-top: 18px;
+  }
+  .result {
+    padding: 18px;
+    background: #edf4fc;
+    border-radius: 12px;
+  }
+  .result ul {
+    padding-left: 1.5em;
+  }
+  .result button {
+    margin-top: 12px;
+    border: 1px solid #9fb5cf;
+    background: white;
+    border-radius: 8px;
+    padding: 7px 12px;
+  }
+  @media (max-width: 760px) {
+    .partner {
+      padding: 40px 0;
+    }
+    .partner h1 span {
+      display: block;
+    }
+    .role-tabs {
+      grid-template-columns: 1fr 1fr;
+      gap: 8px 20px;
+      margin: 34px 0;
+    }
+    .role-tabs button {
+      font-size: 16px;
+      padding: 16px 0;
+      gap: 14px;
+      min-height: 100px;
+      border-bottom-width: 2px;
+    }
+    .role-tabs button img {
+      width: 20px;
+      height: 20px;
+    }
+    .role-tabs button span {
+      font-size: 23px;
+    }
+    .detail {
+      display: block;
+    }
+    .detail form {
+      margin-top: 65px;
+      min-height: 548px;
+    }
+    .partner > .biz-wrap > .biz-lead {
+      font-size: 15px;
+    }
+    .detail ol {
+      gap: 24px;
+    }
+    .detail li h3 {
+      font-size: 15px;
+    }
+  }
+</style>
+<script>
+  const tabs = Array.from(
+    document.querySelectorAll<HTMLButtonElement>("[data-role]"),
+  );
+  const form = document.querySelector<HTMLFormElement>("#checklist")!,
+    stage = document.querySelector<HTMLSelectElement>("#stage")!,
+    result = document.querySelector<HTMLElement>("[data-result]")!,
+    response = document.querySelector<HTMLElement>(".response")!;
+  let active = "game",
+    readyText = "";
+  function dirty() {
+    result.hidden = true;
+    response.textContent = "选项已更新，请重新生成本地清单。";
+  }
+  function setRole(key: string) {
+    if (!tabs.some((b) => b.dataset.role === key)) key = "game";
+    active = key;
+    tabs.forEach((b) =>
+      b.setAttribute("aria-pressed", String(b.dataset.role === key)),
+    );
+    document
+      .querySelectorAll<HTMLElement>("[data-info]")
+      .forEach((a) => (a.hidden = a.dataset.info !== key));
+    document
+      .querySelectorAll<HTMLFieldSetElement>("[data-materials]")
+      .forEach((f) => {
+        f.hidden = f.dataset.materials !== key;
+        f.disabled = f.hidden;
+      });
+    dirty();
+  }
+  tabs.forEach((b) =>
+    b.addEventListener("click", () => {
+      setRole(b.dataset.role!);
+      const u = new URL(location.href);
+      u.searchParams.set("role", active);
+      history.replaceState(null, "", u);
+    }),
+  );
+  setRole(new URLSearchParams(location.search).get("role") || "game");
+  form.addEventListener("change", dirty);
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const name = tabs
+      .find((b) => b.dataset.role === active)!
+      .querySelector("b")!.textContent!;
+    const summary = name + " · " + stage.value,
+      materials = Array.from(
+        form.querySelectorAll<HTMLInputElement>(
+          "fieldset:not([disabled]) input",
+        ),
+      ).map((i) => (i.checked ? "已准备：" : "待准备：") + i.value);
+    document.querySelector("[data-summary]")!.textContent = summary;
+    document.querySelector("[data-items]")!.replaceChildren(
+      ...materials.map((t) => {
+        const li = document.createElement("li");
+        li.textContent = t;
+        return li;
+      }),
+    );
+    readyText = [summary, ...materials].join("\n");
+    result.hidden = false;
+    response.textContent = "已在本页生成清单。";
+  });
+  document.querySelector("[data-copy]")!.addEventListener("click", async () => {
+    try {
+      await navigator.clipboard.writeText(readyText);
+      response.textContent = "清单已复制。";
+    } catch {
+      response.textContent = "可直接选中下方清单复制。";
+    }
+  });
+</script>

@@ -1,0 +1,847 @@
+---
+import GameLayout from "../components/games/GameLayout.astro";
+const winners = [
+  ["2", "月亮汽水", "920", "silver", "cards-runner", "亚军"],
+  ["1", "星际橙", "980", "gold", "cards-champion", "冠军"],
+  ["3", "像素乌龙", "875", "bronze", "cards-hero", "季军"],
+];
+---
+
+<GameLayout
+  title="经典棋牌"
+  description="先认识这一手。和普莱练习对子、顺子，体验本地基础牌型练习。"
+  ><div class="classic">
+    <nav class="table-nav" aria-label="牌桌导航">
+      <a href="#top">经典棋牌</a><a href="/lieflat/">躺平发育</a><a
+        href="#leaderboard">排行榜</a
+      ><a href="#agent">Agent 代打</a><small>开发中的可玩概念</small>
+    </nav>
+    <section class="c-hero" id="top">
+      <div class="c-wrap">
+        <div>
+          <small>经典棋牌 / NewPlay 游戏俱乐部</small><h1>
+            这手，<br />不按套路。
+          </h1><p>
+            把默契打出来，把思路玩开。<br />从一手牌开始，遇见你的新搭档。
+          </p><div class="g-actions">
+            <a class="c-btn yellow" href="#practice">先试一手　↗</a><a
+              class="c-btn"
+              href="#agent">让 PLAI 陪练　↗</a>
+          </div><small>可玩牌型练习 · 非正式商用游戏 · 无下注</small>
+        </div><div class="card-scene">
+          <div class="bigcard">
+            <b>A<small>♠</small></b><strong>GOOD<br />COMPANY.</strong><img
+              src="/assets/games/cards-hero.webp"
+              alt="普莱牌手"
+            />
+          </div><span>纯策略<br />不下注</span><figure>
+            <img
+              src="/assets/games/cards-snapshot.webp"
+              alt="普莱的牌桌快照"
+            /><figcaption>一手灵感，双倍默契。</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+    <div class="c-ticker">
+      <div class="c-wrap">
+        掼蛋 / 斗地主 / 麻将 / 跑得快 / 十三水 <span>玩法方向探索中</span>
+      </div>
+    </div>
+    <section id="leaderboard" class="c-stage">
+      <div class="c-wrap">
+        <div class="c-heading">
+          <div>
+            <small>NewPlay 冠军舞台</small><h2>好思路，<br />站上高光。</h2>
+          </div><p>
+            <b>演示数据 · 非真实成绩</b><br
+            />以下昵称与分数均为虚构演示数据。<br />真人与 Agent
+            独立分榜，不混排、不提交成绩。
+          </p>
+        </div>
+        <div class="c-controls">
+          <div>
+            <button class="tab" data-mode="human" aria-pressed="true"
+              >真人竞技榜</button
+            ><button class="tab" data-mode="agent" aria-pressed="false"
+              >Agent 练习榜</button>
+          </div><div>
+            <label
+              >时期 <select id="rank-period"
+                ><option value="week">本周</option><option value="today"
+                  >今日</option
+                ><option value="month">本月</option></select
+              ></label
+            ><label
+              >玩法 <select id="rank-kind"
+                ><option value="all">全部练习</option><option value="pairs"
+                  >对子</option
+                ><option value="straight">顺子</option></select
+              ></label>
+          </div>
+        </div><p id="range">真人竞技榜　本周 / 全部练习</p>
+        <div id="rank-content">
+          <div class="prize-stage">
+            {
+              winners.map(([rank, name, score, metal, asset, title]) => (
+                <article
+                  style={
+                    "--ticket:url(/assets/games/ticket-" +
+                    metal +
+                    ".svg);--trim:url(/assets/games/ticket-trim-" +
+                    metal +
+                    ".svg);--plinth:url(/assets/games/plinth-" +
+                    metal +
+                    ".svg)"
+                  }
+                >
+                  <>
+                    <div class="prize-label">
+                      ♜　{title}
+                      <small>NewPlay</small>
+                    </div>
+                    <img
+                      loading="lazy"
+                      src={"/assets/games/" + asset + ".webp"}
+                      alt=""
+                    />
+                    <div class="plinth" />
+                    <b data-name={name}>{name}</b>
+                    <strong data-score={score}>{score}</strong>
+                    <small>示例练习分</small>
+                  </>
+                </article>
+              ))
+            }
+          </div><p class="stage-caption">每一次好思路，都有自己的高光。</p><h3>
+            更多好手
+          </h3>{
+            [
+              ["04", "云端漫游者", "830"],
+              ["05", "晚风收集员", "790"],
+            ].map(([rank, name, score]) => (
+              <div class="c-row">
+                <>
+                  <b>{rank}</b>
+                  <span data-name={name}>{name}</span>
+                  <b data-score={score}>{score}</b>
+                </>
+              </div>
+            ))
+          }<div class="c-row me">
+            <b>—</b><span
+              >我的位置 · 未入榜<br /><small>未连接真实账户</small></span
+            ><b>暂无成绩</b>
+          </div>
+        </div>
+        <p id="rank-message" role="status" hidden></p><p class="c-fine">
+          真人竞技榜不接收 AI 辅助成绩；Agent 仅在练习与独立榜展示。
+        </p><details class="c-preview">
+          <summary>设计状态预览</summary><button data-preview="loading"
+            >加载中</button
+          ><button data-preview="error">加载失败</button><button
+            data-preview="reset">恢复示例榜</button>
+        </details>
+      </div>
+    </section>
+    <section id="practice" class="c-practice">
+      <div class="c-wrap">
+        <div class="c-heading">
+          <div>
+            <small>保留可玩的本地体验</small><h2>
+              先来一手。<br />把思路打出来。
+            </h2>
+          </div><p>
+            没有匹配、下注、资产或奖励。<br />练习不会向任何排行榜提交成绩。
+          </p>
+        </div>
+        <div class="table">
+          <div class="hand">
+            <small>你的手牌 · 仅本人可见</small><h3>PLAY<br />YOUR HAND.</h3><b
+              id="c-task">找出一对相同点数</b
+            ><div class="cards" role="group" aria-label="六张手牌">
+              {
+                [
+                  ["3", "♠"],
+                  ["3", "♥"],
+                  ["4", "♣"],
+                  ["5", "♦"],
+                  ["6", "♠"],
+                  ["8", "♥"],
+                ].map(([n, s], i) => (
+                  <button
+                    data-card={i}
+                    aria-pressed="false"
+                    aria-label={s + n}
+                    class:list={[{ red: ["♥", "♦"].includes(s) }]}
+                  >
+                    <small>{n}</small>
+                    {s}
+                  </button>
+                ))
+              }
+            </div><div class="hand-footer">
+              <small>无对手暗牌</small><small id="count">已选 0 张</small>
+            </div>
+          </div>
+          <div class="hand-controls">
+            <h3>选好这一手。</h3><div class="g-actions">
+              <button class="tab" data-task="pair" aria-pressed="true"
+                >对子</button
+              ><button class="tab" data-task="straight" aria-pressed="false"
+                >顺子</button>
+            </div><p>
+              对子：两张相同点数。<br />顺子：至少三张连续、不重复点数。<br
+              />仅基础组合练习，不是完整棋牌规则。
+            </p><button id="check" class="c-btn blue">检查我的组合</button
+            ><button id="again" class="c-btn">重新开始本地练习</button><small
+              >键盘：Tab 聚焦手牌，左右键移动，空格选牌；手牌区域内可用 1–6
+              选牌。</small
+            ><p id="hand-report" role="status">
+              先选两个 3，试试对子；或切换到顺子任务。
+            </p><hr /><span>当前演示局　<b id="round">01</b></span>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="agent" class="c-agent">
+      <div class="c-wrap g-two">
+        <div class="agent-left">
+          <small>你的搭档，不替你做主</small><h2>PLAI</h2><h3>
+            接得住你的思路。
+          </h3><img
+            loading="lazy"
+            src="/assets/games/cards-hero.webp"
+            alt="普莱陪练"
+          /><small>AI Agent 代打控制台　·　本地规则模拟</small>
+        </div><div class="agent-control">
+          <header>
+            <small>本局控制权</small><b id="agent-state">未授权 · 已关闭</b>
+          </header><p>① 明确授权　　 ② 本局托管　　 ③ 随时接管</p><h3>
+            由你按下开始。
+          </h3><p>默认关闭。授权只对当前演示局有效，下一局必须重新授权。</p><div
+            class="agent-info"
+          >
+            <b>PLAI 可以看到什么？</b><p>
+              自己的六张手牌、公开牌型任务与合法动作列表。
+            </p><b>本次可以做什么？</b><p>
+              选择合法组合并检查一次；完成即停止。
+            </p>
+          </div><button id="authorize" class="c-btn blue">授权当前演示局</button
+          ><button id="takeover" class="c-btn" hidden>我来接管</button><h4>
+            动作记录　<small>仅本页</small>
+          </h4><p id="agent-log" role="status">
+            未授权：没有执行任何动作。
+          </p><small>切后台、窗口失焦或断线即暂停；回来不自动继续。</small>
+        </div>
+      </div>
+    </section>
+    <section class="c-end">
+      <small>NewPlay, Play New.</small><h2>把默契，带去下一座浮岛。</h2><a
+        href="/games/"
+        class="c-btn blue">返回好玩宇宙　↗</a
+      ><p>游戏、榜单与 Agent 均为设计和本地演示。</p>
+    </section>
+  </div></GameLayout
+>
+<script src="../scripts/games/classic.ts"></script>
+<style>
+  .classic {
+    --blue: #234bff;
+    --ink: #07132f;
+    --cream: #fffdf0;
+  }
+  .c-wrap {
+    width: min(88%, 1268px);
+    margin: auto;
+  }
+  .classic small {
+    font-weight: 650;
+  }
+  .table-nav {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    padding: 15px 5%;
+    font-size: 13px;
+    font-weight: 700;
+  }
+  .table-nav small {
+    margin-left: auto;
+  }
+  .table-nav a {
+    text-decoration: none;
+  }
+  .c-hero,
+  .c-ticker {
+    background: var(--blue);
+    color: #fff1a8;
+  }
+  .c-hero {
+    overflow: hidden;
+  }
+  .c-hero > .c-wrap {
+    min-height: 650px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 20px;
+    padding: 50px 0;
+  }
+  .c-hero h1 {
+    font-size: clamp(75px, 7.1vw, 104px);
+    color: #fff1a8;
+    margin: 20px 0 30px;
+  }
+  .c-hero p {
+    font-size: 18px;
+    line-height: 1.8;
+  }
+  .c-hero .g-actions {
+    margin-bottom: 20px;
+  }
+  .c-btn {
+    background: transparent;
+    border: 1px solid currentColor;
+    color: inherit;
+    font:
+      700 15px "NewPlay Noto SC",
+      sans-serif;
+    text-decoration: none;
+    padding: 14px 22px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .c-btn.yellow {
+    background: #fff1a8;
+    color: #12234c;
+  }
+  .c-btn.blue {
+    background: var(--blue);
+    color: white;
+    border-color: var(--blue);
+  }
+  .card-scene {
+    position: relative;
+    isolation: isolate;
+    height: 550px;
+    background: url("/assets/games/cards-orbit.svg") center/contain no-repeat;
+  }
+  .bigcard {
+    position: absolute;
+    top: 2%;
+    left: 15%;
+    height: 91%;
+    width: 61%;
+    border: 8px solid #ffdb3b;
+    border-radius: 22px;
+    transform: rotate(10deg);
+    background: #fffbe8;
+    box-shadow: 12px 12px #091b5b;
+    color: var(--blue);
+  }
+  .bigcard > b,
+  .bigcard > strong {
+    position: absolute;
+    top: 3%;
+    left: 5%;
+    font:
+      700 38px/1 "NewPlay Space",
+      sans-serif;
+  }
+  .bigcard > b small {
+    display: block;
+  }
+  .bigcard > strong {
+    left: 48%;
+    font-size: 25px;
+  }
+  .bigcard img {
+    height: 85%;
+    width: 95%;
+    object-fit: contain;
+    position: absolute;
+    bottom: -4%;
+    left: 3%;
+  }
+  .card-scene > span {
+    position: absolute;
+    bottom: 15%;
+    left: 1%;
+    padding: 24px 16px;
+    background: #7bf1db;
+    color: var(--ink);
+    border: 4px solid var(--ink);
+    border-radius: 50%;
+    transform: rotate(-12deg);
+    font-weight: 900;
+  }
+  .card-scene figure {
+    position: absolute;
+    right: 0;
+    bottom: -2%;
+    width: 29%;
+    background: #fff6c5;
+    color: var(--ink);
+    padding: 7px 7px 3px;
+    margin: 0;
+    transform: rotate(-7deg);
+    text-align: center;
+    font-size: 11px;
+  }
+  .card-scene figure img {
+    width: 100%;
+    display: block;
+  }
+  .c-ticker {
+    border-top: 1px solid #8195ff;
+    padding: 17px 0;
+    font-size: 13px;
+  }
+  .c-ticker span {
+    float: right;
+  }
+  .c-stage {
+    padding: 82px 0;
+    color: #f1f5ff;
+    background:
+      #081532 url("/assets/games/cards-spotlight.svg") top center/cover
+        no-repeat,
+      url("/assets/games/stage-light.svg") center/100% 100% no-repeat;
+  }
+  .c-heading {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 38px;
+  }
+  .c-heading h2 {
+    font-size: clamp(42px, 4.4vw, 66px);
+    margin-top: 15px;
+  }
+  .c-heading p {
+    font-size: 14px;
+    line-height: 1.75;
+  }
+  .c-stage .c-heading p > b {
+    color: #13254c;
+    background: #ffe671;
+    padding: 3px 9px;
+  }
+  .c-controls,
+  .c-controls > div {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .c-controls {
+    justify-content: space-between;
+    border-top: 1px solid #657aa4;
+    padding: 19px 0;
+  }
+  .classic .tab,
+  .c-controls select,
+  .c-preview button {
+    font-size: 14px;
+    padding: 10px 19px;
+    border: 1px solid #7890ae;
+    background: transparent;
+    color: inherit;
+    font-weight: 700;
+  }
+  .c-stage .tab[aria-pressed="true"] {
+    background: #f4f7ff;
+    color: #12234c;
+  }
+  .c-controls label {
+    font-size: 13px;
+  }
+  .c-controls select {
+    background: #172a51;
+  }
+  #range {
+    font-size: 14px;
+  }
+  .prize-stage {
+    display: grid;
+    grid-template-columns: 1fr 1.12fr 1fr;
+    align-items: end;
+    gap: 3%;
+    padding: 54px 7% 30px;
+    background: url("/assets/games/cards-stage.svg") bottom center/100% 35%
+      no-repeat;
+  }
+  .prize-stage article {
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: flex-end;
+    color: white;
+    background:
+      var(--trim) center/92% 94% no-repeat,
+      var(--ticket) center/100% 100% no-repeat;
+    text-align: center;
+    min-width: 0;
+    aspect-ratio: 0.76;
+    padding: 7%;
+  }
+  .prize-stage article > img {
+    width: 100%;
+    height: 61%;
+    object-fit: contain;
+    z-index: 1;
+    margin-bottom: -10%;
+  }
+  .prize-label {
+    position: absolute;
+    top: 6%;
+    left: 7%;
+    font-weight: 900;
+    font-size: 15px;
+    line-height: 1.1;
+  }
+  .prize-label small {
+    font-size: 9px;
+    display: block;
+  }
+  .plinth {
+    width: 90%;
+    height: 14%;
+    background: var(--plinth) center/100% 100% no-repeat;
+  }
+  .prize-stage article > strong {
+    font:
+      700 38px "NewPlay Space",
+      sans-serif;
+  }
+  .prize-stage article > b {
+    font-size: 22px;
+  }
+  .stage-caption {
+    text-align: center;
+    color: #bed1ff;
+    font-size: 12px;
+    margin: 8px 0 40px !important;
+  }
+  .c-row {
+    display: grid;
+    grid-template-columns: 8% 1fr auto;
+    border-block-start: 1px solid #566a8a;
+    padding: 21px 16px;
+  }
+  .c-row.me {
+    background: #203560;
+  }
+  .c-fine,
+  .c-preview {
+    font-size: 13px;
+    margin: 22px 0 !important;
+  }
+  .c-preview summary {
+    cursor: pointer;
+  }
+  .c-preview button {
+    margin: 8px 5px 0 0;
+  }
+  .c-practice,
+  .c-agent {
+    padding: 90px 0;
+    background: #e9efff;
+  }
+  .table {
+    border: 1px solid #95a7d1;
+    display: grid;
+    grid-template-columns: 1.55fr 1fr;
+    min-height: 590px;
+  }
+  .hand,
+  .hand-controls {
+    padding: 32px;
+  }
+  .hand {
+    background: #1c42c8;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 20px;
+  }
+  .hand h3 {
+    font:
+      700 clamp(48px, 5.4vw, 84px) / 0.84 "NewPlay Space",
+      sans-serif;
+    letter-spacing: -0.06em;
+    color: #99acff;
+    transform: rotate(-5deg);
+  }
+  .hand > b {
+    text-align: center;
+  }
+  .cards {
+    display: flex;
+    justify-content: center;
+  }
+  .cards button {
+    position: relative;
+    width: 16%;
+    aspect-ratio: 0.65;
+    background: var(--cream);
+    color: var(--ink);
+    border: 2px solid #142761;
+    border-radius: 8px;
+    box-shadow: 0 5px #aebce0;
+    font-size: clamp(19px, 2.6vw, 40px);
+    transition: transform 0.24s;
+  }
+  .cards button:nth-child(1) {
+    rotate: -8deg;
+  }
+  .cards button:nth-child(2) {
+    rotate: -4deg;
+  }
+  .cards button:nth-last-child(2) {
+    rotate: 4deg;
+  }
+  .cards button:last-child {
+    rotate: 8deg;
+  }
+  .cards .red {
+    color: #eb2447;
+  }
+  .cards small {
+    position: absolute;
+    left: 12%;
+    top: 5%;
+    font-size: 14px;
+  }
+  .cards [aria-pressed="true"] {
+    transform: translateY(-20%);
+    background: #fff0a0;
+    outline: 3px solid #ffdb3b;
+  }
+  .hand-footer {
+    display: flex;
+    justify-content: space-between;
+  }
+  .hand-controls,
+  .agent-control {
+    background: var(--cream);
+    color: var(--ink);
+  }
+  .hand-controls h3,
+  .agent-control h3 {
+    font-size: 28px;
+  }
+  .hand-controls p,
+  .agent-control p {
+    font-size: 14px;
+    line-height: 1.65;
+    margin: 16px 0;
+  }
+  .hand-controls .tab[aria-pressed="true"] {
+    background: var(--ink);
+    color: white;
+  }
+  .hand-controls .c-btn,
+  .agent-control .c-btn {
+    width: 100%;
+    margin-top: 8px;
+  }
+  .hand-controls small,
+  .agent-control small {
+    display: block;
+    margin: 14px 0;
+    font-size: 12px;
+  }
+  #hand-report {
+    border-left: 3px solid var(--blue);
+    padding: 9px 14px;
+    background: #edf2ff;
+  }
+  .c-agent {
+    background: #fff1a8;
+  }
+  .c-agent .g-two {
+    align-items: start;
+  }
+  .agent-left h2 {
+    font:
+      700 clamp(80px, 9vw, 140px) / 1 "NewPlay Space",
+      sans-serif;
+    color: var(--blue);
+    margin: 18px 0;
+  }
+  .agent-left h3 {
+    font-size: 28px;
+  }
+  .agent-left img {
+    display: block;
+    width: 83%;
+    height: clamp(260px, 34vw, 500px);
+    object-fit: contain;
+    margin: auto;
+  }
+  .agent-control {
+    border: 1px solid #ac943e;
+    box-shadow: 8px 8px #d8c972;
+    padding: 30px;
+  }
+  .agent-control header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #c6bd9d;
+  }
+  .agent-control header b {
+    font-size: 13px;
+  }
+  .agent-info {
+    background: #e8efff;
+    padding: 18px;
+  }
+  .agent-info p {
+    margin: 4px 0 12px;
+  }
+  .c-end {
+    text-align: center;
+    background: var(--cream);
+    padding: 72px 20px;
+  }
+  .c-end h2 {
+    margin: 16px 0;
+    font-size: clamp(30px, 3.3vw, 50px);
+  }
+  .c-end p {
+    font-size: 12px;
+    margin-top: 18px;
+  }
+  @media (max-width: 700px) {
+    .table-nav {
+      gap: 12px;
+      font-size: 11px;
+      flex-wrap: wrap;
+    }
+    .table-nav small {
+      display: none;
+    }
+    .c-wrap {
+      width: calc(100% - 36px);
+    }
+    .c-hero > .c-wrap {
+      grid-template-columns: 1fr;
+      padding: 35px 0;
+      gap: 32px;
+    }
+    .c-hero h1 {
+      font-size: clamp(67px, 16vw, 86px);
+      margin: 16px 0;
+    }
+    .c-hero p {
+      font-size: 15px;
+    }
+    .card-scene {
+      height: 340px;
+    }
+    .bigcard {
+      left: 23%;
+      width: 53%;
+    }
+    .bigcard > b {
+      font-size: 24px;
+    }
+    .bigcard > strong {
+      font-size: 14px;
+    }
+    .card-scene > span {
+      left: 12%;
+      padding: 15px 10px;
+      font-size: 13px;
+    }
+    .c-ticker {
+      font-size: 10px;
+    }
+    .c-ticker span {
+      display: none;
+    }
+    .c-stage,
+    .c-practice,
+    .c-agent {
+      padding: 55px 0;
+    }
+    .c-heading {
+      display: block;
+      margin-bottom: 22px;
+    }
+    .c-heading p {
+      margin-top: 18px;
+    }
+    .prize-stage {
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      padding: 30px 0 0;
+    }
+    .prize-stage article:nth-child(2) {
+      grid-column: 1/-1;
+      grid-row: 1;
+      width: 82%;
+      margin: auto;
+      aspect-ratio: 1;
+    }
+    .prize-stage article > strong {
+      font-size: 26px;
+    }
+    .prize-stage article > b {
+      font-size: 16px;
+    }
+    .prize-stage article small {
+      font-size: 10px;
+    }
+    .c-controls {
+      align-items: start;
+      gap: 16px;
+    }
+    .c-controls > div:last-child {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      width: 100%;
+    }
+    .c-controls select {
+      padding: 8px;
+    }
+    .table {
+      grid-template-columns: 1fr;
+    }
+    .hand,
+    .hand-controls,
+    .agent-control {
+      padding: 20px;
+    }
+    .hand {
+      height: 420px;
+    }
+    .hand h3 {
+      font-size: 57px;
+    }
+    .cards [aria-pressed="true"] {
+      transform: translateY(-13%);
+    }
+    .c-agent .g-two {
+      gap: 26px;
+    }
+    .agent-left img {
+      height: 300px;
+    }
+    .c-end {
+      padding: 46px 20px;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .cards button {
+      transition: none;
+    }
+  }
+</style>

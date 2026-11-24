@@ -1,0 +1,402 @@
+---
+import GameLayout from "../components/games/GameLayout.astro";
+const games = [
+  {
+    label: "躺平发育 · 宿舍生存塔防",
+    type: "策略",
+    title: "人已躺平，\n防线拉满。",
+    text: "找到空床、攒金币，升门建塔守住这一夜。",
+    action: "看看怎么玩 ↗",
+    asset: "dorm",
+    url: "/lieflat/",
+  },
+  {
+    label: "经典棋牌休闲场",
+    type: "策略",
+    title: "熟悉的牌局，\n新的默契。",
+    text: "掼蛋、斗地主、麻将与更多经典玩法。",
+    action: "认识经典玩法 ↗",
+    asset: "tile-cards",
+    url: "/classic/",
+  },
+  {
+    label: "2048 · 想玩再来。",
+    type: "益智",
+    title: "2048 · 想玩再来。",
+    text: "可选数字小挑战，不是必修关卡。",
+    action: "试着玩一局 ↗",
+    asset: "tile-2048",
+    url: "/2048/",
+  },
+  {
+    label: "跳一跳 · 跳出日常。",
+    type: "休闲",
+    title: "跳一跳 · 跳出日常。",
+    text: "轻轻一跃，换一种节奏。",
+    action: "试着玩一局 ↗",
+    asset: "tile-jump",
+    url: "/jump/",
+  },
+];
+---
+
+<GameLayout
+  title="好玩宇宙"
+  description="不必擅长，喜欢就玩。跟着普莱，找到属于你的休闲时刻。"
+>
+  <section class="g-section invitation">
+    <div class="g-wrap g-two">
+      <img src="/assets/games/tile-jump.webp" alt="普莱正在跨越蓝色平台" /><div>
+        <span class="g-label">本地可玩 demo</span><h2>
+          让普莱，<br />再跳远一点。
+        </h2><p>按住、蓄力、松开。先感受手感，失手了就再来一次。</p><div
+          class="g-actions"
+        >
+          <a class="g-btn primary" href="/jump/">开始跳一跳 ↗</a><a
+            class="g-btn"
+            href="/jump/#leaderboard">查看示例榜</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="universe">
+    <div class="g-wrap g-two">
+      <div>
+        <span class="g-label">好玩宇宙</span><h1>下一局，<br />换个世界。</h1><p
+        >
+          不必擅长，喜欢就玩。跟着普莱，找到属于你的休闲时刻。
+        </p><a href="#catalog" class="g-btn yellow">继续探索　↗</a>
+      </div><img src="/assets/games/tile-island.webp" alt="漂浮的奇幻游戏岛" />
+    </div>
+  </section>
+  <div class="g-wrap quick">
+    {
+      [
+        ["随手玩一局", "跳一跳", "↗", "/jump/"],
+        ["给今天一点灵感", "普莱好运签", "✦", "/fortune/"],
+        ["换一种心情", "听点音乐", "♫", "/studio/"],
+      ].map(([label, name, mark, href]) => (
+        <a {href}>
+          <>
+            <small>{label}</small>
+            <strong>{name}</strong>
+            <b>{mark}</b>
+          </>
+        </a>
+      ))
+    }
+  </div>
+  <section id="catalog" class="g-section g-wrap">
+    <span class="g-label">从熟悉，到新鲜。</span><h2>
+      每一种好玩，<br />都有自己的主场。
+    </h2>
+    <div class="filters">
+      <input
+        type="search"
+        placeholder="搜索游戏"
+        aria-label="搜索游戏"
+      /><select aria-label="筛选游戏分类"
+        ><option>全部玩法</option>{
+          ["休闲", "益智", "策略"].map((t) => <option>{t}</option>)
+        }</select>
+    </div>
+    <div class="features">
+      {
+        games.map((g, i) => (
+          <a
+            href={g.url}
+            class:list={["feature", { small: i > 1 }]}
+            data-game
+            data-type={g.type}
+          >
+            <>
+              <div class="card-image">
+                <img
+                  src={
+                    g.asset === "dorm"
+                      ? "/assets/lieflat-dorm-hero.jpg"
+                      : "/assets/games/" + g.asset + ".webp"
+                  }
+                  loading="lazy"
+                  alt=""
+                />
+              </div>
+              <div class="feature-text">
+                {i < 2 && <small>{g.label}</small>}
+                <h3>{g.title}</h3>
+                <p>{g.text}</p>
+                {i < 2 && <b>{g.action}</b>}
+              </div>
+            </>
+          </a>
+        ))
+      }
+    </div>
+    <p hidden id="empty-games" role="status">没有找到符合条件的游戏。</p><small
+      >以上为产品与视觉方向；详情页提供本地玩法小样，不连接正式游戏服务。</small>
+  </section>
+  <section class="match-zone g-section">
+    <div class="g-wrap g-two">
+      <div>
+        <span class="g-label">休息一下，翻开好心情。</span><h2>
+          给好奇心，<br />30 秒。
+        </h2><button class="g-btn primary" data-match-open
+          >30 秒配对挑战</button>
+      </div><div class="tiles" aria-hidden="true">
+        {["✦", "●", "◆", "▲"].map((t) => <b>{t}</b>)}
+      </div>
+    </div>
+  </section>
+  <dialog id="match">
+    <h2>30 秒配对挑战</h2><p>依次翻开两张相同的符号。</p><p
+      id="timer"
+      role="status"
+    >
+    </p><div class="match-grid"></div><div class="g-actions">
+      <button class="g-btn primary" id="match-start">开始挑战</button><button
+        class="g-btn"
+        id="match-close">关闭</button>
+    </div>
+  </dialog>
+  <section class="g-section">
+    <div class="g-wrap g-two">
+      <h2>不止一局。<br />还有一个搭子。</h2><div>
+        <p class="g-copy">
+          普莱陪你发现玩法，也陪你把游戏里的灵感，变成音乐与创作。
+        </p><a class="g-btn" href="/studio/">走进普莱工坊 ↗</a>
+      </div>
+    </div>
+  </section>
+</GameLayout>
+<script src="../scripts/games/catalog.ts"></script>
+<style>
+  .invitation {
+    background: #ddf4f2;
+  }
+  .invitation .g-two {
+    grid-template-columns: 1.2fr 1fr;
+  }
+  .invitation img,
+  .universe img {
+    width: 100%;
+    border-radius: 25px;
+    display: block;
+  }
+  .invitation p,
+  .universe p {
+    margin-top: 25px;
+    line-height: 1.75;
+  }
+  .universe {
+    background: #12234c;
+    color: white;
+    overflow: hidden;
+    padding: clamp(75px, 8.6vw, 124px) 0;
+  }
+  .universe h1 {
+    font-size: clamp(54px, 6.4vw, 94px);
+  }
+  .universe .g-btn {
+    margin-top: 28px;
+  }
+  .universe img {
+    transform: rotate(-6deg);
+    border-radius: 33% 33% 7% 7%;
+    box-shadow: 18px 24px #ffffff35;
+  }
+  .quick {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    padding: 40px 0;
+  }
+  .quick a {
+    position: relative;
+    background: #bce9f5;
+    border-radius: 21px;
+    padding: 27px;
+    color: inherit;
+    text-decoration: none;
+  }
+  .quick a:nth-child(2) {
+    background: #ffe15d;
+  }
+  .quick a:nth-child(3) {
+    background: #dbd6ff;
+  }
+  .quick small,
+  .quick strong {
+    display: block;
+  }
+  .quick strong {
+    font-size: 25px;
+  }
+  .quick b {
+    position: absolute;
+    bottom: 24px;
+    right: 24px;
+    font-size: 23px;
+  }
+  .features {
+    display: grid;
+    grid-template-columns: 1.15fr 1fr;
+    gap: 48px 28px;
+    align-items: end;
+    margin: 26px 0;
+  }
+  .feature {
+    display: block;
+    background: #d5e7ff;
+    border-radius: 24px;
+    overflow: hidden;
+    text-decoration: none;
+  }
+  .feature:nth-child(2) {
+    background: #e6dcf6;
+  }
+  .feature.small {
+    align-self: start;
+    background: none;
+    border-radius: 0;
+  }
+  .feature.small .card-image {
+    border-radius: 22px;
+  }
+  .card-image {
+    overflow: hidden;
+  }
+  .card-image img {
+    width: 100%;
+    display: block;
+    aspect-ratio: 1.24;
+    object-fit: cover;
+    transition: transform 0.28s;
+  }
+  .small .card-image img {
+    aspect-ratio: 1.5;
+  }
+  .feature-text {
+    padding: 30px;
+  }
+  .feature.small .feature-text {
+    padding: 15px 0;
+  }
+  .feature h3 {
+    font-size: clamp(27px, 2.8vw, 43px);
+    white-space: pre-line;
+    margin: 15px 0;
+  }
+  .feature.small h3 {
+    font-size: 22px;
+  }
+  .feature b {
+    display: block;
+    margin-top: 18px;
+    font-size: 14px;
+  }
+  .filters {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 22px;
+  }
+  .filters :is(input, select) {
+    border: 1px solid #bacad9;
+    border-radius: 10px;
+    padding: 8px 12px;
+    background: white;
+    color: inherit;
+    min-width: 0;
+  }
+  .match-zone {
+    background: #ffdf47;
+  }
+  .match-zone button,
+  .g-two p + .g-btn {
+    margin-top: 24px;
+  }
+  .tiles {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    width: min(100%, 340px);
+    margin-left: auto;
+    transform: rotate(10deg);
+    gap: 15px;
+  }
+  .tiles b {
+    display: grid;
+    place-items: center;
+    font-size: 52px;
+    aspect-ratio: 1;
+    background: #12234c;
+    color: #ffdf47;
+    border-radius: 20px;
+  }
+  .tiles b:nth-child(2) {
+    background: #234bff;
+    color: white;
+  }
+  .tiles b:nth-child(3) {
+    background: white;
+    color: #12234c;
+  }
+  .match-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+  }
+  .match-grid button {
+    width: 55px;
+    height: 55px;
+    background: #dceafe;
+    border: 0;
+    border-radius: 10px;
+    color: #12234c;
+    font-weight: 800;
+    font-size: 24px;
+  }
+  .match-grid button:disabled {
+    background: #a0e8d6;
+  }
+  @media (max-width: 700px) {
+    .invitation .g-two {
+      grid-template-columns: 1fr;
+    }
+    .universe {
+      padding: 42px 0;
+    }
+    .universe img {
+      margin: 28px 0 0;
+    }
+    .quick,
+    .features {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+    .quick {
+      padding: 28px 0;
+    }
+    .quick a {
+      padding: 18px 22px;
+    }
+    .feature-text {
+      padding: 23px;
+    }
+    .card-image img {
+      aspect-ratio: 1.45;
+    }
+    .tiles {
+      margin: 18px auto 0;
+      max-width: 220px;
+    }
+    .g-page .g-two {
+      gap: 24px;
+    }
+  }
+  @media (hover: hover) and (prefers-reduced-motion: no-preference) {
+    .feature:hover img {
+      transform: perspective(800px) rotateX(var(--tilt-x, 0deg))
+        rotateY(var(--tilt-y, 0deg)) scale(1.035);
+    }
+  }
+</style>
