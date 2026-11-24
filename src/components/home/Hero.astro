@@ -4,6 +4,7 @@ import Artwork from './Artwork.astro';
 ---
 <section class="home-hero" data-motion aria-labelledby="home-title">
   <script is:inline>
+    document.currentScript.parentElement.dataset.brush = 'waiting';
     try {
       const locationURL = new URL(location.href);
       const replay = locationURL.searchParams.get('intro') === 'replay';

@@ -231,7 +231,8 @@
   100% {transform:none}
 }
 @keyframes plai-float {
-  50% {transform:translateY(-1.2%) rotate(-.8deg)}
+  0%, 100% {transform:translateY(0)}
+  50% {transform:translateY(-2.8%)}
 }
 @keyframes ticket-drop {
   0%   {transform:translateY(calc(-1 * var(--fall))) rotate(-9deg);opacity:0}
@@ -250,9 +251,10 @@
 @keyframes equalize{50%{scale:1 .5}}
 @keyframes finale-orbit{50%{transform:rotate(9deg)}}
 @media(prefers-reduced-motion:no-preference){
-  .home-hero[data-enter] .marker:before{animation:brush-stroke .78s cubic-bezier(.48,.09,.24,.95) .10s both}
-  .home-hero[data-enter] .mint:before{animation-delay:.58s}
-  .hero-art[data-arrived] .hero-plai{transform-origin:52% 83%;animation:plai-hop 1.12s cubic-bezier(.22,.65,.32,1),plai-float 3.4s ease-in-out 1.12s}
+  .home-hero[data-brush="waiting"] .marker::before{clip-path:inset(0 100% 0 0)}
+  .home-hero[data-brush="drawing"] .marker::before{animation:brush-stroke 1.15s cubic-bezier(.4,.12,.26,.94) .32s both}
+  .home-hero[data-brush="drawing"] .mint::before{animation-delay:1.48s}
+  .hero-art[data-arrived] .hero-plai{transform-origin:52% 83%;animation:plai-hop 1.12s cubic-bezier(.22,.65,.32,1),plai-float 3.8s ease-in-out 1.12s infinite}
   .intro-art a{--fall:clamp(100px,14vw,210px);--drop-delay:0s}
   .intro-art .make-ticket{--drop-delay:.09s}
   .intro-art .meet-ticket{--drop-delay:.19s}

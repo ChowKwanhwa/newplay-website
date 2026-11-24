@@ -25,6 +25,27 @@ if (home) {
     if (motionPreference.matches) hero.removeAttribute('data-enter');
   });
 
+  const title = hero.querySelector<HTMLElement>('#home-title')!;
+  let titleVisible = false;
+  let titleFontReady = false;
+  function updateBrush() {
+    hero.dataset.brush = titleVisible && titleFontReady && !document.hidden ? 'drawing' : 'waiting';
+  }
+  const titleObserver = new IntersectionObserver(([entry]) => {
+    titleVisible = entry.intersectionRatio >= 0.15;
+    updateBrush();
+  }, { threshold: [0, 0.15] });
+  titleObserver.observe(title);
+  // Start the ink when the display lettering can be read, including on ordinary repeat visits.
+  document.fonts.load('400 1em "NewPlay Douyin"', '年轻人的数字娱乐').then(startBrush, startBrush);
+  function startBrush() {
+    titleFontReady = true;
+    updateBrush();
+  }
+  document.addEventListener('visibilitychange', updateBrush);
+  window.addEventListener('pageshow', updateBrush);
+  window.addEventListener('pagehide', () => { hero.dataset.brush = 'waiting'; });
+
   const heroArt = hero.querySelector<HTMLElement>('.hero-art')!;
   const artObserver = new IntersectionObserver(([entry]) => {
     heroArt.toggleAttribute('data-out-of-view', !entry.isIntersecting);

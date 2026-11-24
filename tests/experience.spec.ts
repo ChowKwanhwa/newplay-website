@@ -10,6 +10,11 @@ test('home entrance runs on the first visit and navigation works immediately', a
   await expect(page).toHaveURL(/\/games\/$/);
   await page.goto('/');
   await expect(page.locator('.home-hero')).not.toHaveAttribute('data-enter', '');
+  await expect(page.locator('.home-hero')).toHaveAttribute('data-brush', 'drawing');
+  for (const marker of ['.yellow', '.mint']) {
+    const name = await page.locator('#home-title ' + marker).evaluate(el => getComputedStyle(el, '::before').animationName);
+    expect(name).toBe('brush-stroke');
+  }
 });
 
 test('reduced motion presents the homepage in its finished state', async ({ page }) => {
@@ -71,6 +76,7 @@ test('home motion, card hover and official links', async ({ page }) => {
   await page.goto('/?intro=replay');
   await expect(page.locator('.hero-art')).toHaveAttribute('data-arrived', '');
   await expect(page.locator('.hero-plai')).toHaveCSS('animation-name', 'plai-hop, plai-float');
+  await expect(page.locator('.hero-plai')).toHaveCSS('animation-iteration-count', '1, infinite');
   await expect(page.locator('[data-pause]')).toHaveCount(0);
 
   const ticket = page.locator('.meet-ticket');
